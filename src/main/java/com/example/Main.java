@@ -33,6 +33,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.net.URI; 
+import java.net.URISyntaxException; 
+import java.sql.Connection; 
+import java.sql.DriverManager; 
 
 @Controller
 @SpringBootApplication
@@ -55,7 +59,7 @@ public class Main {
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
-    try (Connection connection = dataSource.getConnection()) {
+    try (Connection connection = getConnection()) {
       Statement stmt = connection.createStatement();
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
       stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
@@ -84,5 +88,20 @@ public class Main {
       return new HikariDataSource(config);
     }
   }
+
+private static Connection getConnection() 
+	throws URISyntaxException, SQLException {      
+	URI jdbUri = new URI(System.getenv("JAWSDB_URL")); 
+ 
+  	String username = jdbUri.getUserInfo().split(":")[0];   
+	String password = jdbUri.getUserInfo().split(":")[1];   
+	String port = String.valueOf(jdbUri.getPort());   
+	String jdbUrl = "jdbc:mysql://" + jdbUri.getHost() +     
+	 ":" + port + jdbUri.getPath(); 
+ 
+  return DriverManager.getConnection(    
+jdbUrl, username, password); 
+}
+
 
 }
