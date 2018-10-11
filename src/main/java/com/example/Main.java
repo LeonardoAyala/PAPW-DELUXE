@@ -38,7 +38,7 @@ import java.net.URI;
 import java.net.URISyntaxException; 
 import java.sql.Connection; 
 import java.sql.DriverManager; 
-import com.exampe.UserJDBCTemplate;
+import com.example.UserJDBCTemplate;
 
 @Controller
 @SpringBootApplication
