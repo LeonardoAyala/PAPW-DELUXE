@@ -1,6 +1,7 @@
-package com.example;
+package com.example; 
+import java.util.List; 
+import javax.sql.DataSource; 
 import java.sql.Connection;
-import java.util.List;
  
 public interface UserDAO {    
     public void setDataSource(DataSource ds);        
