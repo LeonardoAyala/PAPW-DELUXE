@@ -43,9 +43,6 @@ import com.exampe.UserJDBCTemplate;
 @SpringBootApplication
 public class Main {
 
-  UserJDBCTemplate userTemplate = new UserJDBCTemplate(); 
-  userTemplate.setDataSource(getConnection());
-
   @Value("${spring.datasource.url}")
   private String dbUrl;
 
