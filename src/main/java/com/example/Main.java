@@ -37,10 +37,14 @@ import java.net.URI;
 import java.net.URISyntaxException; 
 import java.sql.Connection; 
 import java.sql.DriverManager; 
+import com.exampe.UserJDBCTemplate;
 
 @Controller
 @SpringBootApplication
 public class Main {
+
+  UserJDBCTemplate userTemplate = new UserJDBCTemplate(); 
+  userTemplate.setDataSource(getConnection());
 
   @Value("${spring.datasource.url}")
   private String dbUrl;
@@ -55,6 +59,11 @@ public class Main {
   @RequestMapping("/")
   String index() {
     return "index";
+  }
+
+    @RequestMapping("/Home")
+  String Home() {
+    return "Home";
   }
 
   @RequestMapping("/db")
@@ -102,6 +111,5 @@ private static Connection getConnection()
   return DriverManager.getConnection(    
 jdbUrl, username, password); 
 }
-
 
 }
