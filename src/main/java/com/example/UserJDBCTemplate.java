@@ -1,7 +1,11 @@
 package com.example; 
 import java.util.List; 
-import javax.sql.DataSource; 
-import org.springframework.jdbc.core.JdbcTemplate; 
+import java.sql.Connection;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.
+SingleConnectionDataSource;
+
+
 public class UserJDBCTemplate implements UserDAO {    
 
 private JdbcTemplate jdbcTemplateObject; 
@@ -17,7 +21,9 @@ public void create(String name, Integer age) {
     String SQL =      
     "insert into User (name, age) values (?, ?)";   
     jdbcTemplateObject.update(SQL, name, age);   
-    System.out.println(     "Registro creado = " + name + " Age = " + age   );   
+    System.out.println(
+             "Registro creado = " + name + " Age = " + age   
+             );   
     return; 
 }
 
@@ -34,5 +40,20 @@ public List<User> listUsers() {
     jdbcTemplateObject.query(SQL, new UserMapper());   
     return users; 
 }
+
+public void delete(Integer id) {
+String SQL = "delete from User where id = ?";
+jdbcTemplateObject.update(SQL, id);
+System.out.println("Borrado ID = " + id );
+return;
+}
+
+public void update(Integer id, Integer age){
+String SQL = "update User set age = ? where id = ?";
+jdbcTemplateObject.update(SQL, age, id);
+System.out.println("Actualizado ID = " + id );
+return;
+}
+
 
 } 
