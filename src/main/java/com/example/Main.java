@@ -59,11 +59,6 @@ public class Main {
     return "index";
   }
 
-    @RequestMapping("/")
-  String Home() {
-    return "Home";
-  }
-
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = getConnection()) {
