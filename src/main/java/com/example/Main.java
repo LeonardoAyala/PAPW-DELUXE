@@ -56,10 +56,40 @@ public class Main {
     return "Home";
   }
 
-    @RequestMapping("/LogIn")
+  @RequestMapping("/LogIn")
   String LogIn() {
     return "LogIn";
   }
+
+  @RequestMapping("/Catalog")
+  String Catalog() {
+    return "Catalog";
+  }
+
+  @RequestMapping("/History")
+  String History() {
+    return "History";
+  }
+
+  @RequestMapping("/itemSpotlight")
+  String itemSpotlight() {
+    return "itemSpotlight";
+  }  
+
+  @RequestMapping("/Kart")
+  String Kart() {
+    return "Kart";
+  }  
+
+  @RequestMapping("/Publish")
+  String Publish() {
+    return "Publish";
+  }  
+
+  @RequestMapping("/SignIn")
+  String SignIn() {
+    return "SignIn";
+  }    
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
