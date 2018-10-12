@@ -56,7 +56,7 @@ public class Main {
     return "Home";
   }
 
-    @RequestMapping("/Login")
+    @RequestMapping("/LogIn")
   String LogIn() {
     return "LogIn";
   }
