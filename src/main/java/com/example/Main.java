@@ -59,7 +59,7 @@ public class Main {
     return "index";
   }
 
-    @RequestMapping("/Home")
+    @RequestMapping("/")
   String Home() {
     return "Home";
   }

@@ -4,7 +4,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
  
 public interface UserDAO {    
-    public void setDataSource(DataSource ds);        
+    public void setDataSource(Connection connection);        
     public void create(String name, Integer age);        
     public Student getUser(Integer id);        
     public List<User> listUsers();        
