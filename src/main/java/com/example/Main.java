@@ -56,6 +56,11 @@ public class Main {
     return "Home";
   }
 
+    @RequestMapping("/")
+  String LogIn() {
+    return "LogIn";
+  }
+
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = getConnection()) {
