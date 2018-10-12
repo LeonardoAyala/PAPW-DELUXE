@@ -40,6 +40,13 @@ import java.sql.Connection;
 import java.sql.DriverManager; 
 import com.example.UserJDBCTemplate;
 
+package com.example;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 @Controller
 @SpringBootApplication
 public class Main {
@@ -47,18 +54,7 @@ public class Main {
   @Value("${spring.datasource.url}")
   private String dbUrl;
 
-  @GetMapping("/user/{id}")
-public String userId(
-  Model model,
-  @PathVariable(value="id") final Integer id)
-  throws URISyntaxException, SQLException {
-
-  UserJDBCTemplate userTemplate = new UserJDBCTemplate();
-  userTemplate.setDataSource(Main.getConnection());
-  User user = userTemplate.getUser(id);
-  model.addAttribute("user", user);
-  return "user";
-}
+ 
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
@@ -150,7 +146,18 @@ private static Connection getConnection()
 jdbUrl, username, password); 
 }
 
+ @GetMapping("/user/{id}")
+public String userId(
+  Model model,
+  @PathVariable(value="id") final Integer id)
+  throws URISyntaxException, SQLException {
 
+  UserJDBCTemplate userTemplate = new UserJDBCTemplate();
+  userTemplate.setDataSource(Main.getConnection());
+  User user = userTemplate.getUser(id);
+  model.addAttribute("user", user);
+  return "user";
+}
 
 
 }
