@@ -46,14 +46,14 @@ public class Main {
 
   @Value("${spring.datasource.url}")
   private String dbUrl;
-  
+
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
   }
 
   @RequestMapping("/")
   String index() {
-    return "index";
+    return "Home";
   }
 
   @RequestMapping("/db")
