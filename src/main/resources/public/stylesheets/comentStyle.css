@@ -1,0 +1,17 @@
+
+#writeComment{
+	float: left;
+
+    width: 600px;
+    border: 2px solid #5c5edc;
+    border-radius: 30px;
+	font-size: 15px;
+	color:#5c5edc;
+    background-color: transparent;
+	content: "/f000";
+
+    padding: 6px 20px 6px 20px;
+    -webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+
+}
