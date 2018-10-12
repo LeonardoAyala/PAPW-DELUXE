@@ -40,11 +40,6 @@ import java.sql.Connection;
 import java.sql.DriverManager; 
 import com.example.UserJDBCTemplate;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @SpringBootApplication
@@ -144,19 +139,5 @@ private static Connection getConnection()
   return DriverManager.getConnection(    
 jdbUrl, username, password); 
 }
-
- @GetMapping("/user/{id}")
-public String userId(
-  Model model,
-  @PathVariable(value="id") final Integer id)
-  throws URISyntaxException, SQLException {
-
-  UserJDBCTemplate userTemplate = new UserJDBCTemplate();
-  userTemplate.setDataSource(Main.getConnection());
-  User user = userTemplate.getUser(id);
-  model.addAttribute("user", user);
-  return "user";
-}
-
 
 }
