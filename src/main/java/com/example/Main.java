@@ -126,7 +126,7 @@ public class Main {
     }
   }
 
-private static Connection getConnection() 
+public static Connection getConnection() 
 	throws URISyntaxException, SQLException {      
 	URI jdbUri = new URI(System.getenv("JAWSDB_URL")); 
  
