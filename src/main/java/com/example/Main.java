@@ -137,4 +137,18 @@ private static Connection getConnection()
 jdbUrl, username, password); 
 }
 
+@GetMapping("/user/{id}")
+public String userId(
+  Model model,
+  @PathVariable(value="id") final Integer id)
+  throws URISyntaxException, SQLException {
+
+  UserJDBCTemplate userTemplate = new UserJDBCTemplate();
+  userTemplate.setDataSource(Main.getConnection());
+  User user = userTemplate.getUser(id);
+  model.addAttribute("user", user);
+  return "user";
+}
+
+
 }
