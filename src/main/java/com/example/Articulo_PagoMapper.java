@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException; 
 import org.springframework.jdbc.core.RowMapper; 
  
-public class Articulo_CategoriaMapper implements RowMapper<Articulo_Categoria> {
-    public Articulo_Categoria mapRow(ResultSet rs, int rowNum) 
+public class Articulo_PagoMapper implements RowMapper<Articulo_Pago> {
+    public Articulo_Pago mapRow(ResultSet rs, int rowNum) 
         throws SQLException {       
         Articulo articulo = new Articulo();
         articulo.setIdPago(rs.getString("ID_Pago"));       
