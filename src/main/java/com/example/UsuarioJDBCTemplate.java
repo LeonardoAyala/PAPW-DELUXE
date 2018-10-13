@@ -31,14 +31,14 @@ public void create(String nombreUsuario,
 public User getUsuario(Integer ID_Usuario) {
     String SQL = "select * from Usuario where ID_Usuario = ?";   
     Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
-        new Object[]{ID_Usuario}, new UserMapper());   
+        new Object[]{ID_Usuario}, new UsuarioMapper());   
     return usuario; 
 } 
  
-public List<Usuario> listUsers() {   
+public List<Usuario> listUsuarios() {   
     String SQL = "select * from Usuario";   
     List <Usuario> usuarios =      
-    jdbcTemplateObject.query(SQL, new UserMapper());   
+    jdbcTemplateObject.query(SQL, new UsuarioMapper());   
     return usuarios; 
 }
 
