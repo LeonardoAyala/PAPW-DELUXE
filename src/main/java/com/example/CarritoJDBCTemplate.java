@@ -49,7 +49,7 @@ public void delete(Integer ID_Carrito) {
 
 public void update(Integer ID_Carrito, Integer ID_Usuario,
         Integer ID_Articulo, Integer unidades) {
-    String SQL = "update Usuario set ID_Usuario = ?, ID_Articulo = ?, " +
+    String SQL = "update Carrito set ID_Usuario = ?, ID_Articulo = ?, " +
     "unidades = ? where ID_Carrito = ?";
     jdbcTemplateObject.update(SQL, ID_Usuario, ID_Articulo, unidades, ID_Carrito);
     System.out.println("Actualizado ID = " + ID_Carrito );

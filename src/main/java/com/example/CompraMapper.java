@@ -10,7 +10,7 @@ public class CompraMapper implements RowMapper<Compra> {
         Compra compra = new Compra();
         compra.setIdUsuario(rs.getInt("ID_Usuario"));       
         compra.setIdArticulo(rs.getInt("ID_Articulo"));   
-        compra.setValidacion(rs.getDate("validacion"));                      
+        compra.setValoracion(rs.getDate("valoracion"));                      
         return compra;       
     } 
 } 
