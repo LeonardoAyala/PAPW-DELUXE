@@ -35,7 +35,7 @@ public Usuario getUsuario(Integer ID_Usuario) {
     return usuario; 
 } 
  
-public List<Usuario> listUsuarios() {   
+public List<Usuario> listUsuario() {   
     String SQL = "select * from Usuario";   
     List <Usuario> usuarios =      
     jdbcTemplateObject.query(SQL, new UsuarioMapper());   
