@@ -14,7 +14,7 @@ public class Carrito {
     public Integer getIdUsuario() {return ID_Usuario;}     
 
     public void setIdArticulo(Integer ID_Articulo) {this.ID_Articulo = ID_Articulo;}   
-    public Integer getIdarticulo() {return ID_Articulo;} 
+    public Integer getIdArticulo() {return ID_Articulo;} 
 
     public void setUnidades(Integer unidades) {this.unidades = unidades;}   
     public Integer getUnidades() {return unidades;} 
