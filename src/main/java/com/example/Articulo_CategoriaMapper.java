@@ -10,5 +10,6 @@ public class Articulo_CategoriaMapper implements RowMapper<Articulo_Categoria> {
         Articulo_Categoria articuloCategoria = new Articulo_Categoria();
         articuloCategoria.setIdCategoria(rs.getInt("ID_Categoria"));       
         articuloCategoria.setIdArticulo(rs.getInt("ID_Articulo"));         
+     return articuloCategoria;   
     } 
 } 

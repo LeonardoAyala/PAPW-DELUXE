@@ -10,5 +10,6 @@ public class Articulo_PagoMapper implements RowMapper<Articulo_Pago> {
         Articulo_Pago articuloPago = new Articulo_Pago();
         articuloPago.setIdPago(rs.getInt("ID_Pago"));       
         articuloPago.setIdArticulo(rs.getInt("ID_Articulo"));         
+     return articuloPago;    
     } 
 } 
