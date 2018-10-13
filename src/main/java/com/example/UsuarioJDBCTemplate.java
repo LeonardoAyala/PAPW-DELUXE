@@ -19,7 +19,7 @@ public void setDataSource(Connection connection) {
 public void create(String nombreUsuario, 
     String apellido, String correo, String username,
     String contrasena, String telefono, String direccion) {   
-    String SQL = "insert into User (nombreUsuario, apellido, " +
+    String SQL = "insert into Usuario (nombreUsuario, apellido, " +
         "correo, username, contrasena, telefono, " +
         "direccion) values (?, ?, ?, ?, ?, ?, ?)";   
     jdbcTemplateObject.update(SQL, nombreUsuario, apellido, correo, username, 
