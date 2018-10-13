@@ -24,9 +24,7 @@ public void create(String nombreUsuario,
         "direccion) values (?, ?, ?, ?, ?, ?, ?)";   
     jdbcTemplateObject.update(SQL, nombreUsuario, apellido, correo, username, 
     contrasena, telefono, direccion);   
-    System.out.println(
-             "Registro creado = " + nombreUsuario
-             );   
+    System.out.println("Registro creado = " + nombreUsuario);   
     return; 
 }
 
@@ -54,8 +52,8 @@ public void delete(Integer ID_Usuario) {
 public void update(Integer ID_Usuario ,String nombreUsuario, 
     String apellido, String correo, String username,
     String contrasena, String telefono, String direccion) {
-    String SQL = "update Usuario set nombreUsuario = ?, apellido = ?, correo = ?, username = ?,
-    contrasena = ?, telefono = ?, direccion = ? where ID_Usuario = ?";
+    String SQL = "update Usuario set nombreUsuario = ?, apellido = ?, correo = ?, username = ?, " +
+        "contrasena = ?, telefono = ?, direccion = ? where ID_Usuario = ?";
     jdbcTemplateObject.update(SQL, nombreUsuario, apellido, correo, username,
          contrasena, telefono, direccion, ID_Usuario);
     System.out.println("Actualizado ID = " + ID_Usuario );
