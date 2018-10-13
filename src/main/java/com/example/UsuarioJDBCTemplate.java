@@ -28,7 +28,7 @@ public void create(String nombreUsuario,
     return; 
 }
 
-public User getUsuario(Integer ID_Usuario) {
+public Usuario getUsuario(Integer ID_Usuario) {
     String SQL = "select * from Usuario where ID_Usuario = ?";   
     Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
         new Object[]{ID_Usuario}, new UsuarioMapper());   
