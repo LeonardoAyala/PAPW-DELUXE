@@ -21,8 +21,7 @@ public void create(String name, Integer age) {
     "insert into User (name, age) values (?, ?)";   
     jdbcTemplateObject.update(SQL, name, age);   
     System.out.println(
-             "Registro creado = " + name + " Age = " + age   
-             );   
+             "Registro creado = " + name + " Age = " + age );   
     return; 
 }
 
