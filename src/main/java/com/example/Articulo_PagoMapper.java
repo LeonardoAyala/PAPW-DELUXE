@@ -8,7 +8,7 @@ public class Articulo_PagoMapper implements RowMapper<Articulo_Pago> {
     public Articulo_Pago mapRow(ResultSet rs, int rowNum) 
         throws SQLException {       
         Articulo articulo = new Articulo();
-        articulo.setIdPago(rs.getString("ID_Pago"));       
-        articulo.setIdArticulo(rs.getString("ID_Articulo"));         
+        articulo.setIdPago(rs.getInt("ID_Pago"));       
+        articulo.setIdArticulo(rs.getInt("ID_Articulo"));         
     } 
 } 
