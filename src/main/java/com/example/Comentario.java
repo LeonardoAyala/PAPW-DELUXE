@@ -15,7 +15,7 @@ public class Comentario {
     public Integer getIdUsuario() {return ID_Usuario;}     
 
     public void setIdArticulo(Integer ID_Articulo) {this.ID_Articulo = ID_Articulo;}   
-    public Integer getIdarticulo() {return ID_Articulo;} 
+    public Integer getIdArticulo() {return ID_Articulo;} 
 
     public void setFecha(Date fechaComentario) {this.fechaComentario = fechaComentario;}   
     public Date getFecha() {return fechaComentario;}     
