@@ -10,7 +10,7 @@ public class CarritoMapper implements RowMapper<Carrito> {
         Carrito carrito = new Carrito();
         carrito.setIdUsuario(rs.getInt("ID_Usuario"));       
         carrito.setIdArticulo(rs.getInt("ID_Articulo"));   
-        carrito.setUnidades(rs.getDate("unidades"));                      
+        carrito.setUnidades(rs.getInt("unidades"));                      
         return carrito;       
     } 
 } 
