@@ -45,7 +45,7 @@ public void delete(Integer ID_Pago) {
 }
 
 public void update(Integer ID_Pago, String descripcionPago) {
-    String SQL = "update Usuario set descripcionPago = ?  where ID_Pago = ?";
+    String SQL = "update Pago set descripcionPago = ?  where ID_Pago = ?";
     jdbcTemplateObject.update(SQL, descripcionPago, ID_Pago);
     System.out.println("Actualizado ID = " + ID_Pago );
     return;

@@ -53,7 +53,7 @@ public void update(Integer ID_Articulo, String nombre_articulo,
         String descripcion, float precio, Integer unidades, 
         Integer publico, Integer activo, Integer vistas,
         Integer oferta, Integer ID_Usuario) {
-    String SQL = "update Usuario set nombre_articulo = ?, descripcion = ?, precio = ?, unidades = ?, " +
+    String SQL = "update Articulo set nombre_articulo = ?, descripcion = ?, precio = ?, unidades = ?, " +
         "publico = ?, activo = ?, vistas = ?, oferta = ?, ID_Usuario = ?  where ID_Articulo = ?";
     jdbcTemplateObject.update(SQL, nombre_articulo, descripcion, precio, unidades,
          publico, activo, vistas, oferta, ID_Usuario, ID_Articulo);
