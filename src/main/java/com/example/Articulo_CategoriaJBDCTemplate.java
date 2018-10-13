@@ -20,8 +20,8 @@ public void setDataSource(Connection connection) {
 public void create(Integer ID_Categoria, Integer ID_Articulo)  {   
     String SQL = "insert into Articulo_Categoria (ID_Categoria, " +
     "ID_Articulo) values (?, ?)";   
-    jdbcTemplateObject.update(SQL, ID_Usuario, ID_Articulo);   
-    System.out.println("Registro creado = " ID_Usuario);   
+    jdbcTemplateObject.update(SQL, ID_Categoria, ID_Articulo);   
+    System.out.println("Registro creado = " + ID_Categoria);   
     return; 
 }
 

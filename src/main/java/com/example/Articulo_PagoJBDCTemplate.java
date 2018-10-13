@@ -21,7 +21,7 @@ public void create(Integer ID_Pago, Integer ID_Articulo)  {
     String SQL = "insert into Articulo_Pago (ID_Articulo, " +
     "ID_Pago) values (?, ?)";   
     jdbcTemplateObject.update(SQL, ID_Articulo, ID_Pago);   
-    System.out.println("Registro creado = " ID_Articulo);   
+    System.out.println("Registro creado = " + ID_Articulo);   
     return; 
 }
 
