@@ -2,8 +2,7 @@ package com.example;
 import java.util.List; 
 import java.sql.Connection;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.
-SingleConnectionDataSource;
+import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 
 public class UserJDBCTemplate implements UserDAO {    

@@ -57,7 +57,6 @@ public class UserController {
         userTemplate.setDataSource(Main.getConnection());
         userTemplate.update(
         user.getId(),
-        user.getName(),
         user.getAge()
         );
         return "updateUser";
@@ -69,6 +68,7 @@ public class UserController {
         return "setUser";
     }
 
+    /*
     @PostMapping("/user")
     public String userSubmit(@ModelAttribute User user)
     throws URISyntaxException, SQLException {
@@ -78,6 +78,6 @@ public class UserController {
         String url = "/user/" + user.getId();
         return url;
     }
-
+    */
 
 }
