@@ -12,13 +12,13 @@ public class Comentario {
     public Integer getId() {return ID_Comentario;}  
 
     public void setIdUsuario(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
-    public String getIdUsuario() {return ID_Usuario;}     
+    public Integer getIdUsuario() {return ID_Usuario;}     
 
     public void setIdArticulo(Integer ID_Articulo) {this.ID_Articulo = ID_Articulo;}   
-    public String getIdarticulo() {return ID_Articulo;} 
+    public Integer getIdarticulo() {return ID_Articulo;} 
 
     public void setFecha(Date fechaComentario) {this.fechaComentario = fechaComentario;}   
-    public String getFecha() {return fechaComentario;}     
+    public Date getFecha() {return fechaComentario;}     
 
     public void setComentario(String comentario) {this.comentario = comentario;}   
     public String getComentario() {return comentario;}      

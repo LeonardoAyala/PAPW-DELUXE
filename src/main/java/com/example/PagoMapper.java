@@ -8,7 +8,7 @@ public class PagoMapper implements RowMapper<Pago> {
     public Pago mapRow(ResultSet rs, int rowNum) 
         throws SQLException {       
         Pago pago = new Pago();
-        pago.setNombre(rs.getString("descripcionPago"));       
+        pago.setDescripcion(rs.getString("descripcionPago"));       
         return pago;    
     } 
 } 
