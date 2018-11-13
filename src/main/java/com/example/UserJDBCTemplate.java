@@ -36,9 +36,9 @@ public void create(User user) {
 
 public User getUserByCredentials(String name, Integer age){
         String SQL =      
-    "select * from User where name = ? AND age = ?";   
+    "select * from User where name = ?";   
         User user = jdbcTemplateObject.queryForObject(SQL,       
-        new Object[]{name, age}, new UserMapper());     
+        new Object[]{name}, new UserMapper());     
     return; 
 
 }
