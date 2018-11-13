@@ -50,7 +50,7 @@ public class UserController {
         return "user";
     }
 
-    @PostMapping("/userEdit")
+    @PostMapping("/updateUser")
     public String userEditSubmit(@ModelAttribute User user)
     throws URISyntaxException, SQLException {
         UserJDBCTemplate userTemplate = new UserJDBCTemplate();
@@ -73,7 +73,7 @@ public class UserController {
     throws URISyntaxException, SQLException {      
         UserJDBCTemplate userTemplate = new UserJDBCTemplate();   
         userTemplate.setDataSource(Main.getConnection());   
-        userTemplate.create(user);      
+        userTemplate.create(user.getUser(), user.getAge());      
         String url = "/user/" + Integer.toString(user.getId());   
         return url; 
     }
