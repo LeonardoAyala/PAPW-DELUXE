@@ -63,12 +63,12 @@ public class UserController {
     }
 
     @GetMapping("/setUser")
-    public String userForm(Model model) {
-        model.addAttribute("user", new User());
+    public String userForm((Model model) {   
+        model.addAttribute("user", new User());   
         return "setUser";
     }
 
-    @PostMapping("/user") 
+    @PostMapping("/setUser") 
     public String userSubmit(@ModelAttribute User user)    
     throws URISyntaxException, SQLException {      
         UserJDBCTemplate userTemplate = new UserJDBCTemplate();   
