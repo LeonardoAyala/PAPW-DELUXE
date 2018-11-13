@@ -38,8 +38,8 @@ public User getUserByCredentials(String name, Integer age){
         String SQL =      
     "select * from User where name = ?";   
         User user = jdbcTemplateObject.queryForObject(SQL,       
-        new Object[]{name}, new UserMapper());     
-    return; 
+        new Object[]{name, age}, new UserMapper());     
+    return user; 
 
 }
 
