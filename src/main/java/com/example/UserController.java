@@ -63,7 +63,7 @@ public class UserController {
     }
 
     @GetMapping("/setUser")
-    public String userForm((Model model) {   
+    public String userForm(Model model) {   
         model.addAttribute("user", new User());   
         return "setUser";
     }
