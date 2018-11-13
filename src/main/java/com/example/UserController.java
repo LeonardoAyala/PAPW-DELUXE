@@ -67,15 +67,14 @@ public class UserController {
         model.addAttribute("user", new User());
         return "setUser";
     }
-/*
+
     @PostMapping("/user") 
     public String userSubmit(@ModelAttribute User user)    
     throws URISyntaxException, SQLException {      
         UserJDBCTemplate userTemplate = new UserJDBCTemplate();   
         userTemplate.setDataSource(Main.getConnection());   
-        userTemplate.create(user);      
+        userTemplate.create(user.name, user.age);      
         String url = "/user/" + Integer.toString(user.getId());   
         return url; 
-        }
-*/
+    }
 }
