@@ -67,7 +67,7 @@ public class UserController {
         model.addAttribute("user", new User());
         return "setUser";
     }
-
+/*
     @PostMapping("/user") 
     public String userSubmit(@ModelAttribute User user)    
     throws URISyntaxException, SQLException {      
@@ -77,5 +77,5 @@ public class UserController {
         String url = "/user/" + Integer.toString(user.getId());   
         return url; 
         }
-
+*/
 }
