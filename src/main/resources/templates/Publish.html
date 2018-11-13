@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -158,18 +158,25 @@
                                                         </a>
                                                 </div>
                                         </div>
-                                        <div class="col-xl">
-                                            <p>Name:</p>
-                                                <input id="writeComment" type="text" name="writeCom" placeholder="Add name." />
-                                            <p>Region:</p>
+
+                                        <form action="#" th:action="@{/setUser}"        
+                                        th:object="${articulo}" method="post"> 
+                                            <div class="col-xl">
+                                                <p>Name:</p>
+                                                <input id="writeComment" th:field="*{nombre_articulo}" type="text" name="writeCom" placeholder="Add name." />
+                                                <p>Region:</p>
                                                 <input id="writeComment" type="text" name="writeCom" placeholder="Add region." />
-                                          <p>Description:</p>
-                                          <input id="writeComment" type="text" name="writeCom" placeholder="Add region." />
-                                          <p>Units Available: <input type="number" name="Quantity" placeholder="Quantity" step="1" /></p>
-                                          <p>Price: <input type="number" name="Quantity" placeholder="Price" step="1" /></p>
-                                          
-                                          <button type="submit" > Publish</button>
-                                        </div>
+                                                <p>Description:</p>
+                                                <input id="writeComment" th:field="*{descripcion}" type="text" name="writeCom" placeholder="Add region." />
+                                                <p>Units Available: 
+                                                <input type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" /></p>
+                                                <p>Price: 
+                                                <input type="number" th:field="*{precio}" name="Quantity" placeholder="Price" step="1" /></p>
+                                                
+                                            <button type="submit" > Publish</button>
+                                            </div>
+                                        </form>   
+
                                       </div>
                                       
                         </div>
