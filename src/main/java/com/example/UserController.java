@@ -68,27 +68,14 @@ public class UserController {
         return "setUser";
     }
 
-
-    @PostMapping("/user")
-    public String userSubmit(@ModelAttribute User user)
-    throws URISyntaxException, SQLException {
-        UserJDBCTemplate userTemplate = new UserJDBCTemplate();
-        userTemplate.setDataSource(Main.getConnection());
-        userTemplate.create(user);
-        String url = "/user/" + user.getId();
-        return url;
-    }
-
-@PostMapping("/userEdit") 
-public String userEditSubmit(@ModelAttribute User user)    
-throws URISyntaxException, SQLException {
-        UserJDBCTemplate userTemplate = new UserJDBCTemplate();
-        userTemplate.setDataSource(Main.getConnection());
-        userTemplate.update(     
-            user.getId(),      
-            user.getName(),      
-            user.getAge()   
-            );      
-        return "updateUser"; 
+    @PostMapping("/user") 
+    public String userSubmit(@ModelAttribute User user)    
+    throws URISyntaxException, SQLException {      
+        UserJDBCTemplate userTemplate = new UserJDBCTemplate();   
+        userTemplate.setDataSource(Main.getConnection());   
+        userTemplate.create(user);      
+        String url = "/user/" + user.getId();   
+        return url; 
         }
+
 }
