@@ -74,7 +74,7 @@ public class UserController {
         UserJDBCTemplate userTemplate = new UserJDBCTemplate();   
         userTemplate.setDataSource(Main.getConnection());   
         userTemplate.create(user);      
-        String url = "/user/" + user.getId();   
+        String url = "/user/" + Integer.toString(user.getId());   
         return url; 
         }
 
