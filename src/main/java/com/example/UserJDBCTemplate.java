@@ -25,6 +25,15 @@ public void create(String name, Integer age) {
     return; 
 }
 
+public void create(User user) {   
+    String SQL =      
+    "insert into User (name, age) values (?, ?)";   
+    jdbcTemplateObject.update(SQL, user.name, user.age);   
+    System.out.println(
+             "Registro creado = " + user.name + " Age = " + user.age);   
+    return; 
+}
+
 public User getUser(Integer id) {
     String SQL = "select * from User where id = ?";   
     User user = jdbcTemplateObject.queryForObject(SQL,       
