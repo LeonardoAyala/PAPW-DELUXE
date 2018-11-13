@@ -7,12 +7,10 @@ public class Articulo {
     private float precio;
     private Integer unidades;   
 
-    /*
     private File imagen_1;
     private File imagen_2;    
     private File imagen_3;
     private File video;
-    */
 
     private Integer publico;
     private Integer activo;
