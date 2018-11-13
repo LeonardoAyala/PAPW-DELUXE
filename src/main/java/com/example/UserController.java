@@ -50,7 +50,7 @@ public class UserController {
         return "user";
     }
 
-    @PostMapping("/updateUser")
+    @PostMapping("/userEdit")
     public String userEditSubmit(@ModelAttribute User user)
     throws URISyntaxException, SQLException {
         UserJDBCTemplate userTemplate = new UserJDBCTemplate();
