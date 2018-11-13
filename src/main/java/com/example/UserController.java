@@ -73,7 +73,7 @@ public class UserController {
     throws URISyntaxException, SQLException {      
         UserJDBCTemplate userTemplate = new UserJDBCTemplate();   
         userTemplate.setDataSource(Main.getConnection());   
-        userTemplate.create(user.getUser(), user.getAge());      
+        userTemplate.create(user);      
         String url = "/user/" + Integer.toString(user.getId());   
         return url; 
     }
