@@ -9,16 +9,21 @@ public class Usuario {
     private String contrasena;
     private String telefono;
     private String direccion;
-    /*
-    private File imagen_avatar;
-    private File imagen_portada;
-    */
+
+    private byte[] imagen_avatar;
+    private byte[] imagen_portada;
    
     //public void setId(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
     public Integer getId() {return ID_Usuario;} 
 
     public void setNombre(String nombreUsuario) {this.nombreUsuario = nombreUsuario;}   
     public String getNombre() {return nombreUsuario;}   
+
+    public void setImagen_avatar(byte[] imagen_avatar) {this.imagen_avatar = imagen_avatar;}   
+    public byte[] getImagen_avatar() {return imagen_avatar;}   
+
+    public void setImagen_portada(byte[] imagen_portada) {this.imagen_portada = imagen_portada;}   
+    public byte[] getImagen_portada() {return imagen_portada;}   
 
     public void setApellido(String apellido) {this.apellido = apellido;}   
     public String getApellido() {return apellido;}   

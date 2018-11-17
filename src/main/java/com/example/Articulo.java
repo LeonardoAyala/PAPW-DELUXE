@@ -20,6 +20,18 @@ public class Articulo {
     
     public Integer getId() {return ID_Articulo;}  
 
+    public void setImagen_1(byte[] imagen_1) {this.imagen_1 = imagen_1;}   
+    public byte[] getImagen_1() {return imagen_1;}   
+
+    public void setImagen_2(byte[] imagen_2) {this.imagen_2 = imagen_2;}   
+    public byte[] getImagen_2() {return imagen_2;}   
+
+    public void setImagen_3(byte[] imagen_3) {this.imagen_3 = imagen_3;}   
+    public byte[] getImagen_3() {return imagen_3;}       
+
+    public void setVideo(byte[] video) {this.video = video;}   
+    public byte[] getVideo() {return video;}    
+
     public void setNombre(String nombre_articulo) {this.nombre_articulo = nombre_articulo;}   
     public String getNombre() {return nombre_articulo;}      
 
