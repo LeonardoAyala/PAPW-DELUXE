@@ -88,12 +88,12 @@ public class Main {
   String Publish() {
     return "Publish";
   }  
-
+/*
   @RequestMapping("/SignIn")
   String SignIn() {
     return "SignIn";
   }    
-
+*/
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = getConnection()) {

@@ -28,6 +28,17 @@ public void create(String nombreUsuario,
     return; 
 }
 
+public void create(Usuario usuario) {   
+    String SQL = "insert into Usuario (nombreUsuario, apellido, " +
+        "correo, username, contrasena, telefono, " +
+        "direccion) values (?, ?, ?, ?, ?, ?, ?)";   
+    jdbcTemplateObject.update(SQL, usuario.getNombreUsuario(), usuario.getApellido(),
+    usuario.getCorreo(), usuario.getUsername(), usuario.getContrasena(), 
+    usuario.getTelefono(), usuario.getDireccion());   
+    System.out.println("Registro creado = " + usuario.getNombreUsuario());   
+    return; 
+}
+
 public Usuario getUsuario(Integer ID_Usuario) {
     String SQL = "select * from Usuario where ID_Usuario = ?";   
     Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       

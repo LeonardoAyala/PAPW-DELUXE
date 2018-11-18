@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <form action="#" th:action="@{/setUser}" th:object="${user}" method="post">     
+    <form action="#" th:action="@{/registarUsuario}" th:object="${usuario}" method="post">     
         <div class='login'>
             <img id="photo" class="img-circle" src="images/DSC_0040.JPG" alt="foto" width="30px" >
 
@@ -33,36 +33,36 @@
                     <div class="sign-in-htm">
                         <div class="group">
                             <label for="name" class="label">Name</label>
-                            <input id="name" type="text" class="input" th:field="*{name}">
+                            <input id="name" type="text" class="input" th:field="*{nombreUsuario}">
                         </div>
                         <div class="group">
                             <label for="sname" class="label">Second Name</label>
-                            <input id="sname" type="text" class="input">
+                            <input id="sname" type="text" class="input" th:field="*{apellido}">
                         </div>
                         <div class="group">
                                 <label for="email" class="label">Email</label>
-                                <input id="email" type="email" class="input">
+                                <input id="email" type="email" class="input" th:field="*{correo}">
                         </div>
                         <div class="group">
                                 <label for="user" class="label">Username</label>
-                                <input id="user" type="text" class="input">
+                                <input id="user" type="text" class="input"th:field="*{username}">
                             </div>
                         <div class="group">
                                 <label for="pass" class="label">Password</label>
-                                <input id="pass" type="password" class="input" data-type="password">
+                                <input id="pass" type="password" class="input" data-type="password" th:field="*{contrasena}">
                             </div>
                         <div class="group">
                             <label for="cel" class="label">Cellphone</label>
-                            <input id="cel" type="text" class="input" data-type="input">
+                            <input id="cel" type="text" class="input" data-type="input" th:field="*{telefono}">
                         </div>                  
                         <div class="group">
                                 <label for="addr" class="label">Home Address</label>
-                                <input id="addr" type="text" class="input" data-type="input">
+                                <input id="addr" type="text" class="input" data-type="input" th:field="*{direccion}">
                         </div> 
 
                         <div class="group">
                                 <label for="img2" class="label">Front Image</label>
-                                <input id="img2" type="file" class="input" data-type="input">
+                                <input id="img2" type="file" class="input" data-type="input" th:field="*{imagen_portada}">
                         </div> 
                         <div class="group">
                             <input id="check" type="checkbox" class="check" checked>
