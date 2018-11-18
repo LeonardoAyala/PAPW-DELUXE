@@ -15,8 +15,8 @@ public class UsuarioMapper implements RowMapper<Usuario> {
         usuario.setContrasena(rs.getString("contrasena"));       
         usuario.setTelefono(rs.getString("telefono"));              
         usuario.setDireccion(rs.getString("direccion"));   
-        usuario.setImagen_portada(rs.getString("imagen_portada"));    
-        usuario.setImagen_avatar(rs.getString("imagen_avatar"));    
+        usuario.setImagen_portada(rs.setBytes("imagen_portada"));    
+        usuario.setImagen_avatar(rs.setBytes("imagen_avatar"));    
         return usuario;    
     } 
 } 
