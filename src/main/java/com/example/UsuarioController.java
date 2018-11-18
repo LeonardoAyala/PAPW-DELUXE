@@ -68,6 +68,12 @@ public class UsuarioController {
         return "SignIn";
     }
 
+    @GetMapping("/LogIn")
+    public String userLoginForm(Model model) {   
+        model.addAttribute("usuario", new Usuario());   
+        return "LogIn";
+    }
+
     @PostMapping("/loginUsuario") 
     public String userLogIn(@ModelAttribute Usuario usuario)    
     throws URISyntaxException, SQLException {      
