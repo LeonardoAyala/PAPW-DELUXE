@@ -34,8 +34,8 @@ public void create(Usuario usuario) {
         "direccion, imagen_avatar, imagen_portada) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";   
     jdbcTemplateObject.update(SQL, usuario.getNombreUsuario(), usuario.getApellido(),
     usuario.getCorreo(), usuario.getUsername(), usuario.getContrasena(), 
-    usuario.getTelefono(), usuario.getDireccion(), (byte)0, (byte)0
-    /*usuario.getImagen_avatar(), usuario.getImagen_portada() */);   
+    usuario.getTelefono(), usuario.getDireccion(),
+    usuario.getImagen_avatar(), usuario.getImagen_portada() );   
     System.out.println("Registro creado = " + usuario.getNombreUsuario());   
     return; 
 }
