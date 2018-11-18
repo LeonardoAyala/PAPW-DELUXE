@@ -50,6 +50,18 @@ public class UsuarioController {
         return "updateUser";
     }
 */
+    @GetMapping("/Home/{id}")
+    public String ususarioId(
+        Model model,
+        @PathVariable(value="ID_Usuario") final Integer id) 
+        throws URISyntaxException, SQLException {
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
+        usuarioTemplate.setDataSource(Main.getConnection());
+        Usuario usuario = usuarioTemplate.getUsuario(id);
+        model.addAttribute("Home", usuario);
+        return "Home";
+    }
+        
     @GetMapping("/SignIn")
     public String userForm(Model model) {   
         model.addAttribute("usuario", new Usuario());   
