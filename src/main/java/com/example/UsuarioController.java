@@ -50,14 +50,14 @@ public class UsuarioController {
         return "updateUser";
     }
 */
-    @GetMapping("/Home/{id}")
+    @GetMapping("/Home/{ID_Usuario}")
     public String ususarioId(
         Model model,
-        @PathVariable(value="ID_Usuario") final Integer id) 
+        @PathVariable(value="ID_Usuario") final Integer ID_Usuario) 
         throws URISyntaxException, SQLException {
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
         usuarioTemplate.setDataSource(Main.getConnection());
-        Usuario usuario = usuarioTemplate.getUsuario(id);
+        Usuario usuario = usuarioTemplate.getUsuario(ID_Usuario);
         model.addAttribute("Home", usuario);
         return "Home";
     }
