@@ -46,6 +46,15 @@ public Usuario getUsuario(Integer ID_Usuario) {
         new Object[]{ID_Usuario}, new UsuarioMapper());   
     return usuario; 
 } 
+
+public Usuario getUsuarioLogIn(User usuarioToSearch) {
+    String SQL = "select * from Usuario where nombreUsuario = ? and contrasena = ?";   
+    Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
+        new Object[]{usuarioToSearch.getNombreUsuario(), 
+        usuarioToSearch.getContrasena()}, new UsuarioMapper());   
+    return usuario; 
+} 
+ 
  
 public List<Usuario> listUsuario() {   
     String SQL = "select * from Usuario";   

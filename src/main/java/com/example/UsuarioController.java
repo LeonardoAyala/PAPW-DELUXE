@@ -68,6 +68,15 @@ public class UsuarioController {
         return "SignIn";
     }
 
+    @PostMapping("/loginUsuario") 
+    public String userLogIn(@ModelAttribute Usuario usuario)    
+    throws URISyntaxException, SQLException {      
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        usuarioTemplate.setDataSource(Main.getConnection());   
+        Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(usuario);  
+        return "Home"; 
+    }
+
     @PostMapping("/registarUsuario") 
     public String userSubmit(@ModelAttribute Usuario usuario)    
     throws URISyntaxException, SQLException {      
