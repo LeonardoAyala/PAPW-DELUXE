@@ -20,39 +20,42 @@
 </head>
 
 <body>
-<form action="#" th:action="@{/loginUsuario}" th:object="${usuario}" method="post">   
-<div class='login'>
-    <img class="img-logo" src="images/Asset 3Aventurous Logo.png" alt="foto" height="80px">
-    <img class="img-circle " src="images/Asset 2Aventurous Font.png" alt="foto" width="100px" >
+  <form action="#" th:action="@{/loginUsuario}" th:object="${usuario}" method="post">   
+    <div class='login'>
+        <img class="img-logo" src="images/Asset 3Aventurous Logo.png" alt="foto" height="80px">
+        <img class="img-circle " src="images/Asset 2Aventurous Font.png" alt="foto" width="100px" >
 
-  <div class='login_title'>
-    <span>Login to your account</span>
-  </div>
-
-  <div class="login-form">
-			<div class="sign-in-htm">
-				<div class="group">
-					<label for="user" class="label">Username</label>
-					<input id="user" type="text" class="input" th:field="*{nombreUsuario}">
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password" th:field="*{contrasena}">
-				</div>
-				<div class="group">
-					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span> Keep me Signed in</label>
-				</div>
-
-			</div>
-    <div class='login_fields__submit'>
-      <input id="submitIt" type='submit' value='Log In'>
-      <div class='forgot'>
-        <a href='#'>Forgotten password?</a>
+      <div class='login_title'>
+        <span>Login to your account</span>
       </div>
+
+      <div class="login-form">
+          <div class="sign-in-htm">
+              <div class="group">
+                  <label for="user" class="label">Username</label>
+                  <input id="user" type="text" class="input"th:field="*{username}">
+              </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input id="pass" type="password" class="input" data-type="password" th:field="*{contrasena}">
+            </div>
+            <div class="group">
+              <input id="check" type="checkbox" class="check" checked>
+              <label for="check"><span class="icon"></span> Keep me Signed in</label>
+            </div>
+          </div>
+
+        <div class='login_fields__submit'>
+          <input id="submitIt" type='submit' value='Log In'>
+          <div class='forgot'>
+            <a href='#'>Forgotten password?</a>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-  </div>
-</form>
+  </form>
   
 <script>
     function validateForm() {
