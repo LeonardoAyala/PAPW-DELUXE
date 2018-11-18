@@ -21,74 +21,74 @@
 </head>
 
 <body>
+    <form action="#" th:action="@{/setUser}" th:object="${user}" method="post">     
+        <div class='login'>
+            <img id="photo" class="img-circle" src="images/DSC_0040.JPG" alt="foto" width="30px" >
 
-<div class='login'>
-    <img id="photo" class="img-circle" src="images/DSC_0040.JPG" alt="foto" width="30px" >
+        <div class='login_title'>
+            <span>Login to your account</span>
+        </div>
 
-  <div class='login_title'>
-    <span>Login to your account</span>
-  </div>
+        <div class="login-form">
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="name" class="label">Name</label>
+                            <input id="name" type="text" class="input" th:field="*{name}">
+                        </div>
+                        <div class="group">
+                            <label for="sname" class="label">Second Name</label>
+                            <input id="sname" type="text" class="input">
+                        </div>
+                        <div class="group">
+                                <label for="email" class="label">Email</label>
+                                <input id="email" type="email" class="input">
+                        </div>
+                        <div class="group">
+                                <label for="user" class="label">Username</label>
+                                <input id="user" type="text" class="input">
+                            </div>
+                        <div class="group">
+                                <label for="pass" class="label">Password</label>
+                                <input id="pass" type="password" class="input" data-type="password">
+                            </div>
+                        <div class="group">
+                            <label for="cel" class="label">Cellphone</label>
+                            <input id="cel" type="text" class="input" data-type="input">
+                        </div>                  
+                        <div class="group">
+                                <label for="addr" class="label">Home Address</label>
+                                <input id="addr" type="text" class="input" data-type="input">
+                        </div> 
 
-  <div class="login-form">
-			<div class="sign-in-htm">
-				<div class="group">
-					<label for="name" class="label">Name</label>
-					<input id="name" type="text" class="input">
-				</div>
-				<div class="group">
-					<label for="sname" class="label">Second Name</label>
-					<input id="sname" type="text" class="input">
-                </div>
-                <div class="group">
-                        <label for="email" class="label">Email</label>
-                        <input id="email" type="email" class="input">
-                </div>
-				<div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input">
+                        <div class="group">
+                                <label for="img2" class="label">Front Image</label>
+                                <input id="img2" type="file" class="input" data-type="input">
+                        </div> 
+                        <div class="group">
+                            <input id="check" type="checkbox" class="check" checked>
+                            <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                        </div>
+                        
+
                     </div>
-                <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                <div class="group">
-                    <label for="cel" class="label">Cellphone</label>
-                    <input id="cel" type="text" class="input" data-type="input">
-                </div>                  
-                <div class="group">
-                        <label for="addr" class="label">Home Address</label>
-                        <input id="addr" type="text" class="input" data-type="input">
-                </div> 
-
-                <div class="group">
-                        <label for="img2" class="label">Front Image</label>
-                        <input id="img2" type="file" class="input" data-type="input">
-                </div> 
-				<div class="group">
-					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span> Keep me Signed in</label>
-                </div>
-                
-
-			</div>
-    <div class='login_fields__submit'>
-      <input id="submitIt" type='submit' value='Log In'>
-      <div class='forgot'>
-        <a href='#'>Forgotten password?</a>
-      </div>
-    </div>
-  </div>
-
-  
-<script>
-    function validateForm() {
-        var x = document.forms["myForm"]["fname"].value;
-        if (x == "") {
-            alert("Name must be filled out");
-            return false;
+            <div class='login_fields__submit'>
+            <input id="submitIt" type='submit' value='Log In'>
+            <div class='forgot'>
+                <a href='#'>Forgotten password?</a>
+            </div>
+            </div>
+        </div>
+    </form>   
+    
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["fname"].value;
+            if (x == "") {
+                alert("Name must be filled out");
+                return false;
+            }
         }
-    }
-</script>
+    </script>
 
 
 
