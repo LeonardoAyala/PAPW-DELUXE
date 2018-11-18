@@ -16,8 +16,8 @@ public class Usuario {
     //public void setId(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
     public Integer getId() {return ID_Usuario;} 
 
-    public void setNombre(String nombreUsuario) {this.nombreUsuario = nombreUsuario;}   
-    public String getNombre() {return nombreUsuario;}   
+    public void setNombreUsuario(String nombreUsuario) {this.nombreUsuario = nombreUsuario;}   
+    public String getNombreUsuario() {return nombreUsuario;}   
 
     public void setImagen_avatar(byte[] imagen_avatar) {this.imagen_avatar = imagen_avatar;}   
     public byte[] getImagen_avatar() {return imagen_avatar;}   

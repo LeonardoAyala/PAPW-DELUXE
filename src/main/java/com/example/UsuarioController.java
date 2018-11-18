@@ -52,7 +52,7 @@ public class UsuarioController {
 */
     @GetMapping("/SignIn")
     public String userForm(Model model) {   
-        model.addAttribute("usuario", new usuario());   
+        model.addAttribute("usuario", new Usuario());   
         return "SignIn";
     }
 
