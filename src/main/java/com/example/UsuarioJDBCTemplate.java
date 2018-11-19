@@ -57,9 +57,9 @@ public Usuario getUsuarioLogIn(Usuario usuarioToSearch) {
  */
 public Usuario getUsuarioLogIn(String nombreUsuario) {
     //String SQL = "select * from Usuario where nombreUsuario = ?";   
-    String SQL = "select * from Usuario where nombreUsuario = ?";   
+    String SQL = "select * from Usuario where username = ?";   
     Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
-        new Object[]{new String(nombreUsuario)}, new UsuarioMapper());   
+        new Object[]{nombreUsuario}, new UsuarioMapper());   
     return usuario; 
 } 
  
