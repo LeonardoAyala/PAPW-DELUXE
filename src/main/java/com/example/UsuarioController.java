@@ -80,7 +80,7 @@ public class UsuarioController {
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
         usuarioTemplate.setDataSource(Main.getConnection());   
         Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(
-            usuario.getUsername(), usuario.getPassword());  
+            usuario.getUsername(), usuario.getContrasena());  
 
         if(usuarioLogged != null)
             return "LogIn";
