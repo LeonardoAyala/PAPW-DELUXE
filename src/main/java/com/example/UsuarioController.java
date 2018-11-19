@@ -79,7 +79,7 @@ public class UsuarioController {
     throws URISyntaxException, SQLException {      
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
         usuarioTemplate.setDataSource(Main.getConnection());   
-        Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(1);  
+        Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(usuario.getNombreUsuario());  
         return "Home";
     }
 

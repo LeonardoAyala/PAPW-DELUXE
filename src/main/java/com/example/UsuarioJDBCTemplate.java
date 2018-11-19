@@ -55,11 +55,11 @@ public Usuario getUsuarioLogIn(Usuario usuarioToSearch) {
     return usuario; 
 } 
  */
-public Usuario getUsuarioLogIn(Integer ID_Usuario) {
+public Usuario getUsuarioLogIn(String nombreUsuario) {
     //String SQL = "select * from Usuario where nombreUsuario = ?";   
-    String SQL = "select * from Usuario where ID_Usuario = ?";   
+    String SQL = "select * from Usuario where nombreUsuario = ?";   
     Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
-        new Object[]{ID_Usuario}, new UsuarioMapper());   
+        new Object[]{new String(nombreUsuario)}, new UsuarioMapper());   
     return usuario; 
 } 
  
