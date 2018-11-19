@@ -76,7 +76,7 @@ public class UsuarioController {
 
     @PostMapping("/loginUsuario") 
     public String userLogIn(@ModelAttribute Usuario usuario)    
-    {      
+    throws URISyntaxException {      
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
         usuarioTemplate.setDataSource(Main.getConnection());   
         Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(
