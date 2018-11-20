@@ -3,6 +3,7 @@ package com.example;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,8 +55,13 @@ public class UsuarioController {
     }
 
     @GetMapping("/LogIn")
-    public String userLoginForm(Model model) {   
-        model.addAttribute("usuario", new Usuario());   
+    public String userLoginForm(Model model, @CookieValue(value = "cookie_Remember", 
+        defaultValue ="") String cookieRemember) {   
+            
+        Usuario usuario = new Usuario();
+        usuario.setUsername(cookieRemember);
+        
+        model.addAttribute("usuario", usuario);   
         return "LogIn";
     }
 
@@ -70,7 +76,7 @@ public class UsuarioController {
             usuarioTemplate.setDataSource(Main.getConnection());   
             Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(
                 usuario.getUsername(), usuario.getContrasena());  
-                
+
             if(usuarioLogged != null){
                 session.setAttribute("loggedUsuario_Nombre", usuario.getNombreUsuario() + usuario.getApellido());
                 session.setAttribute("loggedUsuario_Username", usuario.getUsername());
