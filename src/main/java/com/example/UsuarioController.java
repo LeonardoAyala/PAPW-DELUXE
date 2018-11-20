@@ -1,34 +1,18 @@
 package com.example;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.jdbc.core.JdbcTemplate; 
 
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Map;
-import java.net.URI; 
 import java.net.URISyntaxException; 
-import java.sql.Connection; 
-import java.sql.DriverManager; 
-import com.example.UserJDBCTemplate;
 import java.lang.Integer;
 import java.lang.String;
 
@@ -75,18 +59,24 @@ public class UsuarioController {
     }
 
     @PostMapping("/loginUsuario") 
-    public String userLogIn(@ModelAttribute Usuario usuario)    
-    throws URISyntaxException, SQLException {      
-        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
-        usuarioTemplate.setDataSource(Main.getConnection());   
-        
-        Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(
-            usuario.getUsername(), usuario.getContrasena());  
+    public String userLogIn(HttpServletResponse response, HttpSession session, 
+        @RequestParam(value = "nrecordarme", required = false) String recordar, 
+        @ModelAttribute Usuario usuario)    
+        throws URISyntaxException, SQLException {  
 
-        if(usuarioLogged != null)
-            return "Home";
-        else
-            return "LogIn";
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            
+            usuarioTemplate.setDataSource(Main.getConnection());   
+            Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(
+                usuario.getUsername(), usuario.getContrasena());  
+
+            if(usuarioLogged != null){
+                session.setAttribute("loggedUsuarioUsername", usuario.getNombreUsuario());
+
+                return "redirect:/Home";
+            }
+            else
+                return "redirect:/LogIn";
     }
 
     @PostMapping("/registarUsuario") 
