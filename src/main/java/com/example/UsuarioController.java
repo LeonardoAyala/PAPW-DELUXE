@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -60,7 +61,7 @@ public class UsuarioController {
 
     @PostMapping("/loginUsuario") 
     public String userLogIn(HttpServletResponse response, HttpSession session, 
-        @RequestParam(value = "nrecordarme", required = false) String recordar, 
+        @RequestParam(value = "rememberMe", required = false) String remember, 
         @ModelAttribute Usuario usuario)    
         throws URISyntaxException, SQLException {  
 
@@ -69,9 +70,21 @@ public class UsuarioController {
             usuarioTemplate.setDataSource(Main.getConnection());   
             Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(
                 usuario.getUsername(), usuario.getContrasena());  
-
+                
             if(usuarioLogged != null){
-                session.setAttribute("loggedUsuarioUsername", usuario.getNombreUsuario());
+                session.setAttribute("loggedUsuario_Nombre", usuario.getNombreUsuario() + usuario.getApellido());
+                session.setAttribute("loggedUsuario_Username", usuario.getUsername());
+
+                if (remember != null){
+                    Cookie cookie = new Cookie("cookie_Remember", usuario.getUsername());
+                    cookie.setMaxAge(3*86400);
+                    response.addCookie(cookie);
+                }
+                else{
+                    Cookie cookie = new Cookie("cookie_Remember", "");
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                }
 
                 return "Home";
             }
