@@ -67,6 +67,7 @@ public Usuario getUsuarioLogIn(String username, String contrasena) {
     catch (Exception e) {
         return null;
     }
+    return null;
 
 } 
  
