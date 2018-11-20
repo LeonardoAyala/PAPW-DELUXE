@@ -71,7 +71,7 @@ public class UsuarioController {
                 usuario.getUsername(), usuario.getContrasena());  
 
             if(usuarioLogged != null){
-                session.setAttribute("loggedUsuarioUsername", usuario.getNombreUsuario());
+                //session.setAttribute("loggedUsuarioUsername", usuario.getNombreUsuario());
 
                 return "redirect:/Home";
             }
