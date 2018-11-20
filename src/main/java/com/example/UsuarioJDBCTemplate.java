@@ -60,7 +60,14 @@ public Usuario getUsuarioLogIn(String username, String contrasena) {
     String SQL = "select * from Usuario where username = ? and contrasena = ?";   
     Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
         new Object[]{username, contrasena}, new UsuarioMapper());   
-    return usuario; 
+    try {
+        if(usuario != null)
+            return usuario;
+    }
+    catch (Exception e) {
+        return null;
+    }
+
 } 
  
  
