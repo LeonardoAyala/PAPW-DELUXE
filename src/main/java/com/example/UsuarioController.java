@@ -36,8 +36,9 @@ public class UsuarioController {
         
         usuario = (Usuario) session.getAttribute("loggedUsuario");
 
+
         model.addAttribute("Home", usuario);
-        return "redirect:/ Home";
+        return "redirect:/";
     }
         
     @GetMapping("/SignIn")
