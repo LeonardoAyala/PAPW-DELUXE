@@ -31,11 +31,7 @@ public class UsuarioController {
         Usuario usuario = new Usuario();
         
         usuario = (Usuario) session.getAttribute("loggedUsuario");
-
-        if(usuario == null){
-            usuario.setNombreUsuario("James");
-        }
-
+        
         model.addAttribute("Home", usuario);
         return "redirect:/";
     }
