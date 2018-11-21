@@ -36,9 +36,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.net.URI; 
 import java.net.URISyntaxException; 
-import java.sql.Connection; 
 import java.sql.DriverManager; 
-import com.example.UserJDBCTemplate;
 
 
 @Controller
@@ -47,8 +45,6 @@ public class Main {
 
   @Value("${spring.datasource.url}")
   private String dbUrl;
-
- 
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);

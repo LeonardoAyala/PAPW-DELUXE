@@ -24,29 +24,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class UsuarioController {
-/*
-    @PostMapping("/userEdit")
-    public String userEditSubmit(@ModelAttribute User user)
-    throws URISyntaxException, SQLException {
-        UserJDBCTemplate userTemplate = new UserJDBCTemplate();
-        userTemplate.setDataSource(Main.getConnection());
-        userTemplate.update(
-        user.getId(),
-        user.getAge()
-        );
-        return "updateUser";
-    }
-*/
-    @GetMapping("/Home/{ID_Usuario}")
-    public String ususarioId(
-        Model model,
-        @PathVariable(value="ID_Usuario") final Integer ID_Usuario) 
-        throws URISyntaxException, SQLException {
-        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
-        usuarioTemplate.setDataSource(Main.getConnection());
-        Usuario usuario = usuarioTemplate.getUsuario(ID_Usuario);
+
+    @GetMapping("/Home")
+    public String Homecoming(Model model, HttpSession session, 
+    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) {
+
+        //UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
+        //usuarioTemplate.setDataSource(Main.getConnection());
+
+        Usuario usuario = new Usuario();
+        
+        usuario = (Usuario) session.getAttribute("loggedUsuario");
+
         model.addAttribute("Home", usuario);
-        return "Home";
+        return "redirect:/ Home";
     }
         
     @GetMapping("/SignIn")
@@ -56,8 +47,8 @@ public class UsuarioController {
     }
 
     @GetMapping("/LogIn")
-    public String userLoginForm(Model model, @CookieValue(value = "cookie_Remember", 
-        defaultValue ="") String cookieRemember) {   
+    public String userLoginForm(Model model, 
+        @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) {   
 
         Usuario usuario = new Usuario();
         usuario.setUsername(cookieRemember);
@@ -81,6 +72,8 @@ public class UsuarioController {
             if(usuarioLogged != null){
                 session.setAttribute("loggedUsuario_Nombre", usuario.getNombreUsuario() + usuario.getApellido());
                 session.setAttribute("loggedUsuario_Username", usuario.getUsername());
+                session.setAttribute("loggedUsuario_Id", usuario.getId());
+                session.setAttribute("loggedUsuario", usuario);
 
                 if (remember != null){
                     Cookie cookie = new Cookie("cookie_Remember", usuario.getUsername());
@@ -92,7 +85,6 @@ public class UsuarioController {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
-
                 return "Home";
             }
             else
