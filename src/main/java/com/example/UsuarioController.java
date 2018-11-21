@@ -16,11 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import java.sql.SQLException;
 import java.net.URISyntaxException; 
-import java.lang.Integer;
 import java.lang.String;
-
-import org.springframework.web.bind.annotation.PathVariable;
-
 
 @Controller
 public class UsuarioController {
@@ -36,6 +32,9 @@ public class UsuarioController {
         
         usuario = (Usuario) session.getAttribute("loggedUsuario");
 
+        if(usuario == null){
+            usuario.setNombreUsuario("James");
+        }
 
         model.addAttribute("Home", usuario);
         return "redirect:/";
