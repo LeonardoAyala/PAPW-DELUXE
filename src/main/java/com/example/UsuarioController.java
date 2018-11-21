@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +58,7 @@ public class UsuarioController {
     @GetMapping("/LogIn")
     public String userLoginForm(Model model, @CookieValue(value = "cookie_Remember", 
         defaultValue ="") String cookieRemember) {   
-            
+
         Usuario usuario = new Usuario();
         usuario.setUsername(cookieRemember);
         
@@ -99,11 +100,27 @@ public class UsuarioController {
     }
 
     @PostMapping("/registarUsuario") 
-    public String userSubmit(@ModelAttribute Usuario usuario)    
+    public String userSubmit(@ModelAttribute Usuario usuario,
+    @RequestParam(value = "image_avatar", required = false) MultipartFile imgPerfil,
+    @RequestParam(value = "image_front", required = false) MultipartFile imgPortada)
     throws URISyntaxException, SQLException {      
-        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
-        usuarioTemplate.setDataSource(Main.getConnection());   
-        usuarioTemplate.create(usuario);      
-        return "Home"; 
+
+        try{
+
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(Main.getConnection());
+            
+            usuario.setImagen_avatar(imgPerfil.getBytes());
+            usuario.setImagen_portada(imgPortada.getBytes());
+
+            usuarioTemplate.create(usuario);      
+        }
+        catch (Exception ex) {
+            return "redirect:/";
+        }
+
+
+  
+        return "redirect:/LogIn"; 
     }
 }
