@@ -39,8 +39,9 @@ public class UsuarioController {
         //Integer id = (Integer) session.getAttribute("loggedUsuario_Id");
         loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
 
-        if(loggedUsuario != null)
-            usuario = loggedUsuario;
+        String name = (String) session.getAttribute("loggedUsuario_Nombre");
+        if(name != null)
+            usuario.setNombreUsuario(name);
 
         model.addAttribute("usuario", usuario);
         return "Home";
