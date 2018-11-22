@@ -31,9 +31,8 @@ public class UsuarioController {
 
         Usuario usuario = new Usuario();  
         
-        usuario = (Usuario) session.getAttribute("loggedUsuario");
+        //usuario = (Usuario) session.getAttribute("loggedUsuario");
 
-        if(usuario == null)
         usuario = usuarioTemplate.getUsuario(1); 
 
         model.addAttribute("Home", usuario);
@@ -44,7 +43,7 @@ public class UsuarioController {
     @GetMapping("/SignIn")
     public String userForm(Model model) {   
         model.addAttribute("usuario", new Usuario());   
-        return "redirect:/SignIn";
+        return "SignIn";
     }
 
     @GetMapping("/LogIn")
