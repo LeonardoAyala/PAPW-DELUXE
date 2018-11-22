@@ -35,7 +35,7 @@ public class UsuarioController {
         usuario = usuarioTemplate.listUsuario().get(0);
 
         model.addAttribute("usuario", usuario);
-        return "Home";
+        return "redirect:/";
     }
 
     @GetMapping("/SignIn")
