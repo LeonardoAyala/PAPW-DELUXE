@@ -23,7 +23,7 @@ import java.lang.String;
 @Controller
 public class UsuarioController {
 
-    @GetMapping("/Home")
+    @GetMapping("/")
     public String Homecoming(Model model, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
     throws URISyntaxException, SQLException {
