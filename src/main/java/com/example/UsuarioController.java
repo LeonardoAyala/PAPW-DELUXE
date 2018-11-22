@@ -34,7 +34,7 @@ public class UsuarioController {
 
         Usuario usuario = new Usuario();
 
-        usuario.setNombreUsuario("Mark");
+        usuario = usuarioTemplate.listUsuario().get(0);
 
         model.addAttribute("Home", usuario);
         return "Home";
