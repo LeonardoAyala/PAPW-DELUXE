@@ -23,7 +23,7 @@ import java.lang.String;
 @Controller
 public class UsuarioController {
 
-    @GetMapping("/")
+    @GetMapping("/Home")
     public String Homecoming(Model model, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
     throws URISyntaxException, SQLException {
@@ -31,11 +31,10 @@ public class UsuarioController {
         usuarioTemplate.setDataSource(Main.getConnection());
 
         Usuario usuario = new Usuario();
-
         usuario = usuarioTemplate.listUsuario().get(0);
 
         model.addAttribute("usuario", usuario);
-        return "redirect:/";
+        return "/";
     }
 
     @GetMapping("/SignIn")
