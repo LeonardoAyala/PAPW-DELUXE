@@ -19,8 +19,6 @@ import java.net.URISyntaxException;
 import java.lang.Integer;
 import java.lang.String;
 
-import org.springframework.web.bind.annotation.PathVariable;
-
 
 @Controller
 public class UsuarioController {
@@ -36,7 +34,7 @@ public class UsuarioController {
 
         usuario = usuarioTemplate.listUsuario().get(0);
 
-        model.addAttribute("Home", usuario);
+        model.addAttribute("usuario", usuario);
         return "Home";
     }
 
