@@ -41,10 +41,15 @@ public void create(Usuario usuario) {
 }
 
 public Usuario getUsuario(Integer ID_Usuario) {
-    String SQL = "select * from Usuario where ID_Usuario = ?";   
-    Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
-        new Object[]{ID_Usuario}, new UsuarioMapper());   
-    return usuario; 
+    try{
+        String SQL = "select * from Usuario where ID_Usuario = ?";   
+        Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
+            new Object[]{ID_Usuario}, new UsuarioMapper());   
+        return usuario; 
+    }
+    catch (Exception e) {
+        return null;
+    }
 } 
 /*
 public Usuario getUsuarioLogIn(Usuario usuarioToSearch) {
