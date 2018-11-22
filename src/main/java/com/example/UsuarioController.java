@@ -33,11 +33,9 @@ public class UsuarioController {
         Usuario usuario;
         Usuario loggedUsuario;
 
-        usuario = usuarioTemplate.listUsuario().get(0);
+        usuario = new Usuario();
 
         Integer id = (Integer) session.getAttribute("loggedUsuario_Id");
-
-        //if(id != null)
         loggedUsuario = usuarioTemplate.getUsuario(id);
 
         if(loggedUsuario != null)
