@@ -38,7 +38,7 @@ public class UsuarioController {
         Integer id = (Integer) session.getAttribute("loggedUsuario_Id");
         loggedUsuario = usuarioTemplate.getUsuario(4);
 
-        if(loggedUsuario != null)
+        if(loggedUsuario != null && id != 0)
             usuario = loggedUsuario;
 
         model.addAttribute("usuario", usuario);
