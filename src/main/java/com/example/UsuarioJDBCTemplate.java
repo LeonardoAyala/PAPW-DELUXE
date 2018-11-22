@@ -54,7 +54,10 @@ public Usuario getUsuario(Integer ID_Usuario) {
 
 public Usuario getUsuarioLogIn(String username, String contrasena) {
     //String SQL = "select * from Usuario where nombreUsuario = ?";   
-    String SQL = "select * from Usuario where username = ? and contrasena = ?";   
+    String SQL =
+        "CALL Usuario_S_Login_Simple (?, ?)";
+
+    //String SQL = "select * from Usuario where username = ? and contrasena = ?";   
 
     try {
         Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
@@ -70,8 +73,6 @@ public Usuario getUsuarioLogIn(String username, String contrasena) {
 
 } 
 
-
- 
 public List<Usuario> listUsuario() {   
     String SQL = "select * from Usuario";   
     List <Usuario> usuarios =      
