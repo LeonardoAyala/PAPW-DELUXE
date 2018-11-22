@@ -23,23 +23,28 @@ public class UsuarioController {
 
     @GetMapping("/Home")
     public String Homecoming(Model model, HttpSession session, 
-    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) {
+    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
+    throws URISyntaxException, SQLException {
 
-        //UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
-        //usuarioTemplate.setDataSource(Main.getConnection());
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        usuarioTemplate.setDataSource(Main.getConnection());   
 
-        Usuario usuario = new Usuario();
+        Usuario usuario = new Usuario();  
         
         usuario = (Usuario) session.getAttribute("loggedUsuario");
-        
+
+        if(usuario == null)
+        usuario = usuarioTemplate.getUsuario(1); 
+
         model.addAttribute("Home", usuario);
+
         return "redirect:/";
     }
         
     @GetMapping("/SignIn")
     public String userForm(Model model) {   
         model.addAttribute("usuario", new Usuario());   
-        return "SignIn";
+        return "redirect:/SignIn";
     }
 
     @GetMapping("/LogIn")
@@ -50,7 +55,7 @@ public class UsuarioController {
         usuario.setUsername(cookieRemember);
         
         model.addAttribute("usuario", usuario);   
-        return "LogIn";
+        return "redirect:/LogIn";
     }
 
     @PostMapping("/loginUsuario") 
@@ -81,10 +86,10 @@ public class UsuarioController {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
-                return "Home";
+                return "redirect:/";
             }
             else
-                return "LogIn";
+                return "refirect:/LogIn";
     }
 
     @PostMapping("/registarUsuario") 
