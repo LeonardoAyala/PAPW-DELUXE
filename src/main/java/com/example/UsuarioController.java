@@ -24,7 +24,7 @@ import java.lang.String;
 public class UsuarioController {
 
     @GetMapping("/Home")
-    public String Homecoming(Model model, 
+    public String Homecoming(Model model, HttpSession session, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
     throws URISyntaxException, SQLException {
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
@@ -32,6 +32,11 @@ public class UsuarioController {
 
         Usuario usuario = new Usuario();
         usuario = usuarioTemplate.listUsuario().get(0);
+
+        Usuario loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+
+        if(loggedUsuario != null)
+            usuario = loggedUsuario;
 
         model.addAttribute("usuario", usuario);
         return "Home";
@@ -69,6 +74,7 @@ public class UsuarioController {
             if(usuarioLogged != null){
                 session.setAttribute("loggedUsuario_Nombre", usuario.getNombreUsuario() + usuario.getApellido());
                 session.setAttribute("loggedUsuario_Username", usuario.getUsername());
+                session.setAttribute("loggedUsuario", usuario);
 
                 if (remember != null){
                     Cookie cookie = new Cookie("cookie_Remember", usuario.getUsername());
@@ -80,7 +86,7 @@ public class UsuarioController {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
-                return "Home";
+                return "redirect:/";
             }
             else
                 return "LogIn";
