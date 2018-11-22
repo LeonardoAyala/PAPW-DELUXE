@@ -55,7 +55,7 @@ public Usuario getUsuario(Integer ID_Usuario) {
 public Usuario getUsuarioLogIn(String username, String contrasena) {
 
     String SQL =
-        "CALL y8sak4sdkdso1cql.Usuario_S_Login_Simple (?, ?)";
+        "CALL Usuario_S_Login_Simple (?, ?)";
 
     //String SQL = "select * from Usuario where username = ? and contrasena = ?";   
 
