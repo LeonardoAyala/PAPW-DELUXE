@@ -34,11 +34,12 @@ public class UsuarioController {
         Usuario loggedUsuario;
 
         usuario = new Usuario();
+        usuario.setNombreUsuario("Bright");
 
-        Integer id = (Integer) session.getAttribute("loggedUsuario_Id");
-        loggedUsuario = usuarioTemplate.getUsuario(4);
+        //Integer id = (Integer) session.getAttribute("loggedUsuario_Id");
+        loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
 
-        if(loggedUsuario != null && id != 0)
+        if(loggedUsuario != null)
             usuario = loggedUsuario;
 
         model.addAttribute("usuario", usuario);
