@@ -52,7 +52,7 @@ public class Main {
 
   @RequestMapping("/")
   String index() {
-    return "Home";
+    return "redirect:/Home";
   }
 
   @RequestMapping("/LogIn")
@@ -89,7 +89,7 @@ public class Main {
   String SignIn() {
     return "SignIn";
   }    
-  
+
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = getConnection()) {
