@@ -16,30 +16,30 @@ import javax.servlet.http.HttpSession;
 
 import java.sql.SQLException;
 import java.net.URISyntaxException; 
+import java.lang.Integer;
 import java.lang.String;
+
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @Controller
 public class UsuarioController {
 
     @GetMapping("/Home")
-    public String Homecoming(Model model, HttpSession session, 
+    public String Homecoming(Model model, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
     throws URISyntaxException, SQLException {
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
+        usuarioTemplate.setDataSource(Main.getConnection());
 
-        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
-        usuarioTemplate.setDataSource(Main.getConnection());   
+        Usuario usuario = new Usuario();
 
-        Usuario usuario = new Usuario();  
-        
-        //usuario = (Usuario) session.getAttribute("loggedUsuario");
-
-        usuario = usuarioTemplate.getUsuario(1); 
+        usuario.setNombreUsuario("Mark");
 
         model.addAttribute("Home", usuario);
-
-        return "redirect:/";
+        return "Home";
     }
-        
+
     @GetMapping("/SignIn")
     public String userForm(Model model) {   
         model.addAttribute("usuario", new Usuario());   
@@ -54,7 +54,7 @@ public class UsuarioController {
         usuario.setUsername(cookieRemember);
         
         model.addAttribute("usuario", usuario);   
-        return "redirect:/LogIn";
+        return "LogIn";
     }
 
     @PostMapping("/loginUsuario") 
@@ -72,8 +72,6 @@ public class UsuarioController {
             if(usuarioLogged != null){
                 session.setAttribute("loggedUsuario_Nombre", usuario.getNombreUsuario() + usuario.getApellido());
                 session.setAttribute("loggedUsuario_Username", usuario.getUsername());
-                session.setAttribute("loggedUsuario_Id", usuario.getId());
-                session.setAttribute("loggedUsuario", usuario);
 
                 if (remember != null){
                     Cookie cookie = new Cookie("cookie_Remember", usuario.getUsername());
@@ -85,10 +83,10 @@ public class UsuarioController {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
-                return "redirect:/";
+                return "Home";
             }
             else
-                return "refirect:/LogIn";
+                return "LogIn";
     }
 
     @PostMapping("/registarUsuario") 
@@ -110,9 +108,6 @@ public class UsuarioController {
         catch (Exception ex) {
             return "redirect:/";
         }
-
-
-  
         return "redirect:/LogIn"; 
     }
 }
