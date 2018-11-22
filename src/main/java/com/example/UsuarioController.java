@@ -31,9 +31,14 @@ public class UsuarioController {
         usuarioTemplate.setDataSource(Main.getConnection());
 
         Usuario usuario = new Usuario();
+        Usuario loggedUsuario = new Usuario();
+
         usuario = usuarioTemplate.listUsuario().get(0);
 
-        Usuario loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+        Integer id = (Integer) session.getAttribute("loggedUsuario_Id");
+
+        if(id != null)
+        loggedUsuario = usuarioTemplate.getUsuario(id);
 
         if(loggedUsuario != null)
             usuario = loggedUsuario;
@@ -74,6 +79,7 @@ public class UsuarioController {
             if(usuarioLogged != null){
                 session.setAttribute("loggedUsuario_Nombre", usuario.getNombreUsuario() + usuario.getApellido());
                 session.setAttribute("loggedUsuario_Username", usuario.getUsername());
+                session.setAttribute("loggedUsuario_Id", usuario.getId());
                 session.setAttribute("loggedUsuario", usuario);
 
                 if (remember != null){
