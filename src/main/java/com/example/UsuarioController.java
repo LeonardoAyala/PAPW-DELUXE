@@ -30,14 +30,14 @@ public class UsuarioController {
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
         usuarioTemplate.setDataSource(Main.getConnection());
 
-        Usuario usuario = new Usuario();
-        Usuario loggedUsuario = new Usuario();
+        Usuario usuario;
+        Usuario loggedUsuario;
 
         usuario = usuarioTemplate.listUsuario().get(0);
 
         Integer id = (Integer) session.getAttribute("loggedUsuario_Id");
 
-        if(id != null)
+        //if(id != null)
         loggedUsuario = usuarioTemplate.getUsuario(id);
 
         if(loggedUsuario != null)
