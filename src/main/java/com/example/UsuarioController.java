@@ -35,7 +35,9 @@ public class UsuarioController {
         Usuario loggedUsuario;
 
         usuario = new Usuario();
-        usuario.setNombreUsuario("");
+        usuario.setNombreUsuario("Login To get started");
+        usuario.setImagen_avatar(usuarioTemplate.getUsuario(11).getImagen_avatar());
+        usuario.setImagen_portada(usuarioTemplate.getUsuario(11).getImagen_portada());
 
         loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
 
