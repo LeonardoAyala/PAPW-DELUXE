@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.sql.SQLException;
-import java.net.URISyntaxException; 
+import java.net.URISyntaxException;
+import java.io.IOException;
 import java.lang.String;
 
 
@@ -49,6 +51,19 @@ public class UsuarioController {
         model.addAttribute("usuario", new Usuario());   
         return "SignIn";
     }
+
+    @GetMapping("/ImgUsuarioPerfil/{id}") 
+    public void imageId(HttpServletResponse response,  
+    @PathVariable(value="id") final Integer id)  
+    throws URISyntaxException, SQLException, IOException {   
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        usuarioTemplate.setDataSource(Main.getConnection());   
+
+        Usuario usuario = usuarioTemplate.getUsuario(id);      
+        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
+            response.getOutputStream().write(usuario.getImagen_avatar());      
+            response.getOutputStream().close(); 
+        } 
 
     @GetMapping("/LogIn")
     public String userLoginForm(Model model, 

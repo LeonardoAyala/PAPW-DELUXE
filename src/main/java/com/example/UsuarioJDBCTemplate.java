@@ -15,18 +15,6 @@ public void setDataSource(Connection connection) {
             new SingleConnectionDataSource(connection, false)     
     ); 
 } 
- 
-public void create(String nombreUsuario, 
-    String apellido, String correo, String username,
-    String contrasena, String telefono, String direccion) {   
-    String SQL = "insert into Usuario (nombreUsuario, apellido, " +
-        "correo, username, contrasena, telefono, " +
-        "direccion) values (?, ?, ?, ?, ?, ?, ?)";   
-    jdbcTemplateObject.update(SQL, nombreUsuario, apellido, correo, username, 
-    contrasena, telefono, direccion);   
-    System.out.println("Registro creado = " + nombreUsuario);   
-    return; 
-}
 
 public void create(Usuario usuario) {   
     String SQL = "CALL Usuario_I (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -40,7 +28,7 @@ public void create(Usuario usuario) {
 
 public Usuario getUsuario(Integer ID_Usuario) {
     try{
-        String SQL = "select * from Usuario where ID_Usuario = ?";   
+        String SQL = "CALL Usuario_S_Id (?)";   
         Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
             new Object[]{ID_Usuario}, new UsuarioMapper());   
         return usuario; 

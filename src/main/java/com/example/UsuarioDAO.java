@@ -3,9 +3,7 @@ import java.util.List;
 import java.sql.Connection;
  
 public interface UsuarioDAO {    
-    public void setDataSource(Connection connection);        
-    public void create(String nombreUsuario, String apellido, String correo, String username,
-        String contrasena, String telefono, String direccion);       
+    public void setDataSource(Connection connection);             
     public void create(Usuario usuario);     
     public Usuario getUsuario(Integer ID_Usuario);        
     public List<Usuario> listUsuario();        
