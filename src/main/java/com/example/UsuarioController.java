@@ -108,7 +108,7 @@ public class UsuarioController {
                 return "redirect:/";
             }
             else
-                return "LogIn";
+                return "redirect:/LogIn";
     }
 
     @PostMapping("/registarUsuario") 
