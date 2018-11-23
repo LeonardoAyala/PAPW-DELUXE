@@ -101,7 +101,6 @@ public class UsuarioController {
     throws URISyntaxException, SQLException {      
 
         try{
-
             UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
             usuarioTemplate.setDataSource(Main.getConnection());
             

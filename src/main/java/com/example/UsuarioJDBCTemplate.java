@@ -29,13 +29,11 @@ public void create(String nombreUsuario,
 }
 
 public void create(Usuario usuario) {   
-    String SQL = "insert into Usuario (nombreUsuario, apellido, " +
-        "correo, username, contrasena, telefono, " +
-        "direccion, imagen_avatar, imagen_portada) values (?, ?, ?, ?, SHA1(?), ?, ?, ?, ?)";   
+    String SQL = "CALL Usuario_I (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     jdbcTemplateObject.update(SQL, usuario.getNombreUsuario(), usuario.getApellido(),
     usuario.getCorreo(), usuario.getUsername(), usuario.getContrasena(), 
     usuario.getTelefono(), usuario.getDireccion(),
-    usuario.getImagen_avatar(), usuario.getImagen_portada() );   
+    usuario.getImagen_avatar(), usuario.getImagen_portada());   
     System.out.println("Registro creado = " + usuario.getNombreUsuario());   
     return; 
 }
