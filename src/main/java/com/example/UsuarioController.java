@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 
 import java.sql.SQLException;
 import java.net.URISyntaxException; 
-import java.lang.Integer;
 import java.lang.String;
 
 
@@ -73,10 +72,11 @@ public class UsuarioController {
             UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
             
             usuarioTemplate.setDataSource(Main.getConnection());   
+
             Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(
                 usuario.getUsername(), usuario.getContrasena());  
 
-            if(usuarioLogged != null && usuarioLogged.getNombreUsuario() != null){
+            if(usuarioLogged != null && usuarioLogged.getId() != null){
                 session.setAttribute("loggedUsuario_Nombre", usuario.getNombreUsuario() + usuario.getApellido());
                 session.setAttribute("loggedUsuario_Username", usuario.getUsername());
                 session.setAttribute("loggedUsuario_Id", usuario.getId());
