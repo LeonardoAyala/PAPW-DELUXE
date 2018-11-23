@@ -13,8 +13,8 @@ public class Usuario {
     private byte[] imagen_avatar;
     private byte[] imagen_portada;
    
-    //public void setId(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
-    public Integer getId() {return ID_Usuario;} 
+    public void setId(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
+    public Integer getId() {return ID_Usuario;}
 
     public void setNombreUsuario(String nombreUsuario) {this.nombreUsuario = nombreUsuario;}   
     public String getNombreUsuario() {return nombreUsuario;}   

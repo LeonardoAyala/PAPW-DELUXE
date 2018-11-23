@@ -61,7 +61,7 @@ public Usuario getUsuarioLogIn(String username, String contrasena) {
         Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
             new Object[]{username, contrasena}, new UsuarioMapper());   
 
-        if(usuario.getId() != null)
+        if(usuario != null)
             return usuario;
     }
     catch (Exception e) {
