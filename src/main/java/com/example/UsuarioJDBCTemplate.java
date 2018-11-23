@@ -31,7 +31,7 @@ public void create(String nombreUsuario,
 public void create(Usuario usuario) {   
     String SQL = "insert into Usuario (nombreUsuario, apellido, " +
         "correo, username, contrasena, telefono, " +
-        "direccion, imagen_avatar, imagen_portada) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";   
+        "direccion, imagen_avatar, imagen_portada) values (?, ?, ?, ?, SHA1(?), ?, ?, ?, ?)";   
     jdbcTemplateObject.update(SQL, usuario.getNombreUsuario(), usuario.getApellido(),
     usuario.getCorreo(), usuario.getUsername(), usuario.getContrasena(), 
     usuario.getTelefono(), usuario.getDireccion(),
@@ -53,7 +53,7 @@ public Usuario getUsuario(Integer ID_Usuario) {
 } 
 
 public Usuario getUsuarioLogIn(String username, String contrasena) {
-    String SQL = "CALL Usuario_S_Login_Simple (?, ?)";
+    String SQL = "CALL Usuario_S_Login (?, ?)";
     try {
         Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
             new Object[]{username, contrasena}, new UsuarioMapper());   
