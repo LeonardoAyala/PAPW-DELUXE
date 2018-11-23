@@ -53,10 +53,7 @@ public Usuario getUsuario(Integer ID_Usuario) {
 } 
 
 public Usuario getUsuarioLogIn(String username, String contrasena) {
-
-    String SQL =
-        "CALL Usuario_S_Login_Simple (?, ?)";
-
+    String SQL = "CALL Usuario_S_Login_Simple (?, ?)";
     try {
         Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
             new Object[]{username, contrasena}, new UsuarioMapper());   
@@ -68,7 +65,6 @@ public Usuario getUsuarioLogIn(String username, String contrasena) {
         return null;
     }
     return null;
-
 } 
 
 public List<Usuario> listUsuario() {   

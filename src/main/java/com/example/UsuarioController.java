@@ -75,9 +75,7 @@ public class UsuarioController {
                 usuario.getUsername(), usuario.getContrasena());  
 
             if(usuarioLogged != null && usuarioLogged.getNombreUsuario() != null){
-                session.setAttribute("loggedUsuario_Nombre", usuarioLogged.getNombreUsuario() + usuarioLogged.getApellido());
-                session.setAttribute("loggedUsuario_Username", usuarioLogged.getUsername());
-                session.setAttribute("loggedUsuario_Id", usuarioLogged.getId());
+                
                 session.setAttribute("loggedUsuario", usuarioLogged);
 
                 if (remember != null){
