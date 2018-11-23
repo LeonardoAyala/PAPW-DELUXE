@@ -39,10 +39,10 @@ public class UsuarioController {
         usuario.setImagen_avatar(usuarioTemplate.getUsuario(13).getImagen_avatar());
         usuario.setImagen_portada(usuarioTemplate.getUsuario(13).getImagen_portada());
 
-        loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+        //loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
 
-        if(loggedUsuario != null)
-            usuario = loggedUsuario;
+        //if(loggedUsuario != null)
+        //    usuario = loggedUsuario;
 
         model.addAttribute("usuario", usuario);
         return "Home";
