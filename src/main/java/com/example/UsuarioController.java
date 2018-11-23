@@ -33,14 +33,12 @@ public class UsuarioController {
         Usuario loggedUsuario;
 
         usuario = new Usuario();
-        usuario.setNombreUsuario("Bright");
+        usuario.setNombreUsuario("");
 
-        //Integer id = (Integer) session.getAttribute("loggedUsuario_Id");
         loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
 
-        String name = (String) session.getAttribute("loggedUsuario_Nombre");
-        if(name != null)
-            usuario.setNombreUsuario(name);
+        if(loggedUsuario != null)
+            usuario = loggedUsuario;
 
         model.addAttribute("usuario", usuario);
         return "Home";
@@ -77,13 +75,13 @@ public class UsuarioController {
                 usuario.getUsername(), usuario.getContrasena());  
 
             if(usuarioLogged != null && usuarioLogged.getNombreUsuario() != null){
-                session.setAttribute("loggedUsuario_Nombre", usuario.getNombreUsuario() + usuario.getApellido());
-                session.setAttribute("loggedUsuario_Username", usuario.getUsername());
-                session.setAttribute("loggedUsuario_Id", usuario.getId());
-                session.setAttribute("loggedUsuario", usuario);
+                session.setAttribute("loggedUsuario_Nombre", usuarioLogged.getNombreUsuario() + usuarioLogged.getApellido());
+                session.setAttribute("loggedUsuario_Username", usuarioLogged.getUsername());
+                session.setAttribute("loggedUsuario_Id", usuarioLogged.getId());
+                session.setAttribute("loggedUsuario", usuarioLogged);
 
                 if (remember != null){
-                    Cookie cookie = new Cookie("cookie_Remember", usuario.getUsername());
+                    Cookie cookie = new Cookie("cookie_Remember", usuarioLogged.getUsername());
                     cookie.setMaxAge(3*86400);
                     response.addCookie(cookie);
                 }
