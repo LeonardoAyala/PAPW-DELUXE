@@ -56,12 +56,12 @@ public Usuario getUsuarioLogIn(String username, String contrasena) {
 
     String SQL =
         "CALL Usuario_S_Login_Simple (?, ?)";
-        
+
     try {
         Usuario usuario = jdbcTemplateObject.queryForObject(SQL,       
             new Object[]{username, contrasena}, new UsuarioMapper());   
 
-        if(usuario != null)
+        if(usuario.getId() != null)
             return usuario;
     }
     catch (Exception e) {
