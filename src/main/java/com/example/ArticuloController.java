@@ -5,6 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.SQLException;
 import java.net.URISyntaxException; 
 import com.example.UserJDBCTemplate;
@@ -33,20 +36,22 @@ public class ArticuloController {
         return "LogIn";
     }
 
-    @PostMapping("/registarUsuario") 
-    public String userSubmit(@ModelAttribute Usuario usuario,
-    @RequestParam(value = "image_avatar", required = false) MultipartFile imgPerfil,
-    @RequestParam(value = "image_front", required = false) MultipartFile imgPortada)
+    */
+    @PostMapping("/publishArticulo") 
+    public String publishArticulo(@ModelAttribute Articulo articulo,
+    @RequestParam(value = "imagen_1", required = false) MultipartFile imagen_1,
+    @RequestParam(value = "imagen_2", required = false) MultipartFile imagen_2,
+    @RequestParam(value = "imagen_3", required = false) MultipartFile imagen_3)
     throws URISyntaxException, SQLException {      
-
         try{
-            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
-            usuarioTemplate.setDataSource(Main.getConnection());
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+            articuloTemplate.setDataSource(Main.getConnection());
             
-            usuario.setImagen_avatar(imgPerfil.getBytes());
-            usuario.setImagen_portada(imgPortada.getBytes());
+            articulo.setImagen_1(imagen_1.getBytes());
+            articulo.setImagen_2(imagen_1.getBytes());
+            articulo.setImagen_2(imagen_1.getBytes());
 
-            usuarioTemplate.create(usuario);      
+            //articuloTemplate.create(articulo);      
         }
         catch (Exception ex) {
             return "redirect:/";
@@ -54,5 +59,4 @@ public class ArticuloController {
         return "redirect:/LogIn"; 
     }
 
-    */
 }
