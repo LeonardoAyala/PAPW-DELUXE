@@ -42,6 +42,9 @@ public class UsuarioController {
         usuario.setNombreUsuario("Login To get started");
         usuario.setId(14);
 
+        if(usuario.getId() != null || usuario.getId() != 0){
+            usuario.setNombreUsuario("Todo está bien");
+        }
         //usuario.setImagen_avatar(usuarioTemplate.getUsuario(17).getImagen_avatar());
         //usuario.setImagen_portada(usuarioTemplate.getUsuario(17).getImagen_portada());
 
