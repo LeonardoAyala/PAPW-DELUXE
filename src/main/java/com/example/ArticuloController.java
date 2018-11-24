@@ -18,7 +18,7 @@ public class ArticuloController {
     @GetMapping("/Publish")
     public String articuloForm(Model model) {   
         model.addAttribute("articulo", new Articulo());   
-        return "publish";
+        return "Publish";
     }
 
     /*
