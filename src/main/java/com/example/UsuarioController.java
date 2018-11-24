@@ -55,14 +55,14 @@ public class UsuarioController {
         return "SignIn";
     }
 
-    @GetMapping("/ImgUsuarioPerfil/{id}") 
+    @GetMapping("/ImgUsuarioPerfil/{ID_Usuario}") 
     public void imageId(HttpServletResponse response,  
-    @PathVariable(value="id") final Integer id)  
+    @PathVariable(value="ID_Usuario") final Integer ID_Usuario)  
     throws URISyntaxException, SQLException, IOException {   
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
         usuarioTemplate.setDataSource(Main.getConnection());   
 
-        Usuario usuario = usuarioTemplate.getUsuario(id);      
+        Usuario usuario = usuarioTemplate.getUsuario(ID_Usuario);      
         response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
             response.getOutputStream().write(usuario.getImagen_avatar());      
             response.getOutputStream().close(); 
