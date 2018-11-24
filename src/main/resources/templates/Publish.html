@@ -171,6 +171,12 @@
                                                     <option value="B">A</option>
                                                     <option value="-">Other</option>
                                                 </select>
+                                                <p>Tipo:</p>
+                                                <select name="example">
+                                                    <option value="A">A</option>
+                                                    <option value="B">A</option>
+                                                    <option value="-">Other</option>
+                                                </select>
                                                 
                                                 <p>Description:</p>
                                                 <input id="writeComment" th:field="*{descripcion}" type="text" name="writeCom" placeholder="Add region." />
@@ -178,7 +184,7 @@
                                                 <input type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" /></p>
                                                 <p>Price: 
                                                 <input type="number" th:field="*{precio}" name="Quantity" placeholder="Price" step="1" /></p>
-                                                
+                                                <textarea name="Text1" th:field="*{descripcion}" cols="40" rows="5"></textarea>
                                             <button type="submit" > Publish</button>
                                             </div>
                                         </form>   
