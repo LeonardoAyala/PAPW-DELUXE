@@ -163,7 +163,7 @@
                                         th:object="${articulo}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
-                                                <input id="writeComment" th:field="*{nombre_articulo}" type="text" name="writeCom" placeholder="Add name." />
+                                                <input id="writeComment" th:field="*{articulo.nombre_articulo}" type="text" name="writeCom" placeholder="Add name." />
                                                 <p>Region:</p>
                                                 <input id="writeComment" type="text" name="writeCom" placeholder="Add region." />
                                                 <select name="example">
@@ -179,12 +179,13 @@
                                                 </select>
                                                 
                                                 <p>Description:</p>
-                                                <input id="writeComment" th:field="*{descripcion}" type="text" name="writeCom" placeholder="Add region." />
+                                                <input id="writeComment" th:field="*{articulo.descripcion}" type="text" name="writeCom" placeholder="Add region." />
                                                 <p>Units Available: 
-                                                <input type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" /></p>
+                                                <input type="number" th:field="*{articulo.unidades}" name="Quantity" placeholder="Quantity" step="1" /></p>
                                                 <p>Price: 
-                                                <input type="number" th:field="*{precio}" name="Quantity" placeholder="Price" step="1" /></p>
-                                                <textarea name="Text1" th:field="*{descripcion}" cols="40" rows="5"></textarea>
+                                                <input type="number" th:field="*{articulo.precio}" name="Quantity" placeholder="Price" step="1" /></p>
+                                                <p>Description:</p>
+                                                <textarea name="Text1" th:field="*{articulo.descripcion}" cols="40" rows="5"></textarea>
                                             <button type="submit" > Publish</button>
                                             </div>
                                         </form>   

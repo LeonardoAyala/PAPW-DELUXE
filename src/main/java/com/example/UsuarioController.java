@@ -65,7 +65,7 @@ public class UsuarioController {
         response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
             response.getOutputStream().write(usuario.getImagen_avatar());      
             response.getOutputStream().close(); 
-        } 
+    } 
 
     @GetMapping("/LogIn")
     public String userLoginForm(Model model, 
