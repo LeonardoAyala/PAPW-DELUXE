@@ -15,38 +15,35 @@ public void setDataSource(Connection connection) {
             new SingleConnectionDataSource(connection, false)     
     ); 
 } 
- 
-public void create(String nombre_articulo, String descripcion, float precio,
-        Integer unidades, Integer publico, Integer activo, Integer vistas,
-        Integer oferta, Integer ID_Usuario) {   
-    String SQL = "insert into Articulo (nombre_articulo, descripcion, " +
-        "precio, unidades, publico, activo, " +
-        "vistas, oferta, ID_Usuario) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";   
-    jdbcTemplateObject.update(SQL, nombre_articulo, descripcion,
-        precio, unidades, publico, activo, vistas, oferta, ID_Usuario) ;   
-    System.out.println("Registro creado = " + nombre_articulo);   
-    return; 
-}
 
-public void create(Articulo articulo, Articulo_Categoria artCat) {   
+public Articulo getArticulo(Articulo articuloToFind){
+
+    String SQL = "CALL Articulo_S_Find (?, ?, ?, ?, ?)";   
 
     try{
-        String SQL = "CALL ArticuloCategoria_I (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
-        jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion());   
+    Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       
+        new Object[]{articuloToFind.getNombre(), articuloToFind.getDescripcion(), 
+            articuloToFind.getPrecio(), articuloToFind.getActivo(),  articuloToFind.getIdUsuario()},
+        new ArticuloMapper());   
+    return articulo; 
+    }
+    catch (Exception e) {
+        return null;
+    }
+}
+
+public void create(Articulo articulo, Articulo_Categoria region, Articulo_Categoria tipo) {   
+    try{
+        String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+        jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 
+        articulo.getPrecio(), articulo.getUnidades(), articulo.getImagen_1(),  
+        articulo.getImagen_2(),  articulo.getImagen_3(), articulo.getVideo(), 
+        articulo.getPublico(), articulo.getActivo(), articulo.getVistas(), 
+        articulo.getOferta(), articulo.getIdUsuario());  
         return;   
     } catch (Exception e){
         return; 
     }
-
-    /*
-    String SQL = "insert into Articulo (nombre_articulo, descripcion, " +
-        "precio, unidades, publico, activo, " +
-        "vistas, oferta, ID_Usuario) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";   
-    jdbcTemplateObject.update(SQL, nombre_articulo, descripcion,
-        precio, unidades, publico, activo, vistas, oferta, ID_Usuario) ;   
-    System.out.println("Registro creado = " + nombre_articulo);   
-    */
-    return; 
 }
 
 public Articulo getArticulo(Integer ID_Articulo) {

@@ -39,6 +39,7 @@ public class ArticuloController {
     */
     @PostMapping("/publishArticulo") 
     public String publishArticulo(@ModelAttribute Articulo articulo,
+    @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
     @RequestParam(value = "imagen_1", required = false) MultipartFile imagen_1,
     @RequestParam(value = "imagen_2", required = false) MultipartFile imagen_2,
     @RequestParam(value = "imagen_3", required = false) MultipartFile imagen_3)
@@ -47,11 +48,15 @@ public class ArticuloController {
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
             articuloTemplate.setDataSource(Main.getConnection());
             
+            articulo.setNombre(nombreArticulo);
             articulo.setImagen_1(imagen_1.getBytes());
             articulo.setImagen_2(imagen_1.getBytes());
             articulo.setImagen_2(imagen_1.getBytes());
 
-            //articuloTemplate.create(articulo);      
+            if(articulo.getNombre() == null)
+            return "redirect:/";
+            
+            //articuloTemplate.create(articulo, );      
         }
         catch (Exception ex) {
             return "redirect:/";
