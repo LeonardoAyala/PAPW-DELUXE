@@ -40,6 +40,8 @@ public class ArticuloController {
     @PostMapping("/publishArticulo") 
     public String publishArticulo(@ModelAttribute Articulo articulo,
     @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
+    @RequestParam(value = "tipo", required = false) Integer tipo,
+    @RequestParam(value = "region", required = false) Integer region,
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
     @RequestParam(value = "image_3", required = false) MultipartFile image_3)

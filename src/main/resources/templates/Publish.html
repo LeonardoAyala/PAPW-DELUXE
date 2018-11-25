@@ -163,20 +163,24 @@
                                             <div class="col-xl">
                                                 <p>Name:</p>
                                                 <input id="writeComment" type="text" name="nombreArticulo" placeholder="Add name."/>
-                                                <p>Region:</p>
-                                                <select name="example">
-                                                    <option value="A">A</option>
-                                                    <option value="B">A</option>
-                                                    <option value="-">Other</option>
+                                                <p>Type:</p>
+                                                <select name="tipo" required>
+                                                    <option value="1">Dish</option>
+                                                    <option value="2">Dessert</option>
+                                                    <option value="3">Snack</option>
+                                                    <option value="4">Drink</option>
                                                 </select>
-                                                <p>Tipo:</p>
-                                                <select name="example">
-                                                    <option value="A">A</option>
-                                                    <option value="B">A</option>
-                                                    <option value="-">Other</option>
+
+                                                <p>Region:</p>
+                                                <select name="region" required>
+                                                    <option value="5">Oriental</option>
+                                                    <option value="6">Western</option>
+                                                    <option value="7">European</option>
+                                                    <option value="8">Tropical</option>
+                                                    <option value="9">Exotic</option>
                                                 </select>
                                 
-                                                <input id="img1" type="file" class="input" data-type="input" name="image_1">
+                                                <input id="img1" type="file" class="input" data-type="input" name="image_1" >
                                                 <input id="img2" type="file" class="input" data-type="input" name="image_2">
                                                 <input id="img3" type="file" class="input" data-type="input" name="image_3">
 
@@ -185,7 +189,7 @@
                                                 <p>Units Available: 
                                                 <input type="number"  name="Quantity" placeholder="Quantity" step="1" /></p>
                                                 <p>Price: 
-                                                <input type="number" th:field="*{precio}" required=true name="Quantity" placeholder="Price" step="1" /></p>
+                                                <input type="number" th:field="*{precio}" name="Quantity" placeholder="Price" step="1" /></p>
                                                 <p>Description:</p>
                                                 <textarea name="Text1" cols="40" rows="5"></textarea>
                                             <button type="submit" > Publish</button>
