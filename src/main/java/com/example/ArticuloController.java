@@ -54,12 +54,12 @@ public class ArticuloController {
             articulo.setImagen_3(imagen_3.getBytes());
 
             if(articulo.getNombre() == null)
-            return "redirect:/Publish";
+            return "Publish";
 
             //articuloTemplate.create(articulo, );      
         }
         catch (Exception ex) {
-            return "redirect:/";
+            return "error/" + ex;
         }
         return "redirect:/LogIn"; 
     }
