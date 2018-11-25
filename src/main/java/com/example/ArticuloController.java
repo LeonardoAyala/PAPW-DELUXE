@@ -21,7 +21,7 @@ public class ArticuloController {
     @GetMapping("/Publish")
     public String articuloForm(Model model) {   
         model.addAttribute("articulo", new Articulo());   
-        return "Publish";
+        return "redirect:/Publish";
     }
 
     /*

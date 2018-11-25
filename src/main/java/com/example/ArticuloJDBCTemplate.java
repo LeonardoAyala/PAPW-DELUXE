@@ -28,6 +28,18 @@ public void create(String nombre_articulo, String descripcion, float precio,
     return; 
 }
 
+public void create(Articulo articulo) {   
+    /*
+    String SQL = "insert into Articulo (nombre_articulo, descripcion, " +
+        "precio, unidades, publico, activo, " +
+        "vistas, oferta, ID_Usuario) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";   
+    jdbcTemplateObject.update(SQL, nombre_articulo, descripcion,
+        precio, unidades, publico, activo, vistas, oferta, ID_Usuario) ;   
+    System.out.println("Registro creado = " + nombre_articulo);   
+    */
+    return; 
+}
+
 public Articulo getArticulo(Integer ID_Articulo) {
     String SQL = "select * from Articulo where ID_Articulo = ?";   
     Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       

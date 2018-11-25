@@ -158,14 +158,11 @@
                                                         </a>
                                                 </div>
                                         </div>
-                                        <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}"        
-                                        th:object="${articulo}" method="post"> 
+                                        <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" th:object="${articulo}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
-                                                <!--input type="text" th:field="*{nombre_articulo}"/-->
-                                                <!--input id="writeComment" th:field="*{nombre_articulo}" type="text" name="writeCom" placeholder="Add name." /-->
+                                                <input id="writeComment" th:field="*{nombreArticulo}" type="text" name="nombreArticulo" placeholder="Add name." />
                                                 <p>Region:</p>
-                                                <input id="writeComment" type="text" name="writeCom" placeholder="Add region." />
                                                 <select name="example">
                                                     <option value="A">A</option>
                                                     <option value="B">A</option>
@@ -179,7 +176,7 @@
                                                 </select>
                                                 
                                                 <p>Description:</p>
-                                                <input id="writeComment" th:field="*{nombre_articulo}" type="text" name="writeCom" placeholder="Add region." />
+                                                <input id="writeComment" th:field="*{descripcion}" type="text" name="description" placeholder="Add region." />
                                                 <p>Units Available: 
                                                 <input type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" /></p>
                                                 <p>Price: 
