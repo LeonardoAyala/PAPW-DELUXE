@@ -39,19 +39,19 @@ public class ArticuloController {
     */
     @PostMapping("/publishArticulo") 
     public String publishArticulo(@ModelAttribute Articulo articulo,
-    @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
-    @RequestParam(value = "imagen_1", required = false) MultipartFile imagen_1,
-    @RequestParam(value = "imagen_2", required = false) MultipartFile imagen_2,
-    @RequestParam(value = "imagen_3", required = false) MultipartFile imagen_3)
+    @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo)
+    //@RequestParam(value = "imagen_1", required = false) MultipartFile imagen_1,
+    //@RequestParam(value = "imagen_2", required = false) MultipartFile imagen_2,
+    //@RequestParam(value = "imagen_3", required = false) MultipartFile imagen_3)
     throws URISyntaxException, SQLException {      
         try{
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
             articuloTemplate.setDataSource(Main.getConnection());
             
             articulo.setNombre(nombreArticulo);
-            articulo.setImagen_1(imagen_1.getBytes());
-            articulo.setImagen_2(imagen_2.getBytes());
-            articulo.setImagen_3(imagen_3.getBytes());
+            //articulo.setImagen_1(imagen_1.getBytes());
+            //articulo.setImagen_2(imagen_2.getBytes());
+            //articulo.setImagen_3(imagen_3.getBytes());
 
             if(articulo.getNombre() == null)
             return "Publish";
