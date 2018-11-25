@@ -50,8 +50,8 @@ public class ArticuloController {
             
             articulo.setNombre(nombreArticulo);
             articulo.setImagen_1(imagen_1.getBytes());
-            articulo.setImagen_2(imagen_1.getBytes());
-            articulo.setImagen_2(imagen_1.getBytes());
+            articulo.setImagen_2(imagen_2.getBytes());
+            articulo.setImagen_3(imagen_3.getBytes());
 
             if(articulo.getNombre() == null)
             return "redirect:/Publish";
