@@ -19,6 +19,7 @@ public class Articulo {
     private Integer ID_Usuario;
     
     public Integer getId() {return ID_Articulo;}  
+    public void setId(Integer ID_Articulo) {this.ID_Articulo = ID_Articulo;}
 
     public void setImagen_1(byte[] imagen_1) {this.imagen_1 = imagen_1;}   
     public byte[] getImagen_1() {return imagen_1;}   
