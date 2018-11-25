@@ -158,10 +158,12 @@
                                                         </a>
                                                 </div>
                                         </div>
-                                        <form enctype="multipart/form-data" action="#" th:action="@{/Publish}" th:object="${articulo}" method="post"> 
+                                        <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
+                                        th:object="${articulo}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
-                                                <input id="writeComment" th:field="*{nombreArticulo}" type="text" name="nombreArticulo" placeholder="Add name." />
+                                                <input id="addr" type="text" class="input" data-type="input" th:field="*{nombreArticulo}">
+                                                <!--input id="writeComment" th:field="*{nombreArticulo}" type="text" name="nombreArticulo" /-->
                                                 <p>Region:</p>
                                                 <select name="example">
                                                     <option value="A">A</option>
@@ -174,7 +176,11 @@
                                                     <option value="B">A</option>
                                                     <option value="-">Other</option>
                                                 </select>
-                                                
+                                
+                                                <input id="img1" type="file" class="input" data-type="input" name="image_1">
+                                                <input id="img2" type="file" class="input" data-type="input" name="image_2">
+                                                <input id="img3" type="file" class="input" data-type="input" name="image_3">
+
                                                 <p>Description:</p>
                                                 <input id="writeComment" th:field="*{descripcion}" type="text" name="description" placeholder="Add region." />
                                                 <p>Units Available: 

@@ -20,7 +20,6 @@ import java.net.URISyntaxException;
 import java.io.IOException;
 import java.lang.String;
 
-
 @Controller
 public class UsuarioController {
 
