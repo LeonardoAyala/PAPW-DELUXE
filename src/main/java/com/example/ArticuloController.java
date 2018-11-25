@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.net.URISyntaxException; 
 import com.example.UserJDBCTemplate;
@@ -45,10 +46,11 @@ public class ArticuloController {
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
     @RequestParam(value = "image_3", required = false) MultipartFile image_3)
-    throws URISyntaxException, SQLException {      
+    throws URISyntaxException, SQLException {    
+        Connection conn = Main.getConnection();  
         try{
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
-            articuloTemplate.setDataSource(Main.getConnection());
+            articuloTemplate.setDataSource(conn);   
             
             articulo.setNombre(nombreArticulo);
             articulo.setImagen_1(image_1.getBytes());
@@ -61,8 +63,14 @@ public class ArticuloController {
             //articuloTemplate.create(articulo, );      
         }
         catch (Exception ex) {
+        if (!conn.isClosed()) 
+            conn.close();
+
             return "error/" + ex;
         }
+        if (!conn.isClosed()) 
+            conn.close();
+
         return "redirect:/LogIn"; 
     }
 

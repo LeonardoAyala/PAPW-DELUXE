@@ -15,6 +15,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.net.URISyntaxException;
 import java.io.IOException;
@@ -27,9 +28,10 @@ public class UsuarioController {
     public String Homecoming(Model model, HttpServletResponse response, HttpSession session, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
     throws URISyntaxException, SQLException {
-        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
-        usuarioTemplate.setDataSource(Main.getConnection());
-
+        Connection conn = Main.getConnection();
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        usuarioTemplate.setDataSource(conn);   
+        
         Usuario usuario;
         Usuario loggedUsuario;
 
@@ -44,6 +46,10 @@ public class UsuarioController {
             usuario = loggedUsuario;
 
         model.addAttribute("usuario", usuario);
+        
+        if (!conn.isClosed()) 
+            conn.close();
+
         return "Home";
     }
 
@@ -56,14 +62,19 @@ public class UsuarioController {
     @GetMapping("/ImgUsuarioPerfil/{ID_Usuario}") 
     public void imageId(HttpServletResponse response,  
     @PathVariable(value="ID_Usuario") final Integer ID_Usuario)  
-    throws URISyntaxException, SQLException, IOException {   
+    throws URISyntaxException, SQLException, IOException {  
+
+        Connection conn = Main.getConnection();
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
-        usuarioTemplate.setDataSource(Main.getConnection());   
+        usuarioTemplate.setDataSource(conn);    
 
         Usuario usuario = usuarioTemplate.getUsuario(ID_Usuario);      
         response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
             response.getOutputStream().write(usuario.getImagen_avatar());      
             response.getOutputStream().close(); 
+
+        if (!conn.isClosed()) 
+            conn.close();
     } 
 
     @GetMapping("/LogIn")
@@ -83,9 +94,9 @@ public class UsuarioController {
         @ModelAttribute Usuario usuario)    
         throws URISyntaxException, SQLException {  
 
+            Connection conn = Main.getConnection();
             UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
-            
-            usuarioTemplate.setDataSource(Main.getConnection());   
+            usuarioTemplate.setDataSource(conn);   
 
             Usuario usuarioLogged = usuarioTemplate.getUsuarioLogIn(
                 usuario.getUsername(), usuario.getContrasena());  
@@ -104,6 +115,10 @@ public class UsuarioController {
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
+
+            if (!conn.isClosed()) 
+                conn.close();
+
                 return "redirect:/";
             }
             else
@@ -115,19 +130,25 @@ public class UsuarioController {
     @RequestParam(value = "image_avatar", required = false) MultipartFile imgPerfil,
     @RequestParam(value = "image_front", required = false) MultipartFile imgPortada)
     throws URISyntaxException, SQLException {      
-
+        Connection conn = Main.getConnection();
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
         try{
-            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
-            usuarioTemplate.setDataSource(Main.getConnection());
-            
+            usuarioTemplate.setDataSource(conn);   
+
             usuario.setImagen_avatar(imgPerfil.getBytes());
             usuario.setImagen_portada(imgPortada.getBytes());
 
             usuarioTemplate.create(usuario);      
         }
         catch (Exception ex) {
+            if (!conn.isClosed()) 
+            conn.close();
+
             return "redirect:/";
         }
+        if (!conn.isClosed()) 
+        conn.close();
+
         return "redirect:/LogIn"; 
     }
 }
