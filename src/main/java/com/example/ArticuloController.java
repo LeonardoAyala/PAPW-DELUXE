@@ -66,12 +66,13 @@ public class ArticuloController {
         if (!conn.isClosed()) 
             conn.close();
 
-            return "error/" + ex;
+            //return "error/" + ex;
+            return "Publish";
         }
         if (!conn.isClosed()) 
             conn.close();
 
-        return "redirect:/LogIn"; 
+        return "redirect:/"; 
     }
 
 }

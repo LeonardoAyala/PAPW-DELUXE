@@ -123,7 +123,7 @@
                         <div class="oddBackground">
 
                                 <div class="row">
-                                        <div class="col-lg">
+                                        <!--div class="col-lg">
                                                 <div id="demo" class="carousel slide" data-ride="carousel">
                                                         <ul class="carousel-indicators">
                                                           <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -157,12 +157,13 @@
                                                           <span class="carousel-control-next-icon"></span>
                                                         </a>
                                                 </div>
-                                        </div>
+                                        </div-->
                                         <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
                                         th:object="${articulo}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
-                                                <input id="writeComment" type="text" name="nombreArticulo" placeholder="Add name."/>
+                                                <input id="writeComment" type="text" name="nombreArticulo" placeholder="Add a name." required/>
+                                                <br>
                                                 <p>Type:</p>
                                                 <select name="tipo" required>
                                                     <option value="1">Dish</option>
@@ -170,7 +171,7 @@
                                                     <option value="3">Snack</option>
                                                     <option value="4">Drink</option>
                                                 </select>
-
+                                                <br>
                                                 <p>Region:</p>
                                                 <select name="region" required>
                                                     <option value="5">Oriental</option>
@@ -179,19 +180,23 @@
                                                     <option value="8">Tropical</option>
                                                     <option value="9">Exotic</option>
                                                 </select>
-                                
-                                                <input id="img1" type="file" class="input" data-type="input" name="image_1" >
-                                                <input id="img2" type="file" class="input" data-type="input" name="image_2">
-                                                <input id="img3" type="file" class="input" data-type="input" name="image_3">
-
-                                                <p>Description:</p>
-                                                <input id="writeComment"  type="text" name="description" placeholder="Add region." />
+                                                <br>
+                                                <input id="img1" type="file" class="input" data-type="input" name="image_1" required>
+                                                <br>
+                                                <input id="img2" type="file" class="input" data-type="input" name="image_2" required>
+                                                <br>
+                                                <input id="img3" type="file" class="input" data-type="input" name="image_3" required>
+                                                <br>
+                                                <!--p>Description:</p>
+                                                <input id="writeComment"  type="text" name="description" placeholder="Add region." /-->
                                                 <p>Units Available: 
                                                 <input type="number"  name="Quantity" placeholder="Quantity" step="1" /></p>
+                                                <br>
                                                 <p>Price: 
                                                 <input type="number" th:field="*{precio}" name="Quantity" placeholder="Price" step="1" /></p>
+                                                <br>
                                                 <p>Description:</p>
-                                                <textarea name="Text1" cols="40" rows="5"></textarea>
+                                                <textarea name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
                                             <button type="submit" > Publish</button>
                                             </div>
                                         </form>   
