@@ -162,7 +162,7 @@
                                         th:object="${articulo}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
-                                                <input type="text" th:field="*{nombre_articulo}"/>
+                                                <!--input type="text" th:field="*{nombre_articulo}"/-->
                                                 <!--input id="writeComment" th:field="*{nombre_articulo}" type="text" name="writeCom" placeholder="Add name." /-->
                                                 <p>Region:</p>
                                                 <input id="writeComment" type="text" name="writeCom" placeholder="Add region." />
@@ -179,7 +179,7 @@
                                                 </select>
                                                 
                                                 <p>Description:</p>
-                                                <input id="writeComment" th:field="*{descripcion}" type="text" name="writeCom" placeholder="Add region." />
+                                                <input id="writeComment" th:field="*{nombre_articulo}" type="text" name="writeCom" placeholder="Add region." />
                                                 <p>Units Available: 
                                                 <input type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" /></p>
                                                 <p>Price: 
