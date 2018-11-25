@@ -2,7 +2,7 @@ package com.example;
 
 public class Articulo {
     private Integer ID_Articulo;   
-    private String nombreArticulo;   
+    private String nombre_articulo;   
     private String descripcion;   
     private float precio;
     private Integer unidades;   
@@ -33,8 +33,8 @@ public class Articulo {
     public void setVideo(byte[] video) {this.video = video;}   
     public byte[] getVideo() {return video;}    
 
-    public void setNombre(String nombreArticulo) {this.nombreArticulo = nombreArticulo;}   
-    public String getNombre() {return nombreArticulo;}      
+    public void setNombre(String nombre_articulo) {this.nombre_articulo = nombre_articulo;}   
+    public String getNombre() {return nombre_articulo;}      
 
     public void setDescripcion(String descripcion) {this.descripcion = descripcion;}   
     public String getDescripcion() {return descripcion;}
