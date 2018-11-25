@@ -28,7 +28,16 @@ public void create(String nombre_articulo, String descripcion, float precio,
     return; 
 }
 
-public void create(Articulo articulo) {   
+public void create(Articulo articulo, Articulo_Categoria artCat) {   
+
+    try{
+        String SQL = "CALL ArticuloCategoria_I (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+        jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion());   
+        return;   
+    } catch (Exception e){
+        return; 
+    }
+
     /*
     String SQL = "insert into Articulo (nombre_articulo, descripcion, " +
         "precio, unidades, publico, activo, " +
