@@ -62,7 +62,8 @@ public class ArticuloController {
     }
 
     @PostMapping("/product__info") 
-    public String productInfo(@ModelAttribute Articulo articulo)
+    public String productInfo(@ModelAttribute Articulo articulo,
+    @RequestParam(value = "idArticulo", required = false) Integer idArticulo)
     throws URISyntaxException, SQLException {      
         Connection conn = Main.getConnection();
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
@@ -84,7 +85,21 @@ public class ArticuloController {
         if (!conn.isClosed()) 
         conn.close();
 
-        return "redirect:/LogIn"; 
+        return "itemSpotlight/"+ idArticulo; 
+    }
+
+    @GetMapping("/itemSpotlight/{id}")
+    public String userId(
+        Model model,
+        @PathVariable(value="id") final Integer id)
+        throws URISyntaxException, SQLException {
+        /*
+        UserJDBCTemplate userTemplate = new UserJDBCTemplate();
+        userTemplate.setDataSource(Main.getConnection());
+        User user = userTemplate.getUser(id);
+        model.addAttribute("user", user);
+        */
+        return "itemSpotlight";
     }
 
     @PostMapping("/publishArticulo") 
