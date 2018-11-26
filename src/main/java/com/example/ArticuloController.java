@@ -99,7 +99,7 @@ public class ArticuloController {
         User user = userTemplate.getUser(id);
         model.addAttribute("user", user);
         */
-        return "itemSpotlight";
+        return "redirect:/itemSpotlight";
     }
 
     @PostMapping("/publishArticulo") 
