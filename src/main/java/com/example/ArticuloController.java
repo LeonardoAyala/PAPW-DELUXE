@@ -2,6 +2,7 @@ package com.example;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -57,14 +58,14 @@ public class ArticuloController {
     }
 
     @PostMapping("/publishArticulo") 
-    public String publish( @ModelAttribute Articulo articulo,
+    public String publish( @ModelAttribute Articulo articulo, BindingResult bindingResult,
     @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
- /*   @RequestParam(value = "tipo", required = false) Integer tipo,
+    @RequestParam(value = "tipo", required = false) Integer tipo,
     @RequestParam(value = "region", required = false) Integer region,
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
     @RequestParam(value = "image_3", required = false) MultipartFile image_3,
-    @RequestParam(value = "video", required = false) String video, */
+    @RequestParam(value = "video", required = false) String video,
     @RequestParam(value = "saveMe", required = false) String save)
     throws URISyntaxException, SQLException {    
         Connection conn = Main.getConnection();  
@@ -73,25 +74,29 @@ public class ArticuloController {
             articuloTemplate.setDataSource(conn);   
             
             articulo.setNombre(nombreArticulo);
-            /*
             articulo.setImagen_1(image_1.getBytes());
             articulo.setImagen_2(image_2.getBytes());
             articulo.setImagen_3(image_3.getBytes());
             //articulo.setVideo(video);
-*/
+
+            if(bindingResult.hasErrors()){
+                bindingResult.getFieldErrors().stream()
+                .forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
+            }
+
             if (save != null){
                 articulo.setActivo(1);
             }
             else{
                 articulo.setActivo(0);
             }
-/*
+
             Articulo_Categoria articuloTipo = new Articulo_Categoria();
             articuloTipo.setIdCategoria(tipo);
 
             Articulo_Categoria articuloRegion = new Articulo_Categoria();
             articuloRegion.setIdCategoria(region);
-*/
+
             //articuloTemplate.create(articulo, );      
         }
         catch (Exception ex) {
