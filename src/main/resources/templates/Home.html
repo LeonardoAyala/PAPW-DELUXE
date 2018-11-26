@@ -193,6 +193,7 @@
                                         <br>
 
                                         <section class="grid">
+                                            <div th:each = "product: ${articulos}">
                                                 <!-- Products -->
                                                 <div class="product">
                                                   <div class="product__info">
@@ -211,11 +212,12 @@
                                                       <span class="product__place">CDMX, México</span>
                                                       <span class="product__price highlight">$55.90</span>
                                                       <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
+                                                      <button class="action action--button "><span class="action__text">See product</span></button>
                                                     </div>
                                                     <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
                                                 </div>
-                                             
-                                              </section>
+                                            </div>
+                                        </section>
                                       
 
                                 </div>
