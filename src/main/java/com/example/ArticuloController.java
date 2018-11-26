@@ -65,7 +65,7 @@ public class ArticuloController {
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
     @RequestParam(value = "image_3", required = false) MultipartFile image_3,
-    @RequestParam(value = "video", required = false) String video,
+    //@RequestParam(value = "video", required = false) String video,
     @RequestParam(value = "saveMe", required = false) String save)
     throws URISyntaxException, SQLException {    
         Connection conn = Main.getConnection();  
