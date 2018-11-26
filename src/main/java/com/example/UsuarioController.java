@@ -31,6 +31,9 @@ public class UsuarioController {
         Connection conn = Main.getConnection();
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
         usuarioTemplate.setDataSource(conn);   
+
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);   
         
         Usuario usuario;
         Usuario loggedUsuario;
@@ -46,7 +49,8 @@ public class UsuarioController {
             usuario = loggedUsuario;
 
         model.addAttribute("usuario", usuario);
-        
+        model.addAttribute("articulos", articuloTemplate.listArticulo());
+
         if (!conn.isClosed()) 
             conn.close();
 

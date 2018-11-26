@@ -9,6 +9,7 @@ public interface ArticuloDAO {
     
     public Articulo getArticulo(Integer ID_Articulo);        
     public List<Articulo> listArticulo();        
+    public List<Articulo> listArticulo(Integer ID_Categoria);        
     public void delete(Integer ID_Articulo); 
 
     public void update(Integer ID_Articulo, String nombre_articulo, String descripcion, float precio,

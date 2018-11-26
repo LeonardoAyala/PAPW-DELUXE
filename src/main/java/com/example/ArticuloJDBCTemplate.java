@@ -16,6 +16,21 @@ public void setDataSource(Connection connection) {
     ); 
 } 
 
+public List<Articulo> listArticulo(Integer ID_Categoria) {   
+    String SQL = "Call Articulo_S_Catergory (?); "; 
+ 
+    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+    new Object[]{ID_Categoria}, new ArticuloMapper());   
+    return articulos; 
+}
+
+public List<Articulo> listArticulo() {   
+    String SQL = "Call Articulo_S_Generic"; 
+    List<Articulo> articulos =      
+    jdbcTemplateObject.query(SQL, new ArticuloMapper());   
+    return articulos; 
+}
+
 public Articulo getArticulo(Articulo articuloToFind){
 
     String SQL = "CALL Articulo_S_Find (?, ?, ?, ?, ?)";   
@@ -57,7 +72,6 @@ public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categori
         articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), region.getIdCategoria());  
 
         return;   
-
 }
 
 public Articulo getArticulo(Integer ID_Articulo) {
@@ -66,13 +80,6 @@ public Articulo getArticulo(Integer ID_Articulo) {
         new Object[]{ID_Articulo}, new ArticuloMapper());   
     return articulo; 
 } 
- 
-public List<Articulo> listArticulo() {   
-    String SQL = "select * from Articulo";   
-    List <Articulo> articulos =      
-    jdbcTemplateObject.query(SQL, new ArticuloMapper());   
-    return articulos; 
-}
 
 public void delete(Integer ID_Articulo) {
     String SQL = "delete from Articulo where ID_Articulo = ?";
