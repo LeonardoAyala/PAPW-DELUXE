@@ -52,13 +52,12 @@ public class ArticuloController {
             conn.close();
 
 
-        model.addAttribute("articulox", new Articulo());   
+        model.addAttribute("articulo", new Articulo());   
         return "Publish";
     }
 
     @PostMapping("/publishArticulo") 
-    public String publishArticulo( HttpServletResponse response, HttpSession session, 
-    @ModelAttribute Articulo articulo,
+    public String publish( @ModelAttribute Articulo articulo,
     @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
     @RequestParam(value = "tipo", required = false) Integer tipo,
     @RequestParam(value = "region", required = false) Integer region,
