@@ -110,22 +110,6 @@ public class ArticuloController {
 
             lastInteger += 1;
 
-/*
-            IN sp_nombre_articulo VARCHAR(40), X
-            IN sp_descripcion VARCHAR(300), X
-            IN sp_precio NUMERIC(10,2), X
-            IN sp_unidades INT, X
-            IN sp_imagen_1 mediumblob, X
-            IN sp_imagen_2 mediumblob, X
-            IN sp_imagen_3 mediumblob, X
-            IN sp_video VARCHAR(150), X
-            IN sp_publico TINYINT,
-            IN sp_activo TINYINT,
-            IN sp_visitas INT,
-            IN sp_oferta INT,
-            IN sp_ID_Usuario INT
-*/
-
             Articulo_Categoria articuloTipo = new Articulo_Categoria();
             articuloTipo.setIdCategoria(tipo);
             articuloTipo.setIdArticulo(lastInteger);
@@ -168,8 +152,8 @@ public class ArticuloController {
         catch (Exception ex) {
             if (!conn.isClosed()) 
                 conn.close();
-            //return "error/" + ex;
-            return "Publish";
+            return "error/" + ex;
+            //return "Publish";
         }
         if (!conn.isClosed()) 
             conn.close();

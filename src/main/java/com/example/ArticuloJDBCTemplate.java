@@ -50,12 +50,13 @@ public Articulo getLastArticulo(){
 
 public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
     try{
-        String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+        String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
         jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 
         articulo.getPrecio(), articulo.getUnidades(), articulo.getImagen_1(),  
         articulo.getImagen_2(),  articulo.getImagen_3(), articulo.getVideo(), 
         articulo.getPublico(), articulo.getActivo(), articulo.getVistas(), 
-        articulo.getOferta(), articulo.getIdUsuario());  
+        articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), region.getIdCategoria());  
+
         return;   
     } catch (Exception e){
         return; 
