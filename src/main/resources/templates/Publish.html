@@ -193,10 +193,8 @@
                                                 <input id="img3" type="file" class="input" data-type="input" name="image_3" required>
                                                 <br>
                                                 <p>Video:</p>
-                                                <input id="video" type="file" class="input" data-type="input" name="video">
+                                                <input id="video" type="file" class="input" data-type="input" name="video" required>
                                                 <br>
-                                                <!--p>Description:</p>
-                                                <input id="writeComment"  type="text" name="description" placeholder="Add region." /-->
                                                 <p>Units Available: </p>
                                                 <input id="writeComment" type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" />
                                                 <br>
@@ -212,7 +210,8 @@
                                                 </div>
 
                                                 <br>
-                                                <button type="submit" >Publish</button>
+                                                <input id="submitIt" type='submit' value='publish'>
+                                               
                                             </div>
                                         </form>   
 
