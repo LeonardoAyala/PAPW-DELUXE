@@ -13,12 +13,16 @@ import org.springframework.web.multipart.MultipartFile;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.net.URISyntaxException;
 import com.example.UserJDBCTemplate;
+
+import java.io.File;
 import java.lang.Integer;
 import java.lang.String;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,31 +69,48 @@ public class ArticuloController {
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
     @RequestParam(value = "image_3", required = false) MultipartFile image_3,
-    //@RequestParam(value = "video", required = false) String video,
-    @RequestParam(value = "saveMe", required = false) String save)
+    @RequestParam(value = "video", required = false) MultipartFile video,
+    @RequestParam(value = "saveMe", required = false) String save,
+    HttpServletRequest request)
     throws URISyntaxException, SQLException {    
         Connection conn = Main.getConnection();  
+       
+        if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().stream()
+            .forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
+        }
         try{
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
             articuloTemplate.setDataSource(conn);   
-            
-            articulo.setNombre(nombreArticulo);
-            articulo.setImagen_1(image_1.getBytes());
-            articulo.setImagen_2(image_2.getBytes());
-            articulo.setImagen_3(image_3.getBytes());
+
+            Articulo ultimoArticulo = articuloTemplate.getLastArticulo();
+
+            Integer lastInteger;
+            if(ultimoArticulo != null)
+            lastInteger = ultimoArticulo.getId();
+            else
+            lastInteger = 0;
+
+            lastInteger += 1;
+
+/*
+            IN sp_nombre_articulo VARCHAR(40), X
+            IN sp_descripcion VARCHAR(300), X
+            IN sp_precio NUMERIC(10,2), X
+            IN sp_unidades INT, X
+            IN sp_imagen_1 mediumblob, X
+            IN sp_imagen_2 mediumblob, X
+            IN sp_imagen_3 mediumblob, X
+            IN sp_video VARCHAR(150), X
+            IN sp_publico TINYINT,
+            IN sp_activo TINYINT,
+            IN sp_visitas INT,
+            IN sp_oferta INT,
+            IN sp_ID_Usuario INT
+*/
+
+
             //articulo.setVideo(video);
-
-            if(bindingResult.hasErrors()){
-                bindingResult.getFieldErrors().stream()
-                .forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
-            }
-
-            if (save != null){
-                articulo.setActivo(1);
-            }
-            else{
-                articulo.setActivo(0);
-            }
 
             Articulo_Categoria articuloTipo = new Articulo_Categoria();
             articuloTipo.setIdCategoria(tipo);
@@ -97,12 +118,35 @@ public class ArticuloController {
             Articulo_Categoria articuloRegion = new Articulo_Categoria();
             articuloRegion.setIdCategoria(region);
 
+            articulo.setNombre(nombreArticulo);
+
+            articulo.setImagen_1(image_1.getBytes());
+            articulo.setImagen_2(image_2.getBytes());
+            articulo.setImagen_3(image_3.getBytes());
+
+            articulo.setActivo(1);
+            articulo.setVistas(0);
+            articulo.setOferta(0);
+
+            if (save != null){
+                articulo.setPublico(1);
+            }
+            else{
+                articulo.setPublico(0);
+            }
+
+            if(!video.isEmpty()){
+                ServletContext context = request.getServletContext();
+                String path = context.getRealPath("/");
+                File file = new File (path, lastInteger.toString()+".mp4");
+                video.transferTo(file);
+            }
+
             //articuloTemplate.create(articulo, );      
         }
         catch (Exception ex) {
-        if (!conn.isClosed()) 
-            conn.close();
-
+            if (!conn.isClosed()) 
+                conn.close();
             //return "error/" + ex;
             return "Publish";
         }
