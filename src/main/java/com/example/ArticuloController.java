@@ -85,9 +85,12 @@ public class ArticuloController {
             else{
                 articulo.setActivo(0);
             }
-            
-            if(articulo.getNombre() == null)
-            return "Publish";
+
+            Articulo_Categoria articuloTipo = new Articulo_Categoria();
+            articuloTipo.setIdCategoria(tipo);
+
+            Articulo_Categoria articuloRegion = new Articulo_Categoria();
+            articuloRegion.setIdCategoria(region);
 
             //articuloTemplate.create(articulo, );      
         }
