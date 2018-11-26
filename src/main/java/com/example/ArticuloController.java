@@ -62,7 +62,9 @@ public class ArticuloController {
     }
 
     @PostMapping("/publishArticulo") 
-    public String publish( @ModelAttribute Articulo articulo, BindingResult bindingResult,
+    public String publish( @ModelAttribute Articulo articulo,
+    BindingResult bindingResult, HttpServletResponse response, HttpSession session, 
+    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember,
     @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
     @RequestParam(value = "tipo", required = false) Integer tipo,
     @RequestParam(value = "region", required = false) Integer region,
@@ -83,6 +85,21 @@ public class ArticuloController {
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
             articuloTemplate.setDataSource(conn);   
 
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
+
+            usuario.setId(14);
+    
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
+    
             Articulo ultimoArticulo = articuloTemplate.getLastArticulo();
 
             Integer lastInteger;
@@ -109,14 +126,13 @@ public class ArticuloController {
             IN sp_ID_Usuario INT
 */
 
-
-            //articulo.setVideo(video);
-
             Articulo_Categoria articuloTipo = new Articulo_Categoria();
             articuloTipo.setIdCategoria(tipo);
+            articuloTipo.setIdArticulo(lastInteger);
 
             Articulo_Categoria articuloRegion = new Articulo_Categoria();
             articuloRegion.setIdCategoria(region);
+            articuloRegion.setIdArticulo(lastInteger);
 
             articulo.setNombre(nombreArticulo);
 
@@ -135,14 +151,19 @@ public class ArticuloController {
                 articulo.setPublico(0);
             }
 
+            articulo.setVideo("");
+
             if(!video.isEmpty()){
                 ServletContext context = request.getServletContext();
                 String path = context.getRealPath("/");
                 File file = new File (path, lastInteger.toString()+".mp4");
                 video.transferTo(file);
+                articulo.setVideo(path);
             }
 
-            //articuloTemplate.create(articulo, );      
+            articulo.setIdUsuario(usuario.getId());
+
+            articuloTemplate.create(articulo, articuloTipo, articuloRegion);      
         }
         catch (Exception ex) {
             if (!conn.isClosed()) 

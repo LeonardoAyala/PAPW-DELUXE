@@ -48,7 +48,7 @@ public Articulo getLastArticulo(){
     }
 }
 
-public void create(Articulo articulo, Articulo_Categoria region, Articulo_Categoria tipo) {   
+public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
     try{
         String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
         jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 
