@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -56,14 +57,16 @@ public class ArticuloController {
     }
 
     @PostMapping("/publishArticulo") 
-    public String publishArticulo(@ModelAttribute Articulo articulo,
+    public String publishArticulo( HttpServletResponse response, HttpSession session, 
+    @ModelAttribute Articulo articulo,
     @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
     @RequestParam(value = "tipo", required = false) Integer tipo,
     @RequestParam(value = "region", required = false) Integer region,
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
     @RequestParam(value = "image_3", required = false) MultipartFile image_3,
-    @RequestParam(value = "video", required = false) String video)
+    @RequestParam(value = "video", required = false) String video,
+    @RequestParam(value = "saveMe", required = false) String save)
     throws URISyntaxException, SQLException {    
         Connection conn = Main.getConnection();  
         try{
@@ -76,6 +79,13 @@ public class ArticuloController {
             articulo.setImagen_3(image_3.getBytes());
             articulo.setVideo(video);
 
+            if (save != null){
+                articulo.setActivo(1);
+            }
+            else{
+                articulo.setActivo(0);
+            }
+            
             if(articulo.getNombre() == null)
             return "Publish";
 

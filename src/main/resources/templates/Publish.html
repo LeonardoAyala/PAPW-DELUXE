@@ -164,7 +164,7 @@
                                         th:object="${articulo}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
-                                                <input id="writeComment" type="text" name="nombreArticulo" placeholder="Add a name." required/>
+                                                <input id="writeComment" type="text" th:field="*{nombreArticulo}" name="nombreArticulo" placeholder="Add a name." required/>
                                                 <br>
                                                 <p>Type:</p>
                                                 <select name="tipo" required>
@@ -207,8 +207,8 @@
                                                 <textarea id="writeComment" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
                                                 
                                                 <div class="group">
-                                                    <input id="check" type="checkbox" class="check" checked>
-                                                    <label for="check"><span class="icon"></span>Save for later</label>
+                                                    <input id="check" type="checkbox" class="check" name="saveMe">
+                                                    <p>Save for later.</p>
                                                 </div>
 
                                                 <br>
