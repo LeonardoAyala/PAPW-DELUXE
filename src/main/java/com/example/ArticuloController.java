@@ -85,7 +85,7 @@ public class ArticuloController {
         if (!conn.isClosed()) 
         conn.close();
 
-        return "/itemSpotlight/"+ idArticulo.toString(); 
+        return "redirect:/itemSpotlight/"+ idArticulo.toString(); 
     }
 
     @GetMapping("/itemSpotlight/{id}")
