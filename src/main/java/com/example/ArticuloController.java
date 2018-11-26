@@ -76,7 +76,7 @@ public class ArticuloController {
             articulo.setImagen_1(image_1.getBytes());
             articulo.setImagen_2(image_2.getBytes());
             articulo.setImagen_3(image_3.getBytes());
-            articulo.setVideo(video);
+            //articulo.setVideo(video);
 
             if (save != null){
                 articulo.setActivo(1);
