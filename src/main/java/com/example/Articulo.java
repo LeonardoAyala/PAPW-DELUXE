@@ -10,7 +10,7 @@ public class Articulo {
     private byte[] imagen_1;
     private byte[] imagen_2;    
     private byte[] imagen_3;
-    private byte[] video;
+    private String video;
 
     private Integer publico;
     private Integer activo;
@@ -33,8 +33,8 @@ public class Articulo {
     public void setImagen_3(byte[] imagen_3) {this.imagen_3 = imagen_3;}   
     public byte[] getImagen_3() {return imagen_3;}       
 
-    public void setVideo(byte[] video) {this.video = video;}   
-    public byte[] getVideo() {return video;}    
+    public void setVideo(String video) {this.video = video;}   
+    public String getVideo() {return video;}    
 
 
 

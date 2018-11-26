@@ -99,8 +99,10 @@
                       <a id="sidebarCollapse" class="bp-nav__item bp-icon bp-icon--bars" data-info="SideBar"><span>Sidebar</span></a>
                       <input id="searchbar" type="text" name="search" placeholder="Search..">
                       <a class="bp-nav__item bp-icon bp-icon--search search_bar" href="Catalog" data-info="Back"><span>Search</span></a>
-                      <img class="img-circle " src="images/DSC_0040.JPG" alt="foto" width="30px" height="30px">
-                      <span class="bp-nav__name no-Top">Leonardo Ayala</span>
+                      
+                      <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
+                      <img class="img-circle " th:src="'/ImgUsuarioPerfil/' + ${usuario.getId()}" alt="foto" width="30px" height="30px">
+    
                       <a class="bp-nav__item bp-icon bp-icon--prev" href="Home" data-info="Back"><span>Back</span></a>
                       <a class="bp-nav__item bp-icon bp-icon--history" href="History" data-info="History"><span>History</span></a>
                       <a class="bp-nav__item bp-icon bp-icon--kart" href="Kart" data-info="Shopping Kart"><span>Kart</span></a>
@@ -181,23 +183,36 @@
                                                     <option value="9">Exotic</option>
                                                 </select>
                                                 <br>
+                                                <p>Imagen 1:</p>
                                                 <input id="img1" type="file" class="input" data-type="input" name="image_1" required>
                                                 <br>
+                                                <p>Imagen 2:</p>
                                                 <input id="img2" type="file" class="input" data-type="input" name="image_2" required>
                                                 <br>
+                                                <p>Imagen 3:</p>
                                                 <input id="img3" type="file" class="input" data-type="input" name="image_3" required>
+                                                <br>
+                                                <p>Video:</p>
+                                                <input id="video" type="file" class="input" data-type="input" name="video">
                                                 <br>
                                                 <!--p>Description:</p>
                                                 <input id="writeComment"  type="text" name="description" placeholder="Add region." /-->
-                                                <p>Units Available: 
-                                                <input type="number"  name="Quantity" placeholder="Quantity" step="1" /></p>
+                                                <p>Units Available: </p>
+                                                <input id="writeComment" type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" />
                                                 <br>
-                                                <p>Price: 
-                                                <input type="number" th:field="*{precio}" name="Quantity" placeholder="Price" step="1" /></p>
+                                                <p>Price: </p>
+                                                <input id="writeComment" type="number" min="0.00" max="10000.00" step="0.01" th:field="*{precio}" name="Quantity" placeholder="Price" step="1" />
                                                 <br>
                                                 <p>Description:</p>
-                                                <textarea name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
-                                            <button type="submit" > Publish</button>
+                                                <textarea id="writeComment" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
+                                                
+                                                <div class="group">
+                                                    <input id="check" type="checkbox" class="check" checked>
+                                                    <label for="check"><span class="icon"></span>Save for later</label>
+                                                </div>
+
+                                                <br>
+                                                <button type="submit" >Publish</button>
                                             </div>
                                         </form>   
 

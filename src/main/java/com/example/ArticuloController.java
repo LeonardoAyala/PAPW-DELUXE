@@ -2,6 +2,7 @@ package com.example;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.net.URISyntaxException; 
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import java.net.URISyntaxException;
 import com.example.UserJDBCTemplate;
 import java.lang.Integer;
 import java.lang.String;
@@ -20,24 +25,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ArticuloController {
 
     @GetMapping("/Publish")
-    public String articuloForm(Model model) {   
+    public String articuloForm(Model model, HttpServletResponse response, HttpSession session, 
+    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
+    throws URISyntaxException, SQLException {   
+        Connection conn = Main.getConnection();
+        UsuarioJDBCTemplate articuloTemplate = new UsuarioJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);   
+
+        Usuario usuario;
+        Usuario loggedUsuario;
+
+        usuario = new Usuario();
+
+        usuario.setNombreUsuario("Login To get started");
+        usuario.setId(14);
+
+        loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+
+        if(loggedUsuario != null)
+            usuario = loggedUsuario;
+
+        model.addAttribute("usuario", usuario);
+        
+        if (!conn.isClosed()) 
+            conn.close();
+
+
         model.addAttribute("articulo", new Articulo());   
         return "Publish";
     }
 
-    /*
-    @GetMapping("/LogIn")
-    public String userLoginForm(Model model, 
-        @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) {   
-
-        Usuario usuario = new Usuario();
-        usuario.setUsername(cookieRemember);
-        
-        model.addAttribute("usuario", usuario);   
-        return "LogIn";
-    }
-
-    */
     @PostMapping("/publishArticulo") 
     public String publishArticulo(@ModelAttribute Articulo articulo,
     @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
@@ -45,7 +62,8 @@ public class ArticuloController {
     @RequestParam(value = "region", required = false) Integer region,
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
-    @RequestParam(value = "image_3", required = false) MultipartFile image_3)
+    @RequestParam(value = "image_3", required = false) MultipartFile image_3,
+    @RequestParam(value = "video", required = false) String video)
     throws URISyntaxException, SQLException {    
         Connection conn = Main.getConnection();  
         try{
@@ -56,6 +74,7 @@ public class ArticuloController {
             articulo.setImagen_1(image_1.getBytes());
             articulo.setImagen_2(image_2.getBytes());
             articulo.setImagen_3(image_3.getBytes());
+            articulo.setVideo(video);
 
             if(articulo.getNombre() == null)
             return "Publish";
