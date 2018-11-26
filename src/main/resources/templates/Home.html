@@ -192,19 +192,10 @@
                                         <p class="c-orange"><em>Check out the hottest dishes of this season.</em></p>
                                         <br>
 
-                                        <section class="grid" th:each = "product: ${articulos}">
+                                        <section class="grid">
                                                 <!-- Products -->
-                                                <div class="product">
-                                                  <div class="product__info">
-                                                    <img class="product__image" src="images/ex.jpg" alt="Product 1" />
-                                                    <span class="product__title">Peruan Beans</span>
-                                                    <span class="product__place">Lima, Peru</span>
-                                                    <span class="product__price highlight">$55.90</span>
-                                                    <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
-                                                  </div>
-                                                  <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
-                                                </div>
-                                                <div class="product">
+
+                                                <div class="product"  th:each = "product: ${articulos}">
                                                     <div class="product__info">
                                                       <img class="product__image" src="images/mex.jpg" alt="Product 1" />
                                                       <span class="product__title">Encheeseladas</span>
