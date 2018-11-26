@@ -49,7 +49,6 @@ public Articulo getLastArticulo(){
 }
 
 public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
-    try{
         String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
         jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 
         articulo.getPrecio(), articulo.getUnidades(), articulo.getImagen_1(),  
@@ -58,9 +57,7 @@ public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categori
         articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), region.getIdCategoria());  
 
         return;   
-    } catch (Exception e){
-        return; 
-    }
+
 }
 
 public Articulo getArticulo(Integer ID_Articulo) {
