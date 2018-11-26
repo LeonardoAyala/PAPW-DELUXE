@@ -61,6 +61,32 @@ public class ArticuloController {
         return "Publish";
     }
 
+    @PostMapping("/product__info") 
+    public String productInfo(@ModelAttribute Articulo articulo)
+    throws URISyntaxException, SQLException {      
+        Connection conn = Main.getConnection();
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        try{
+            usuarioTemplate.setDataSource(conn);   
+/*
+            usuario.setImagen_avatar(imgPerfil.getBytes());
+            usuario.setImagen_portada(imgPortada.getBytes());
+
+            usuarioTemplate.create(usuario);    
+            */  
+        }
+        catch (Exception ex) {
+            if (!conn.isClosed()) 
+            conn.close();
+
+            return "redirect:/";
+        }
+        if (!conn.isClosed()) 
+        conn.close();
+
+        return "redirect:/LogIn"; 
+    }
+
     @PostMapping("/publishArticulo") 
     public String publish( @ModelAttribute Articulo articulo,
     BindingResult bindingResult, HttpServletResponse response, HttpSession session, 

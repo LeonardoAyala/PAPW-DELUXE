@@ -195,7 +195,8 @@
                                         <section class="grid">
                                                 <!-- Products -->
 
-                                                <div class="product"  th:each = "product: ${articulos}">
+                                            <div class="product"  th:each = "product: ${articulos}">
+                                                <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
                                                     <div class="product__info">
                                                       <img class="product__image" src="images/mex.jpg" alt="Product 1" />
                                                       <input type="hidden" th:value="${product.getId()}" name="idArticulo">
@@ -205,8 +206,10 @@
                                                       <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
                                                       <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
                                                     </div>
+                                                </form>
                                                     <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
-                                                </div>
+                                            </div>
+                                            
                                         </section>
                                       
 
