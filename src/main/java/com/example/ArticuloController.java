@@ -52,7 +52,7 @@ public class ArticuloController {
             conn.close();
 
 
-        model.addAttribute("articulo", new Articulo());   
+        model.addAttribute("articulox", new Articulo());   
         return "Publish";
     }
 
