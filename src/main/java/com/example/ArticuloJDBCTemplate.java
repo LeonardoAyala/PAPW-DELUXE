@@ -68,7 +68,7 @@ public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categori
         jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 
         articulo.getPrecio(), articulo.getUnidades(), articulo.getImagen_1(),  
         articulo.getImagen_2(),  articulo.getImagen_3(), articulo.getVideo(), 
-        articulo.getPublico(), articulo.getActivo(), articulo.getVistas(), 
+        articulo.getPublico(), articulo.getActivo(), articulo.getVisitas(), 
         articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), region.getIdCategoria());  
 
         return;   

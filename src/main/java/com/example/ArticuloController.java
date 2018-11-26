@@ -125,7 +125,7 @@ public class ArticuloController {
             articulo.setImagen_3(image_3.getBytes());
 
             articulo.setActivo(1);
-            articulo.setVistas(0);
+            articulo.setVisitas(0);
             articulo.setOferta(0);
 
             if (save != null){

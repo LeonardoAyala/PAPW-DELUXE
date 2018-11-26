@@ -19,7 +19,7 @@ public class ArticuloMapper implements RowMapper<Articulo> {
         articulo.setVideo(rs.getString("video"));
         articulo.setPublico(rs.getInt("publico"));       
         articulo.setActivo(rs.getInt("activo"));              
-        articulo.setVistas(rs.getInt("vistas"));
+        articulo.setVisitas(rs.getInt("visitas"));
         articulo.setOferta(rs.getInt("oferta"));              
         articulo.setIdUsuario(rs.getInt("ID_Usuario"));        
         return articulo;    

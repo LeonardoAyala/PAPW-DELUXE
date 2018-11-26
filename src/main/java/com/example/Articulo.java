@@ -14,7 +14,7 @@ public class Articulo {
 
     private Integer publico;
     private Integer activo;
-    private Integer vistas;
+    private Integer visitas;
     private Integer oferta;
     private Integer ID_Usuario;
     
@@ -53,8 +53,8 @@ public class Articulo {
     public void setActivo(Integer activo) {this.activo = activo;}   
     public Integer getActivo() {return activo;}  
 
-    public void setVistas(Integer vistas) {this.vistas = vistas;}   
-    public Integer getVistas() {return vistas;}  
+    public void setVisitas(Integer visitas) {this.visitas = visitas;}   
+    public Integer getVisitas() {return visitas;}  
 
     public void setOferta(Integer oferta) {this.oferta = oferta;}   
     public Integer getOferta() {return oferta;}  
