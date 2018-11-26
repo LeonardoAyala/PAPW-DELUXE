@@ -85,7 +85,7 @@ public class ArticuloController {
         if (!conn.isClosed()) 
         conn.close();
 
-        return "itemSpotlight/"+ idArticulo; 
+        return "itemSpotlight/"+ idArticulo.toString(); 
     }
 
     @GetMapping("/itemSpotlight/{id}")
