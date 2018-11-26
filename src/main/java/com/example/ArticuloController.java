@@ -145,10 +145,10 @@ public class ArticuloController {
             articulo.setOferta(0);
 
             if (save != null){
-                articulo.setPublico(1);
+                articulo.setPublico(0);
             }
             else{
-                articulo.setPublico(0);
+                articulo.setPublico(1);
             }
 
             articulo.setVideo("");
