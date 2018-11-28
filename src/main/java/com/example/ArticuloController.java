@@ -89,10 +89,10 @@ public class ArticuloController {
         return "redirect:/itemSpotlight/"+ idArticulo.toString(); 
     }
 
-    @GetMapping("/itemSpotlight/{id}")
+    @GetMapping("/itemSpotlight/{ID_Articulo}")
     public String userId(
         Model model,
-        @PathVariable(value="id") final Integer id)
+        @PathVariable(value="ID_Articulo") final Integer ID_Articulo)
         throws URISyntaxException, SQLException {
 
             Connection conn = Main.getConnection();  
@@ -100,15 +100,20 @@ public class ArticuloController {
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
             articuloTemplate.setDataSource(conn);
 
-            Articulo articulo = articuloTemplate.getArticulo(id);
+            Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
 
-            model.addAttribute("articulo", articulo);
+            if(articulo != null){
+                model.addAttribute("articulo", articulo);
+
+                return "redirect:/";
+            }
+
 
         return "redirect:/itemSpotlight";
     }
 
     @GetMapping("/ImgArticulo1/{ID_Articulo}") 
-    public void imagePortada(HttpServletResponse response,  
+    public void imageArt1(HttpServletResponse response,  
     @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
     throws URISyntaxException, SQLException, IOException {  
 
@@ -116,17 +121,50 @@ public class ArticuloController {
         ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
         articuloTemplate.setDataSource(conn);    
 
-        Usuario usuario = articuloTemplate.getArticulo(ID_Articulo);      
+        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
         response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
-            response.getOutputStream().write(usuario.getImagen_portada());      
+            response.getOutputStream().write(articulo.getImagen_1());
             response.getOutputStream().close(); 
 
         if (!conn.isClosed()) 
             conn.close();
     } 
 
+    @GetMapping("/ImgArticulo2/{ID_Articulo}") 
+    public void imageArt2(HttpServletResponse response,  
+    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
+    throws URISyntaxException, SQLException, IOException {  
 
+        Connection conn = Main.getConnection();
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);    
 
+        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
+        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
+            response.getOutputStream().write(articulo.getImagen_2());
+            response.getOutputStream().close(); 
+
+        if (!conn.isClosed()) 
+            conn.close();
+    } 
+
+    @GetMapping("/ImgArticulo3/{ID_Articulo}") 
+    public void imageArt3(HttpServletResponse response,  
+    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
+    throws URISyntaxException, SQLException, IOException {  
+
+        Connection conn = Main.getConnection();
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);    
+
+        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
+        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
+            response.getOutputStream().write(articulo.getImagen_2());
+            response.getOutputStream().close(); 
+
+        if (!conn.isClosed()) 
+            conn.close();
+    } 
 
     @PostMapping("/publishArticulo") 
     public String publish( @ModelAttribute Articulo articulo,
