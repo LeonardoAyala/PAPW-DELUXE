@@ -93,12 +93,16 @@ public class ArticuloController {
         Model model,
         @PathVariable(value="id") final Integer id)
         throws URISyntaxException, SQLException {
-        /*
-        UserJDBCTemplate userTemplate = new UserJDBCTemplate();
-        userTemplate.setDataSource(Main.getConnection());
-        User user = userTemplate.getUser(id);
-        model.addAttribute("user", user);
-        */
+
+            Connection conn = Main.getConnection();  
+
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
+            articuloTemplate.setDataSource(conn);
+
+            Articulo articulo = articuloTemplate.getArticulo(id);
+
+            model.addAttribute("articulo", articulo);
+
         return "redirect:/itemSpotlight";
     }
 

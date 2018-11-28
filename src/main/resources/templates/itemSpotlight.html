@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -159,9 +159,9 @@
                                                 </div>
                                         </div>
                                         <div class="col-xl">
-                                        <h2 class= "c-purple">Encheeseladas</h2>
+                                        <h2 class= "c-purple"><span th:text = "${articulo.getNombre()}"/></span></h2>
                                         <h5 class= "c-orange">CDMX, México</h5>
-                                          <p>Description.</p>
+                                          <p th:text="${articulo.getDescription()}" />
                                           <p>Existencias: 30.</p>
                                           <input type="number" name="Quantity" placeholder="Quantity" step="1" />
                                           <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>

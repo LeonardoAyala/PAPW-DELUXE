@@ -75,7 +75,7 @@ public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categori
 }
 
 public Articulo getArticulo(Integer ID_Articulo) {
-    String SQL = "select * from Articulo where ID_Articulo = ?";   
+    String SQL = "CALL Articulo_S (?)";   
     Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       
         new Object[]{ID_Articulo}, new ArticuloMapper());   
     return articulo; 
