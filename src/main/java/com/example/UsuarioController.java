@@ -79,7 +79,7 @@ public class UsuarioController {
 
         if (!conn.isClosed()) 
             conn.close();
-    } 
+    }
 
     @GetMapping("/ImgUsuarioPortada/{ID_Usuario}") 
     public void imagePortada(HttpServletResponse response,  

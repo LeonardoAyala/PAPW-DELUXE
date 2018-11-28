@@ -104,12 +104,10 @@ public class ArticuloController {
 
             if(articulo != null){
                 model.addAttribute("articulo", articulo);
-
-                return "redirect:/";
+                return "redirect:/itemSpotlight";
             }
 
-
-        return "redirect:/itemSpotlight";
+            return "redirect:/";
     }
 
     @GetMapping("/ImgArticulo1/{ID_Articulo}") 

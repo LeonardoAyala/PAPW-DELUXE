@@ -78,7 +78,8 @@ public Articulo getArticulo(Integer ID_Articulo) {
     String SQL = "CALL Articulo_S (?)";   
     Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       
         new Object[]{ID_Articulo}, new ArticuloMapper());   
-    return articulo; 
+
+        return articulo; 
 } 
 
 public void delete(Integer ID_Articulo) {
