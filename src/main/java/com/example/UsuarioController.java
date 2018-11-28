@@ -64,7 +64,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/ImgUsuarioPerfil/{ID_Usuario}") 
-    public void imageId(HttpServletResponse response,  
+    public void imagePerfil(HttpServletResponse response,  
     @PathVariable(value="ID_Usuario") final Integer ID_Usuario)  
     throws URISyntaxException, SQLException, IOException {  
 
@@ -75,6 +75,24 @@ public class UsuarioController {
         Usuario usuario = usuarioTemplate.getUsuario(ID_Usuario);      
         response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
             response.getOutputStream().write(usuario.getImagen_avatar());      
+            response.getOutputStream().close(); 
+
+        if (!conn.isClosed()) 
+            conn.close();
+    } 
+
+    @GetMapping("/ImgUsuarioPortada/{ID_Usuario}") 
+    public void imagePortada(HttpServletResponse response,  
+    @PathVariable(value="ID_Usuario") final Integer ID_Usuario)  
+    throws URISyntaxException, SQLException, IOException {  
+
+        Connection conn = Main.getConnection();
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        usuarioTemplate.setDataSource(conn);    
+
+        Usuario usuario = usuarioTemplate.getUsuario(ID_Usuario);      
+        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
+            response.getOutputStream().write(usuario.getImagen_portada());      
             response.getOutputStream().close(); 
 
         if (!conn.isClosed()) 

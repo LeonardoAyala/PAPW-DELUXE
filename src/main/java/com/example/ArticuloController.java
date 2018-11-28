@@ -23,6 +23,7 @@ import java.net.URISyntaxException;
 import com.example.UserJDBCTemplate;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.Integer;
 import java.lang.String;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -101,12 +102,31 @@ public class ArticuloController {
 
             Articulo articulo = articuloTemplate.getArticulo(id);
 
-            
-
             model.addAttribute("articulo", articulo);
 
         return "redirect:/itemSpotlight";
     }
+
+    @GetMapping("/ImgArticulo1/{ID_Articulo}") 
+    public void imagePortada(HttpServletResponse response,  
+    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
+    throws URISyntaxException, SQLException, IOException {  
+
+        Connection conn = Main.getConnection();
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);    
+
+        Usuario usuario = articuloTemplate.getArticulo(ID_Articulo);      
+        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
+            response.getOutputStream().write(usuario.getImagen_portada());      
+            response.getOutputStream().close(); 
+
+        if (!conn.isClosed()) 
+            conn.close();
+    } 
+
+
+
 
     @PostMapping("/publishArticulo") 
     public String publish( @ModelAttribute Articulo articulo,
