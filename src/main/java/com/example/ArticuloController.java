@@ -101,6 +101,8 @@ public class ArticuloController {
 
             Articulo articulo = articuloTemplate.getArticulo(id);
 
+            
+
             model.addAttribute("articulo", articulo);
 
         return "redirect:/itemSpotlight";
