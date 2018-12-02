@@ -91,7 +91,7 @@ public class ArticuloController {
 
     @GetMapping("/itemSpotlight/{ID_Articulo}")
     public String userId(
-        Model model,
+        Model model,  HttpSession session, 
         @PathVariable(value="ID_Articulo") final Integer ID_Articulo)
         throws URISyntaxException, SQLException {
 
@@ -103,7 +103,7 @@ public class ArticuloController {
             Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
 
             if(articulo != null){
-                model.addAttribute("article", articulo);
+                model.addAttribute("articulo", articulo);
                 return "redirect:/itemSpotlight";
             }
 
