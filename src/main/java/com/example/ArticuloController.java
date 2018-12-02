@@ -64,13 +64,22 @@ public class ArticuloController {
     }
 
     @PostMapping("/product__info") 
-    public String productInfo(@ModelAttribute Articulo articulo,
+    public String productInfo(@ModelAttribute Articulo articulo, Model model,
     @RequestParam(value = "idArticulo", required = false) Integer idArticulo)
     throws URISyntaxException, SQLException {      
         Connection conn = Main.getConnection();
-        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
         try{
-            usuarioTemplate.setDataSource(conn);   
+            articuloTemplate.setDataSource(conn);   
+
+
+            Articulo articuloT = articuloTemplate.getArticulo(idArticulo);
+
+            if(articuloT != null){
+                model.addAttribute("articulo", articuloT);
+                return "itemSpotlight";
+            }
+
         }
         catch (Exception ex) {
             if (!conn.isClosed()) 
@@ -89,7 +98,7 @@ public class ArticuloController {
         Model model,  HttpSession session, 
         @PathVariable(value="ID_Articulo") final Integer ID_Articulo)
         throws URISyntaxException, SQLException {
-
+/*
             Connection conn = Main.getConnection();  
 
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
@@ -101,7 +110,7 @@ public class ArticuloController {
                 model.addAttribute("articulo", articulo);
                 return "itemSpotlight";
             }
-
+*/
             return "redirect:/";
     }
 
