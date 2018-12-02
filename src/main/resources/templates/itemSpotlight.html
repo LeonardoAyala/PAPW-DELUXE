@@ -159,10 +159,10 @@
                                                 </div>
                                         </div>
                                         <div class="col-xl">
-                                        <h2 class= "c-purple"></h2>
+                                        <h2 class= "c-purple"><span th:text="${articulo.getNombre()}" ></span></h2>
                                         <h5 class= "c-orange">CDMX, México</h5>
-                                          <p><span th:text="${articulo}" ></span></p>
-                                          <p>Existencias: 30.</p>
+                                          <p><span th:text="${articulo.getNombre()}" ></span></p>
+                                          <p>Precio: <span th:text="${articulo.getPrecio()}" ></span></p>
                                           <input type="number" name="Quantity" placeholder="Quantity" step="1" />
                                           <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
                                         </div>

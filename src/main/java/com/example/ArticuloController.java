@@ -100,8 +100,8 @@ public class ArticuloController {
             Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
 
             if(articulo != null){
-                model.addAttribute("articulo", articulo.getEstampaTiempo());
-                return "redirect:/item";
+                model.addAttribute("articulo", articulo);
+                return "itemSpotlight";
             }
 
             return "redirect:/";
