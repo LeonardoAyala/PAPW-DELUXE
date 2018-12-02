@@ -84,7 +84,7 @@ public class ArticuloController {
         return "redirect:/item/"+ idArticulo.toString(); 
     }
 
-    @GetMapping("/itemSpotlight/{ID_Articulo}")
+    @GetMapping("/item/{ID_Articulo}")
     public String userId(
         Model model,  HttpSession session, 
         @PathVariable(value="ID_Articulo") final Integer ID_Articulo)
