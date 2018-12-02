@@ -71,7 +71,7 @@ public class Main {
   }
 
 
-  @RequestMapping("/itemSpotlight")
+  @RequestMapping("/item")
   String itemSpotlight() {
     return "itemSpotlight";
   }  
