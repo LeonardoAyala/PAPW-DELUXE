@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -89,6 +90,11 @@ public class ArticuloController {
         return "redirect:/itemSpotlight/"+ idArticulo.toString(); 
     }
 
+    @RequestMapping("/itemSpotlight")
+    String itemSpotlight() {
+      return "itemSpotlight";
+    }  
+
     @GetMapping("/itemSpotlight/{ID_Articulo}")
     public String userId(
         Model model,  HttpSession session, 
@@ -104,7 +110,7 @@ public class ArticuloController {
 
             if(articulo != null){
                 model.addAttribute("articulo", articulo);
-                return "redirect:/itemSpotlight";
+                return "itemSpotlight";
             }
 
             return "redirect:/";
