@@ -101,7 +101,7 @@ public class ArticuloController {
 
             if(articulo != null){
                 model.addAttribute("articulo", articulo.getEstampaTiempo());
-                return "itemSpotlight";
+                return "redirect:/item";
             }
 
             return "redirect:/";
