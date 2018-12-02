@@ -21,7 +21,8 @@ public class ArticuloMapper implements RowMapper<Articulo> {
         articulo.setActivo(rs.getInt("activo"));              
         articulo.setVisitas(rs.getInt("visitas"));
         articulo.setOferta(rs.getInt("oferta"));              
-        articulo.setIdUsuario(rs.getInt("ID_Usuario"));        
+        articulo.setIdUsuario(rs.getInt("ID_Usuario"));      
+        articulo.setEstampaTiempo(rs.getDate("estampaTiempo"));  
         return articulo;    
     } 
 } 

@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Date;
+
 public class Articulo {
     private Integer ID_Articulo;   
     private String nombreArticulo;   
@@ -17,6 +19,7 @@ public class Articulo {
     private Integer visitas;
     private Integer oferta;
     private Integer ID_Usuario;
+    private Date estampaTiempo;
     
     public Integer getId() {return ID_Articulo;}  
     public void setId(Integer ID_Articulo) {this.ID_Articulo = ID_Articulo;}
@@ -61,4 +64,8 @@ public class Articulo {
 
     public void setIdUsuario(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
     public Integer getIdUsuario() {return ID_Usuario;}  
+
+    public Date getEstampaTiempo() {return estampaTiempo;}  
+    public void setEstampaTiempo(Date estampaTiempo) {this.estampaTiempo = estampaTiempo;}
+
 }
