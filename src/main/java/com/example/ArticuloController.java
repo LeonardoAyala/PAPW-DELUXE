@@ -90,10 +90,6 @@ public class ArticuloController {
         return "redirect:/itemSpotlight/"+ idArticulo.toString(); 
     }
 
-    @RequestMapping("/itemSpotlight")
-    String itemSpotlight() {
-      return "itemSpotlight";
-    }  
 
     @GetMapping("/itemSpotlight/{ID_Articulo}")
     public String userId(
