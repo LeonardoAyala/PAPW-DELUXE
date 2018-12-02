@@ -70,6 +70,7 @@ public class Main {
     return "History";
   }
 
+
   @RequestMapping("/itemSpotlight")
   String itemSpotlight() {
     return "itemSpotlight";

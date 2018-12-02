@@ -71,12 +71,6 @@ public class ArticuloController {
         UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
         try{
             usuarioTemplate.setDataSource(conn);   
-/*
-            usuario.setImagen_avatar(imgPerfil.getBytes());
-            usuario.setImagen_portada(imgPortada.getBytes());
-
-            usuarioTemplate.create(usuario);    
-            */  
         }
         catch (Exception ex) {
             if (!conn.isClosed()) 
@@ -89,7 +83,6 @@ public class ArticuloController {
 
         return "redirect:/itemSpotlight/"+ idArticulo.toString(); 
     }
-
 
     @GetMapping("/itemSpotlight/{ID_Articulo}")
     public String userId(
