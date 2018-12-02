@@ -100,7 +100,7 @@ public class ArticuloController {
             Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
 
             if(articulo != null){
-                model.addAttribute("articulo", articulo);
+                model.addAttribute("articulo", articulo.getEstampaTiempo());
                 return "itemSpotlight";
             }
 
