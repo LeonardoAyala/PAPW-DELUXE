@@ -101,7 +101,8 @@ public class ArticuloController {
 
             if(articulo != null){
                 model.addAttribute("articulo", articulo);
-                return "itemSpotlight";
+                //return "itemSpotlight";
+                return "redirect:/item";
             }
 
             return "redirect:/";
