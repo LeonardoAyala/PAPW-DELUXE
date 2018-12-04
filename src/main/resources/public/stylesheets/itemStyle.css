@@ -37,7 +37,8 @@
 }
 
 .stars label:before {
-    content: '\2605';
+    font-family: "Font Awesome 5 Free";
+    content: '\f005';
 }
 
 .stars input:checked ~ label:before {
