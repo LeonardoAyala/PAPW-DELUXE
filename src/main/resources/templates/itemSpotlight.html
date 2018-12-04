@@ -12,8 +12,9 @@
      <link rel="stylesheet" th:href="@{/stylesheets/TopnavStyle.css}">
      <link rel="stylesheet" th:href="@{/stylesheets/ContentStyle.css}">
      <link rel="stylesheet" th:href="@{/stylesheets/component.css}">
-     <link rel="stylesheet" th:href="@{/stylesheets/itemStyle.css}">
+
      <link rel="stylesheet" th:href="@{/stylesheets/comentStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/itemStyle.css}">
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -169,15 +170,15 @@
                                           
                                           <div class="stars">
                                             <input id="star-5" type="radio" name="star"/>
-                                            <label for="star-5"></label>
+                                            <label for="star-5">5</label>
                                             <input id="star-4" type="radio" name="star"/>
-                                            <label for="star-4"></label>
+                                            <label for="star-4">4</label>
                                             <input id="star-3" type="radio" name="star"/>
-                                            <label for="star-3"></label>
+                                            <label for="star-3">3</label>
                                             <input id="star-2" type="radio" name="star"/>
-                                            <label for="star-2"></label>
+                                            <label for="star-2">2</label>
                                             <input id="star-1" type="radio" name="star"/>
-                                            <label for="star-1"></label>
+                                            <label for="star-1">1<i class="fa fa-star"></i></label>
                                         </div>
                                           
                                           <p>Precio: <span th:text="${articulo.getPrecio()}" ></span></p>
