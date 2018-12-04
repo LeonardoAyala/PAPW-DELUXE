@@ -80,8 +80,10 @@ public class Articulo {
         articuloTemplate.setDataSource(conn);   
         
         List<Categoria> categorias = articuloTemplate.getCategorias(this.ID_Articulo);
-
-        return categorias.get(0).getNombre().toString();
+        if(categorias != null)
+            return categorias.get(0).getNombre().toString();
+        else
+            return "Aloo";
     }
 
 }
