@@ -83,7 +83,7 @@ public class Articulo {
         if(categorias != null)
             return categorias.get(0).getNombre().toString();
         else
-            return "Aloo";
+            return "Aloo2";
     }
 
 }
