@@ -67,6 +67,8 @@ public class ArticuloController {
     public String productInfo(@ModelAttribute Articulo articulo,
     @RequestParam(value = "idArticulo", required = false) Integer idArticulo)
     throws URISyntaxException, SQLException {      
+       /*
+       
         Connection conn = Main.getConnection();
         ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
         try{
@@ -82,7 +84,7 @@ public class ArticuloController {
         }
         if (!conn.isClosed()) 
         conn.close();
-
+*/
         return "redirect:/item/"+ idArticulo.toString(); 
     }
 
@@ -101,8 +103,8 @@ public class ArticuloController {
 
             if(articulo != null){
                 model.addAttribute("articulo", articulo);
-                //return "itemSpotlight";
-                return "redirect:/item";
+                return "itemSpotlight";
+                //return "redirect:/item";
             }
 
             return "redirect:/";
