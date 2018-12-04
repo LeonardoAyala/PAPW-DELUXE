@@ -81,7 +81,7 @@ public class Articulo {
         
         List<Categoria> categorias = articuloTemplate.getCategorias(this.ID_Articulo);
 
-        return "Sha";
+        return categorias.get(0).getNombre().toString();
     }
 
 }
