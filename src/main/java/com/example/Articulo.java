@@ -68,4 +68,8 @@ public class Articulo {
     public Date getEstampaTiempo() {return estampaTiempo;}  
     public void setEstampaTiempo(Date estampaTiempo) {this.estampaTiempo = estampaTiempo;}
 
+    public String getCategorias(){
+        return "Repudio";
+    }
+
 }
