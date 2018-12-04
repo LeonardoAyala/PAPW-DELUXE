@@ -31,11 +31,38 @@ public Categoria getCategoria(Integer ID_Categoria) {
 } 
  
 public List<Categoria> listCategoria() {   
-    String SQL = "select * from Categoria";   
-    List <Categoria> categorias =      
-    jdbcTemplateObject.query(SQL, new CategoriaMapper());   
-    return categorias; 
+    String SQL = "Call Categoria_S()"; 
+    try{
+        List<Categoria> categorias =      
+        jdbcTemplateObject.query(SQL, new CategoriaMapper());   
+
+        if(categorias != null)
+            return categorias;
+        else
+            return null;
+        }
+        catch (Exception e) {
+            return null;
+        }
 }
+
+public List<Categoria> getCategorias(Integer ID_Articulo){
+    String SQL = "Call Categorias_S_Articulo(?)"; 
+    try{
+    List<Categoria> categorias = jdbcTemplateObject.query(SQL, 
+    new Object[]{ID_Articulo}, new CategoriaMapper());   
+
+    if(categorias != null)
+        return categorias;
+    else
+        return null;
+    }
+    catch (Exception e) {
+        return null;
+    }
+
+}
+
 
 public void delete(Integer ID_Categoria) {
     String SQL = "delete from Categoria where ID_Categoria = ?";

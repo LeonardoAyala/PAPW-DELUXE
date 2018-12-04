@@ -17,7 +17,7 @@ public void setDataSource(Connection connection) {
 } 
 
 public List<Articulo> listArticulo(Integer ID_Categoria) {   
-    String SQL = "Call Articulo_S_Catergory (?); "; 
+    String SQL = "Call Articulo_S_Catergory (?)"; 
  
     List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
     new Object[]{ID_Categoria}, new ArticuloMapper());   
@@ -59,6 +59,23 @@ public Articulo getLastArticulo(){
          return null;
     }
     catch (Exception e) {
+        return null;
+    }
+}
+
+public List<Categoria> getCategorias(Integer ID_Articulo){
+
+    CategoriaJDBCTemplate categoriaTemplate = new CategoriaJDBCTemplate();
+    
+    try{
+        List<Categoria> categorias = categoriaTemplate.getCategorias(ID_Articulo); 
+
+        if(categorias != null)
+            return categorias;
+        else
+            return null;
+    }
+    catch (Exception e){
         return null;
     }
 }
