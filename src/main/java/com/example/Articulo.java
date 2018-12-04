@@ -72,7 +72,7 @@ public class Articulo {
     public Date getEstampaTiempo() {return estampaTiempo;}  
     public void setEstampaTiempo(Date estampaTiempo) {this.estampaTiempo = estampaTiempo;}
 
-    public List<Categoria> getCategorias()
+    public String getCategorias()
     throws URISyntaxException, SQLException {
         Connection conn = Main.getConnection();
 
@@ -81,7 +81,7 @@ public class Articulo {
         
         List<Categoria> categorias = articuloTemplate.getCategorias(this.ID_Articulo);
 
-        return categorias;
+        return categorias.get(0).getNombre();
     }
 
 }

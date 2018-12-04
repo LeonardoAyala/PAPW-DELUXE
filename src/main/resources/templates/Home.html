@@ -202,7 +202,7 @@
                                                       <input type="hidden" th:value="${product.getId()}" name="idArticulo">
                                                       <span class="product__title"><span th:text = "${product.getNombre()}"/></span></span>
                                                       <!--span class="product__place">CDMX, México</span-->
-                                                      <span class="product__place"><span th:text = "${product.getCategorias().get(0).getNombre()}"/></span>
+                                                      <span class="product__place"><span th:text = "${product.getCategorias()}"/></span>
                                                       <span class="product__price highlight"><span th:text = "'$ ' + ${product.getPrecio()}"/></span></span>
                                                       <!--button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button-->
                                                       <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
