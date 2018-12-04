@@ -1,6 +1,10 @@
 package com.example;
 
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 public class Articulo {
     private Integer ID_Articulo;   
@@ -68,8 +72,16 @@ public class Articulo {
     public Date getEstampaTiempo() {return estampaTiempo;}  
     public void setEstampaTiempo(Date estampaTiempo) {this.estampaTiempo = estampaTiempo;}
 
-    public String getCategorias(){
-        return "Repudio";
+    public List<Categoria> getCategorias()
+    throws URISyntaxException, SQLException {
+        Connection conn = Main.getConnection();
+
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);   
+        
+        List<Categoria> categorias = articuloTemplate.getCategorias(this.ID_Articulo);
+
+        return categorias;
     }
 
 }
