@@ -42,7 +42,7 @@
 }
 
 .stars input:checked ~ label:before {
-    color: gold;
+    color: #FD4;
     transition: all .25s;
 }
 
