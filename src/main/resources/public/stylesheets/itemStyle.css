@@ -48,6 +48,7 @@
   input.star { display: none; }
   
   label.star {
+    font-family: "Font Awesome 5 Free";
     float: right;
     padding: 10px;
     font-size: 15px;
@@ -56,12 +57,14 @@
   }
   
   input.star:checked ~ label.star:before {
+    font-family: "Font Awesome 5 Free";
     content: '\f005';
     color: #FD4;
     transition: all .25s;
   }
   
   input.star-5:checked ~ label.star:before {
+    font-family: "Font Awesome 5 Free";
     color: #FE7;
     text-shadow: 0 0 20px #952;
   }
@@ -72,5 +75,5 @@
   
   label.star:before {
     content: '\f006';
-    font-family: FontAwesome;
+    font-family: "Font Awesome 5 Free";
   }
