@@ -193,7 +193,7 @@
                                        <h1 class= "c-orange">Order</h1>
 
                                           <p>Units:</p>
-                                          <input id="writeComment" type="number" name="Quantity" placeholder="Quantity" step="1" />
+                                          <input id="writeComment" type="number" th:max="${articulo.getUnidades()}" name="Quantity" placeholder="Quantity" step="1" />
                                           <br>
                                           
                                           <p>Placed an order before? Rate this product:</p>
@@ -210,6 +210,7 @@
                                             <input id="star-1" type="radio" name="star1"/>
                                             <label for="star-1"></label>
                                         </div>
+                                        <br>
                                        
                                           <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
                                         </form>
