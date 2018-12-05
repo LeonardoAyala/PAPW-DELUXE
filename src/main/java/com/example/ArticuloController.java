@@ -190,11 +190,13 @@ public class ArticuloController {
             Articulo ultimoArticulo = articuloTemplate.getLastArticulo();
 
             Integer lastInteger;
-            if(ultimoArticulo != null)
+            if(ultimoArticulo != null){
                 lastInteger = ultimoArticulo.getId();
+                return "error/" + "Got id" +  lastInteger.toString();
+            }
             else
-            return "error/" + "Something is wrong with id of articulo";
-
+                return "error/" + "Something is wrong with id of articulo";
+/*
             Articulo_Categoria articuloTipo = new Articulo_Categoria();
             articuloTipo.setIdCategoria(tipo);
             articuloTipo.setIdArticulo(lastInteger);
@@ -232,7 +234,8 @@ public class ArticuloController {
 
             articulo.setIdUsuario(usuario.getId());
 
-            articuloTemplate.create(articulo, articuloTipo, articuloRegion);      
+            articuloTemplate.create(articulo, articuloTipo, articuloRegion);    
+                    */  
         }
         catch (Exception ex) {
             if (!conn.isClosed()) 
@@ -240,10 +243,12 @@ public class ArticuloController {
             return "error/" + ex;
             //return "Publish";
         }
+        /*
         if (!conn.isClosed()) 
             conn.close();
 
         return "redirect:/"; 
+*/
     }
 
 }

@@ -50,13 +50,24 @@ public Articulo getArticulo(Articulo articuloToFind){
 public Articulo getLastArticulo(){
     String SQL = "CALL Articulo_S_Last";   
     try{
-    List<Articulo> articulo = jdbcTemplateObject.query(SQL,  
+    Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       
+    new Object[]{}, new ArticuloMapper()); 
+    
+    /*
+    jdbcTemplateObject.query(SQL,  
         new ArticuloMapper());   
 
         if(articulo.get(0) != null)
             return articulo.get(0); 
         else
          return null;
+
+         */
+        if(articulo != null)
+            return articulo; 
+        else
+         return null;
+
     }
     catch (Exception e) {
         return null;
