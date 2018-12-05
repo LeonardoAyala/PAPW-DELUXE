@@ -186,24 +186,12 @@ public class ArticuloController {
     
             if(loggedUsuario != null)
                 usuario = loggedUsuario;
-    
-            Articulo ultimoArticulo = articuloTemplate.getLastArticulo();
 
-            Integer lastInteger;
-            if(ultimoArticulo != null){
-                lastInteger = ultimoArticulo.getId();
-                return "error/" + "Got id" +  lastInteger.toString();
-            }
-            else
-                return "error/" + "Something is wrong with id of articulo";
-/*
             Articulo_Categoria articuloTipo = new Articulo_Categoria();
             articuloTipo.setIdCategoria(tipo);
-            articuloTipo.setIdArticulo(lastInteger);
 
             Articulo_Categoria articuloRegion = new Articulo_Categoria();
             articuloRegion.setIdCategoria(region);
-            articuloRegion.setIdArticulo(lastInteger);
 
             articulo.setNombre(nombreArticulo);
 
@@ -225,17 +213,26 @@ public class ArticuloController {
             articulo.setVideo("");
 
             if(!video.isEmpty()){
-                ServletContext context = request.getServletContext();
-                String path = context.getRealPath("/");
-                File file = new File (path, lastInteger.toString()+".mp4");
-                video.transferTo(file);
-                articulo.setVideo(path);
+                Articulo ultimoArticulo = articuloTemplate.getLastArticulo();
+
+                Integer lastInteger;
+                if(ultimoArticulo != null){
+                    lastInteger = ultimoArticulo.getId() + 1;
+
+                    ServletContext context = request.getServletContext();
+                    String path = context.getRealPath("/");
+                    File file = new File (path, lastInteger.toString()+".mp4");
+                    video.transferTo(file);
+                    articulo.setVideo(path);
+
+                }
+                else
+                    return "error/" + "Something is wrong with id of articulo";
             }
 
             articulo.setIdUsuario(usuario.getId());
 
             articuloTemplate.create(articulo, articuloTipo, articuloRegion);    
-                    */  
         }
         catch (Exception ex) {
             if (!conn.isClosed()) 
