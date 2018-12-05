@@ -240,12 +240,10 @@ public class ArticuloController {
             return "error/" + ex;
             //return "Publish";
         }
-        /*
         if (!conn.isClosed()) 
             conn.close();
 
         return "redirect:/"; 
-*/
     }
 
 }
