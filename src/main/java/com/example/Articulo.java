@@ -76,10 +76,13 @@ public class Articulo {
     throws URISyntaxException, SQLException {
         Connection conn = Main.getConnection();
 
-        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
-        articuloTemplate.setDataSource(conn);   
+        //ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        //articuloTemplate.setDataSource(conn);   
+
+        CategoriaJDBCTemplate categoriaTemplate = new CategoriaJDBCTemplate();
+        categoriaTemplate.setDataSource(conn);
         
-        List<Categoria> categorias = articuloTemplate.getCategorias(this.ID_Articulo);
+        List<Categoria> categorias = categoriaTemplate.getCategorias(this.ID_Articulo);
         if(categorias != null)
             return categorias.get(0).getNombre().toString();
         else
