@@ -75,15 +75,34 @@ public class ArticuloController {
     @GetMapping("/item/{ID_Articulo}")
     public String userId(
         Model model,  HttpSession session, 
-        @PathVariable(value="ID_Articulo") final Integer ID_Articulo)
+        @PathVariable(value="ID_Articulo") final Integer ID_Articulo,
+        @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember)
         throws URISyntaxException, SQLException {
 
             Connection conn = Main.getConnection();  
+
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
+    
+            usuario.setNombreUsuario("Login to get started");
+            usuario.setId(14);
+    
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
 
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
             articuloTemplate.setDataSource(conn);
 
             Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
+
+            model.addAttribute("usuario", usuario);
 
             if(articulo != null){
                 model.addAttribute("articulo", articulo);

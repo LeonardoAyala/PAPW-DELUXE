@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -40,7 +41,7 @@ public class UsuarioController {
 
         usuario = new Usuario();
 
-        usuario.setNombreUsuario("Login To get started");
+        usuario.setNombreUsuario("Login to get started");
         usuario.setId(14);
 
         loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
@@ -50,6 +51,8 @@ public class UsuarioController {
 
         model.addAttribute("usuario", usuario);
         model.addAttribute("articulos", articuloTemplate.listArticulo());
+
+        JOptionPane.showMessageDialog(null, "This is even shorter");
 
         if (!conn.isClosed()) 
             conn.close();

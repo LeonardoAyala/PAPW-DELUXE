@@ -103,8 +103,10 @@
                       <a id="sidebarCollapse" class="bp-nav__item bp-icon bp-icon--bars" data-info="SideBar"><span>Sidebar</span></a>
                       <input id="searchbar" type="text" name="search" placeholder="Search..">
                       <a class="bp-nav__item bp-icon bp-icon--search search_bar" href="Catalog" data-info="Back"><span>Search</span></a>
-                      <img class="img-circle " src="images/DSC_0040.JPG" alt="foto" width="30px" height="30px">
-                      <span class="bp-nav__name no-Top">Leonardo Ayala</span>
+
+                      <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
+                      <img class="img-circle " th:src="'/ImgUsuarioPerfil/' + ${usuario.getId()}" alt="foto" width="30px" height="30px">    
+
                       <a class="bp-nav__item bp-icon bp-icon--prev" href="/" data-info="Back"><span>Back</span></a>
                       <a class="bp-nav__item bp-icon bp-icon--history" href="History" data-info="History"><span>History</span></a>
                       <a class="bp-nav__item bp-icon bp-icon--kart" href="Kart" data-info="Shopping Kart"><span>Kart</span></a>
@@ -161,6 +163,11 @@
                                                           <span class="carousel-control-next-icon"></span>
                                                         </a>
                                                 </div>
+
+                                                <video controls>
+                                                        <source th:src="'/' + ${articulo.getVideo()}" type="video/mp4">
+                                                    </video>
+             
                                         </div>
                                         <div class="col-xl">
                                         <h1 class= "c-purple"><span th:text="${articulo.getNombre()}"></span></h1>
@@ -187,10 +194,6 @@
                                            <input id="star-1" type="radio" name="star"/>
                                            <label for="star-1"></label>
                                        </div>
-
-                                       <video controls>
-                                           <source th:src="'/' + ${articulo.getVideo()}" type="video/mp4">
-                                       </video>
 
                                        <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
                                        th:object="${orden}" method="post"> 
