@@ -52,8 +52,6 @@ public class UsuarioController {
         model.addAttribute("usuario", usuario);
         model.addAttribute("articulos", articuloTemplate.listArticulo());
 
-        JOptionPane.showMessageDialog(null, "This is even shorter");
-
         if (!conn.isClosed()) 
             conn.close();
 

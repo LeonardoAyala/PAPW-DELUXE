@@ -136,6 +136,11 @@
     content: "\f2c2";
 }
 
+.bp-icon--list:after {
+    font-weight: 900; 
+    content: "\f0ca";
+}
+
 .bp-icon--kart:after {
     font-weight: 900; 
 	content: '\f07a';
