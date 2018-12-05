@@ -72,21 +72,18 @@ public class Articulo {
     public Date getEstampaTiempo() {return estampaTiempo;}  
     public void setEstampaTiempo(Date estampaTiempo) {this.estampaTiempo = estampaTiempo;}
 
-    public String getCategorias()
+    public List<Categoria> getCategorias()
     throws URISyntaxException, SQLException {
         Connection conn = Main.getConnection();
-
-        //ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
-        //articuloTemplate.setDataSource(conn);   
 
         CategoriaJDBCTemplate categoriaTemplate = new CategoriaJDBCTemplate();
         categoriaTemplate.setDataSource(conn);
         
         List<Categoria> categorias = categoriaTemplate.getCategorias(this.ID_Articulo);
         if(categorias != null)
-            return categorias.get(0).getNombre().toString();
+            return categorias;
         else
-            return "Aloo2";
+            return null;
     }
 
 }

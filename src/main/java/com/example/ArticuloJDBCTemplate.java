@@ -63,23 +63,6 @@ public Articulo getLastArticulo(){
     }
 }
 
-public List<Categoria> getCategorias(Integer ID_Articulo){
-
-    CategoriaJDBCTemplate categoriaTemplate = new CategoriaJDBCTemplate();
-    
-    try{
-        List<Categoria> categorias = categoriaTemplate.getCategorias(ID_Articulo); 
-
-        if(categorias != null)
-            return categorias;
-        else
-            return null;
-    }
-    catch (Exception e){
-        return null;
-    }
-}
-
 public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
         String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
         jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 
