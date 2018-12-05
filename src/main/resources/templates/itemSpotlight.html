@@ -167,7 +167,7 @@
                                         <h5 class= "c-orange"><span th:text = "${articulo.getCategorias().get(0).getNombre()} + ', ' + ${articulo.getCategorias().get(1).getNombre()}"></h5>
 
                                           <p><span th:text="${articulo.getNombre()}" ></span></p>
-                                          <p><span th:text="'Published on'${articulo.getEstampaTiempo().toString()}" ></span></p>
+                                          <p><span th:text="'Published on' + ${articulo.getEstampaTiempo().toString()}" ></span></p>
                                           <p>Rating:</p>
                                           
                                           <div class="stars">
