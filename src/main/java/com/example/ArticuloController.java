@@ -199,12 +199,12 @@ public class ArticuloController {
     
             usuario = new Usuario();
 
-            usuario.setId(14);
-    
             loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
     
             if(loggedUsuario != null)
                 usuario = loggedUsuario;
+            else
+                throw new Exception("You must be logged in as a user to publish a product.");
 
             Articulo_Categoria articuloTipo = new Articulo_Categoria();
             articuloTipo.setIdCategoria(tipo);
@@ -257,7 +257,6 @@ public class ArticuloController {
             if (!conn.isClosed()) 
                 conn.close();
             return "error/" + ex;
-            //return "Publish";
         }
         if (!conn.isClosed()) 
             conn.close();
