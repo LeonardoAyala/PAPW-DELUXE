@@ -68,24 +68,7 @@ public class ArticuloController {
     public String productInfo(@ModelAttribute Articulo articulo,
     @RequestParam(value = "idArticulo", required = false) Integer idArticulo)
     throws URISyntaxException, SQLException {      
-       /*
-       
-        Connection conn = Main.getConnection();
-        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
-        try{
-            articuloTemplate.setDataSource(conn);   
 
-
-        }
-        catch (Exception ex) {
-            if (!conn.isClosed()) 
-            conn.close();
-
-            return "redirect:/";
-        }
-        if (!conn.isClosed()) 
-        conn.close();
-*/
         return "redirect:/item/"+ idArticulo.toString(); 
     }
 
@@ -208,11 +191,9 @@ public class ArticuloController {
 
             Integer lastInteger;
             if(ultimoArticulo != null)
-            lastInteger = ultimoArticulo.getId();
+                lastInteger = ultimoArticulo.getId();
             else
-            lastInteger = 0;
-
-            lastInteger += 1;
+            return "error/" + "Something is wrong with id of articulo";
 
             Articulo_Categoria articuloTipo = new Articulo_Categoria();
             articuloTipo.setIdCategoria(tipo);
