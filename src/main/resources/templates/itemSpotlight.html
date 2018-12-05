@@ -164,9 +164,11 @@
                                         </div>
                                         <div class="col-xl">
                                         <h2 class= "c-purple"><span th:text="${articulo.getNombre()}" ></span></h2>
-                                        <h5 class= "c-orange">CDMX, México</h5>
+                                        <h5 class= "c-orange"><span th:text = "${articulo.getCategorias().get(0).getNombre()} + ', ' + ${articulo.getCategorias().get(1).getNombre()}"></h5>
+
                                           <p><span th:text="${articulo.getNombre()}" ></span></p>
-                                          <p>Calificación:</p>
+                                          <p><span th:text="'Published on'${articulo.getEstampaTiempo()}" ></span></p>
+                                          <p>Rating:</p>
                                           
                                           <div class="stars">
                                             <input id="star-5" type="radio" name="star"/>
@@ -181,8 +183,11 @@
                                             <label for="star-1"></label>
                                         </div>
                                           
-                                          <p>Precio: <span th:text="${articulo.getPrecio()}" ></span></p>
-                                          <input type="number" name="Quantity" placeholder="Quantity" step="1" />
+                                          <p>Price: <span th:text="${articulo.getPrecio()}" ></span></p>
+                                          <p th:unless="${product.getOferta() == 0}"><span th:text = "'SALE! Get each unit with ' + ${product.getOferta()} + '% Off'"></span></p>
+
+                                          <p>Stock: <span th:text="${articulo.getPrecio()}" ></span></p>
+                                          <input type="number" th:value="${articulo.getUnidades()}" name="Quantity" placeholder="Quantity" step="1" />
                                           <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
                                         </div>
                                       </div>
