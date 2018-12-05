@@ -163,34 +163,60 @@
                                                 </div>
                                         </div>
                                         <div class="col-xl">
-                                        <h2 class= "c-purple"><span th:text="${articulo.getNombre()}" ></span></h2>
+                                        <h1 class= "c-purple"><span th:text="${articulo.getNombre()}"></span></h1>
                                         <h5 class= "c-orange"><span th:text = "${articulo.getCategorias().get(0).getNombre()} + ', ' + ${articulo.getCategorias().get(1).getNombre()}"></h5>
 
-                                          <p><span th:text="${articulo.getNombre()}" ></span></p>
-                                          <p><span th:text="'Published on' + ${articulo.getEstampaTiempo().toString()}" ></span></p>
-                                          <p>Rating:</p>
+                                          <p th:text="'Published on ' + ${articulo.getEstampaTiempo().toString()}"></p>
+
+                                          <p th:text="'Stock: ' + ${articulo.getUnidades()}" ></p>
+
+                                          <p>Price: <span th:text="${articulo.getPrecio()}" ></span></p>
+                                         <h5 class= "c-purple"><span th:unless="${articulo.getOferta() == 0}"><span th:text = "'SALE! Get each unit with ' + ${articulo.getOferta()} + '% Off'"></span></span></h5>
+
+                                         <p>Rating:</p>
+                                          
+                                         <div class="stars">
+                                           <input id="star-5" type="radio" name="star"/>
+                                           <label for="star-5"></label>
+                                           <input id="star-4" type="radio" name="star"/>
+                                           <label for="star-4"></label>
+                                           <input id="star-3" type="radio" name="star"/>
+                                           <label for="star-3"></label>
+                                           <input id="star-2" type="radio" name="star"/>
+                                           <label for="star-2"></label>
+                                           <input id="star-1" type="radio" name="star"/>
+                                           <label for="star-1"></label>
+                                       </div>
+
+                                       <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
+                                       th:object="${orden}" method="post"> 
+                                       <h1 class= "c-orange">Order</h1>
+
+                                          <p>Units:</p>
+                                          <input id="writeComment" type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" />
+                                          <br>
+                                          
+                                          <p>Placed an order before? Rate this product:</p>
                                           
                                           <div class="stars">
-                                            <input id="star-5" type="radio" name="star"/>
+                                            <input id="star-5" type="radio" name="star5"/>
                                             <label for="star-5"></label>
-                                            <input id="star-4" type="radio" name="star"/>
+                                            <input id="star-4" type="radio" name="star4"/>
                                             <label for="star-4"></label>
-                                            <input id="star-3" type="radio" name="star"/>
+                                            <input id="star-3" type="radio" name="star3"/>
                                             <label for="star-3"></label>
-                                            <input id="star-2" type="radio" name="star"/>
+                                            <input id="star-2" type="radio" name="star2"/>
                                             <label for="star-2"></label>
-                                            <input id="star-1" type="radio" name="star"/>
+                                            <input id="star-1" type="radio" name="star1"/>
                                             <label for="star-1"></label>
                                         </div>
-                                          
-                                          <p>Price: <span th:text="${articulo.getPrecio()}" ></span></p>
-                                         <p><span th:unless="${articulo.getOferta() == 0}"><span th:text = "'SALE! Get each unit with ' + ${articulo.getOferta()} + '% Off'"></span></span></p>
-
-                                          <p>Stock: <span th:text="${articulo.getPrecio()}" ></span></p>
-                                          <input type="number" th:value="${articulo.getUnidades()}" name="Quantity" placeholder="Quantity" step="1" />
+                                       
                                           <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
+                                        </form>
+
                                         </div>
                                       </div>
+                                
                                       
                         </div>
 
