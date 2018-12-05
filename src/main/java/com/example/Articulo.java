@@ -80,6 +80,10 @@ public class Articulo {
         categoriaTemplate.setDataSource(conn);
         
         List<Categoria> categorias = categoriaTemplate.getCategorias(this.ID_Articulo);
+
+        if (!conn.isClosed()) 
+        conn.close();
+
         if(categorias != null)
             return categorias;
         else
