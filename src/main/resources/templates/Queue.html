@@ -19,10 +19,6 @@
      <link rel="stylesheet" href="stylesheets/ContentStyle.css">
      <link rel="stylesheet" href="stylesheets/component.css">
 
-     <link rel="stylesheet" th:href="@{/stylesheets/SidenavStyle.css}">
-     <link rel="stylesheet" th:href="@{/stylesheets/TopnavStyle.css}">
-     <link rel="stylesheet" th:href="@{/stylesheets/ContentStyle.css}">
-     <link rel="stylesheet" th:href="@{/stylesheets/component.css}">
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -121,75 +117,10 @@
 
                 </nav>
           </div>
-  
-
-
-
     
         <!-- Page Content  -->
         <div id="content" class="container">
-			<!-- Product grid -->
-            <div id="demo" class="carousel slide" data-ride="carousel">
-                    <ul class="carousel-indicators">
-                      <li data-target="#demo" data-slide-to="0" class="active"></li>
-                      <li data-target="#demo" data-slide-to="1"></li>
-                      <li data-target="#demo" data-slide-to="2"></li>
-                    </ul>
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="images/comida2.jpg" alt="Los Angeles" width="1100" height="400">
-                        <div class="carousel-caption">
-                          <h3><span>Be adventurous</span></h3>
-                          <p><span>The food that you crave lies closer than you think.<span></p>
-                        </div>   
-                      </div>
-                      <div class="carousel-item">
-                        <img src="images/inter.jpg" alt="Chicago" width="1100" height="400">
-                        <div class="carousel-caption">
-                          <h3><span>No boundries.</span></h3>
-                          <p><span>Food from all over the world, sent to your house's front door.</span></p>
-                        </div>   
-                      </div>
-                      <div class="carousel-item">
-                        <img src="images/cooking.jpg" alt="New York" width="1100" height="400">
-                        <div class="carousel-caption">
-                          <h3><span>Connect to the world.</span></h3>
-                          <p><span>Want to share your creations to the world? We've got your back.</span></p>
-                        </div>   
-                      </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                      <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#demo" data-slide="next">
-                      <span class="carousel-control-next-icon"></span>
-                    </a>
-                  </div>
-                  
                 <div id= "TheMeat">
-
-                        <div class="oddBackground">
-                            <div id="band" class="container text-center">
-                                    <br>
-                                    <h1 class="c-purple">So what are you waiting for? </h1>
-                                    <p class="c-orange"><em>Become adventurous today and discover the world trough your taste!</em></p>
-                                    <br>
-                                    <p>We are adventurous. We believe everyone should be able to enjoy hteir favourite dishes
-                                        without worrying about barriers, language or cultural differences.</p>
-                                    <p>Whether you are here to explore new food all over the world or order your all time favourites, 
-                                        adventurous will connect you with people making exactly what you crave,
-                                        sending the goods directly to you from the confort of your house as soon as possible.
-                                    </p>
-                                    <br>
-
-                                    <div class='login_fields__submit'>
-                                            <input type='submit' id="SignInBtn" value='Create Account'>
-                                        
-                                            <p>or</p>
-                                            <a href='LogIn'>Log In</a>
-                                    </div>
-                            </div>
-                        </div>
 
                         <div class="evenBackground">
                                 <div id="band" class="container text-center">
@@ -243,26 +174,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-    <script type="text/javascript">
-      $(document).ready(function () {
-          $("#sidebar").mCustomScrollbar({
-              theme: "minimal"
-          });
-
-          $('#sidebarCollapse').on('click', function () {
-              $('#sidebar, #content').toggleClass('active');
-              $('.collapse.in').toggleClass('in');
-              $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-          });
-
-    $(document).on('click', '#SignInBtn', function(){
-        window.location.href = "SignIn";
-      });
-
-      });
-  </script>
-
 
 </body>
 </html>
