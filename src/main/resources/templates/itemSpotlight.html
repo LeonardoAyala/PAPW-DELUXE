@@ -188,6 +188,10 @@
                                            <label for="star-1"></label>
                                        </div>
 
+                                       <video controls>
+                                           <source th:src="'/' + ${articulo.getVideo()}" type="video/mp4">
+                                       </video>
+
                                        <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
                                        th:object="${orden}" method="post"> 
                                        <h1 class= "c-orange">Order</h1>
