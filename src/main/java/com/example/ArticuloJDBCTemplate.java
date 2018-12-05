@@ -48,11 +48,12 @@ public Articulo getArticulo(Articulo articuloToFind){
 }
 
 public Articulo getLastArticulo(){
-    String SQL = "CALL Articulo_S_Last";   
-    try{
-    Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       
-    new Object[]{}, new ArticuloMapper()); 
+    String SQL = "CALL Articulo_S_Last()";   
+
     
+    List<Articulo> articulos =      
+    jdbcTemplateObject.query(SQL, new ArticuloMapper());   
+    return articulos.get(0); 
     /*
     jdbcTemplateObject.query(SQL,  
         new ArticuloMapper());   
@@ -63,15 +64,6 @@ public Articulo getLastArticulo(){
          return null;
 
          */
-        if(articulo != null)
-            return articulo; 
-        else
-         return null;
-
-    }
-    catch (Exception e) {
-        return null;
-    }
 }
 
 public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
