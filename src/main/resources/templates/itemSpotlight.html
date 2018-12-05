@@ -136,19 +136,19 @@
                                                         </ul>
                                                         <div class="carousel-inner">
                                                           <div class="carousel-item active">
-                                                            <img src="images/ench1.jpg" alt="Los Angeles" width="1100" height="400">
+                                                            <img th:src="'/ImgArticulo1/' + ${articulo.getId()}" alt="Los Angeles" width="1100" height="400">
                                                             <div class="carousel-caption">
                                                               <p><span>Steamed.<span></p>
                                                             </div>   
                                                           </div>
                                                           <div class="carousel-item">
-                                                            <img src="images/ench2.jpg" alt="Chicago" width="1100" height="400">
+                                                            <img th:src="'/ImgArticulo2/' + ${articulo.getId()}" alt="Chicago" width="1100" height="400">
                                                             <div class="carousel-caption">
                                                               <p><span>Mouth-watering flavour.</span></p>
                                                             </div>   
                                                           </div>
                                                           <div class="carousel-item">
-                                                            <img src="images/ench3.jpeg" alt="New York" width="1100" height="400">
+                                                            <img th:src="'/ImgArticulo3/' + ${articulo.getId()}" alt="New York" width="1100" height="400">
                                                             <div class="carousel-caption">
                                                               <p><span>At an incredible price.</span></p>
                                                             </div>   
@@ -170,7 +170,7 @@
 
                                           <p th:text="'Stock: ' + ${articulo.getUnidades()}" ></p>
 
-                                          <p>Price: <span th:text="${articulo.getPrecio()}" ></span></p>
+                                          <p>Price: <span th:text="'$ ' + ${articulo.getPrecio()}" ></span></p>
                                          <h5 class= "c-purple"><span th:unless="${articulo.getOferta() == 0}"><span th:text = "'SALE! Get each unit with ' + ${articulo.getOferta()} + '% Off'"></span></span></h5>
 
                                          <p>Rating:</p>
@@ -216,18 +216,18 @@
                                         </form>
 
                                         </div>
-                                      </div>
-                                
-                                      
+                                      </div>  
                         </div>
 
                         <div class="evenBackground">
+
+                            <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
+                                th:object="${orden}" method="post"> 
+                                
                                 <input id="writeComment" type="text" name="writeCom" placeholder="Post a comment." />
                                 <button type="submit" > Share</button>
 
-
-
-
+                            </form>
 
                         </div>
 
