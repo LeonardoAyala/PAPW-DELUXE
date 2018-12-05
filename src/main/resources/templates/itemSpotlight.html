@@ -184,7 +184,7 @@
                                         </div>
                                           
                                           <p>Price: <span th:text="${articulo.getPrecio()}" ></span></p>
-                                          <p th:unless="${product.getOferta() == 0}"><span th:text = "'SALE! Get each unit with ' + ${product.getOferta()} + '% Off'"></span></p>
+                                         <p><span th:unless="${product.getOferta() == 0}"><span th:text = "'SALE! Get each unit with ' + ${product.getOferta()} + '% Off'"></span></span></p>
 
                                           <p>Stock: <span th:text="${articulo.getPrecio()}" ></span></p>
                                           <input type="number" th:value="${articulo.getUnidades()}" name="Quantity" placeholder="Quantity" step="1" />
