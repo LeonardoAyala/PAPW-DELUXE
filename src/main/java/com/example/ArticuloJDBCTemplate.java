@@ -47,23 +47,16 @@ public Articulo getArticulo(Articulo articuloToFind){
     }
 }
 
-public Articulo getLastArticulo(){
+public Articulo getLastArticulo() {
     String SQL = "CALL Articulo_S_Last()";   
 
-    
     List<Articulo> articulos =      
     jdbcTemplateObject.query(SQL, new ArticuloMapper());   
-    return articulos.get(0); 
-    /*
-    jdbcTemplateObject.query(SQL,  
-        new ArticuloMapper());   
 
-        if(articulo.get(0) != null)
-            return articulo.get(0); 
-        else
-         return null;
-
-         */
+    if(articulos.get(0) != null)
+        return articulos.get(0); 
+    else
+        return null;
 }
 
 public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
@@ -84,6 +77,66 @@ public Articulo getArticulo(Integer ID_Articulo) {
 
         return articulo; 
 } 
+
+public List<Articulo> getArticuloLikeNombre (String searchString){
+    String SQL = "Call Articulo_S_LikeNombre(?)";  
+
+    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+    new Object[]{searchString}, new ArticuloMapper());   
+
+    if(articulos != null)
+        return articulos; 
+    else
+        return null;
+}
+
+public List<Articulo> getArticuloLikeDescripcion (String searchString){
+    String SQL = "Call Articulo_S_LikeDescripcion(?)";  
+
+    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+    new Object[]{searchString}, new ArticuloMapper());   
+
+    if(articulos != null)
+        return articulos; 
+    else
+        return null;
+}
+
+public List<Articulo> getArticuloLikeCategoria (String searchString){
+    String SQL = "Call Articulo_S_LikeCategoria(?)";  
+
+    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+    new Object[]{searchString}, new ArticuloMapper());   
+
+    if(articulos != null)
+        return articulos; 
+    else
+        return null;
+}
+
+public List<Articulo> getArticuloLikeUsuario (String searchString){
+    String SQL = "Call Articulo_S_LikeUsuario(?)";  
+
+    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+    new Object[]{searchString}, new ArticuloMapper());   
+
+    if(articulos != null)
+        return articulos; 
+    else
+        return null;
+}
+
+public List<Articulo> getArticuloLikeEstampaTiempo (String searchString){
+    String SQL = "Call Articulo_S_LikeEstampaTiempo(?)";  
+
+    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+    new Object[]{searchString}, new ArticuloMapper());   
+
+    if(articulos != null)
+        return articulos; 
+    else
+        return null;
+}
 
 public void delete(Integer ID_Articulo) {
     String SQL = "delete from Articulo where ID_Articulo = ?";

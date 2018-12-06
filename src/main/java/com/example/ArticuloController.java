@@ -264,4 +264,34 @@ public class ArticuloController {
         return "redirect:/"; 
     }
 
+    @PostMapping("/search__product") 
+    public String search( @ModelAttribute Articulo articulo,
+    BindingResult bindingResult, HttpServletResponse response, HttpSession session, 
+    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember,
+    @RequestParam(value = "searchString", required = false) String searchString,
+    HttpServletRequest request)
+    throws URISyntaxException, SQLException {    
+        Connection conn = Main.getConnection();  
+       
+        if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().stream()
+            .forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
+        }
+        try{
+
+
+
+            articuloTemplate.create(articulo, articuloTipo, articuloRegion);    
+        }
+        catch (Exception ex) {
+            if (!conn.isClosed()) 
+                conn.close();
+            return "error/" + ex;
+        }
+        if (!conn.isClosed()) 
+            conn.close();
+
+        return "redirect:/Catalog"; 
+    }
+
 }
