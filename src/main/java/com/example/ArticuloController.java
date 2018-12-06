@@ -265,33 +265,53 @@ public class ArticuloController {
     }
 
     @PostMapping("/search__product") 
-    public String search( @ModelAttribute Articulo articulo,
-    BindingResult bindingResult, HttpServletResponse response, HttpSession session, 
-    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember,
-    @RequestParam(value = "searchString", required = false) String searchString,
-    HttpServletRequest request)
-    throws URISyntaxException, SQLException {    
-        Connection conn = Main.getConnection();  
-       
-        if(bindingResult.hasErrors()){
-            bindingResult.getFieldErrors().stream()
-            .forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
-        }
-        try{
+    public String searchProduct(
+    @RequestParam(value = "searchString", required = false) Integer searchString)
+    throws URISyntaxException, SQLException {      
 
-
-
-            articuloTemplate.create(articulo, articuloTipo, articuloRegion);    
-        }
-        catch (Exception ex) {
-            if (!conn.isClosed()) 
-                conn.close();
-            return "error/" + ex;
-        }
-        if (!conn.isClosed()) 
-            conn.close();
-
-        return "redirect:/Catalog"; 
+        return "redirect:/Catalog/"+ searchString; 
     }
+
+    @GetMapping("/Catalog/{searchString}")
+    public String showCatalog(Model model,  HttpSession session, 
+        @PathVariable(value="searchString") final String searchString,
+        @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember)
+        throws URISyntaxException, SQLException {
+
+            Connection conn = Main.getConnection();  
+
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
+    
+            usuario.setNombreUsuario("Login to get started");
+            usuario.setId(14);
+    
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
+/*
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
+            articuloTemplate.setDataSource(conn);
+
+            Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
+*/
+            model.addAttribute("usuario", usuario);
+/*
+            if(articulo != null){
+                model.addAttribute("articulo", articulo);
+                return "itemSpotlight";
+                //return "redirect:/item";
+            }
+*/
+            return "redirect:/";
+    }
+
+
 
 }
