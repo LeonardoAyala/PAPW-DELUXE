@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -295,13 +296,14 @@ public class ArticuloController {
     
             if(loggedUsuario != null)
                 usuario = loggedUsuario;
-/*
+
             ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
             articuloTemplate.setDataSource(conn);
 
-            Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
-*/
+            List<Articulo> articulosNombre = articuloTemplate.getArticuloLikeNombre(searchString);
+
             model.addAttribute("usuario", usuario);
+            model.addAttribute("byNameResults", articulosNombre);
 /*
             if(articulo != null){
                 model.addAttribute("articulo", articulo);

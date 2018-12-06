@@ -126,22 +126,23 @@
                         <div class="evenBackground">
                                 <div id="band" class="container text-center">
                                         <br>
-                                        <h1 class="c-purple">Still not convinced? </h1>
-                                        <p class="c-orange"><em>Check out the hottest dishes of this season.</em></p>
+                                        <h1 class="c-purple">Adventurous is how we are.</h1>
+                                        <p class="c-orange">Based on your sense of adventure, we found...</p>
                                         <br>
+                                        <h3 class="c-purple">By name:</h1>
 
                                         <section class="grid">
                                                 <!-- Products -->
 
-                                            <div class="product"  th:each = "product: ${articulos}">
+                                            <div class="product"  th:each = "productByName: ${byNameResults}">
                                                 <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
                                                     <div class="product__info">
-                                                      <img class="product__image" th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1" />
-                                                      <input type="hidden" th:value="${product.getId()}" name="idArticulo">
-                                                      <span class="product__title"><span th:text = "${product.getNombre()}"></span></span>
-                                                      <span class="product__place"><span th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"/></span>
-                                                      <span class="product__price highlight"><span th:text = "'$ ' + ${product.getPrecio()}"></span></span>
-                                                      <span class="product__price highlight" th:unless="${product.getOferta() == 0}"><span th:text = "${product.getOferta()} + '% Off'"></span></span>
+                                                      <img class="product__image" th:src="'/ImgArticulo1/' + ${productByName.getId()}" alt="Product 1" />
+                                                      <input type="hidden" th:value="${productByName.getId()}" name="idArticulo">
+                                                      <span class="product__title"><span th:text = "${productByName.getNombre()}"></span></span>
+                                                      <span class="product__place"><span th:text = "${productByName.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"/></span>
+                                                      <span class="product__price highlight"><span th:text = "'$ ' + ${productByName.getPrecio()}"></span></span>
+                                                      <span class="product__price highlight" th:unless="${productByName.getOferta() == 0}"><span th:text = "${product.getOferta()} + '% Off'"></span></span>
                                                       <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
                                                     </div>
                                                 </form>
