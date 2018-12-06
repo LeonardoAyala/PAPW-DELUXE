@@ -100,9 +100,10 @@
               <nav class="bp-nav">
                   <a id="sidebarCollapse" class="bp-nav__item bp-icon bp-icon--bars" data-info="SideBar"><span>Sidebar</span></a>
                   
-                  <form th:action="@{/search__products}" method="POST" enctype="multipart/form-data">
+                <form enctype="multipart/form-data" action="#" th:action="@{/registarUsuario}" th:object="${usuario}" method="post">     
+
                     <input id="searchbar" type="text" name="search" placeholder="Search..">
-                    <a class="bp-nav__item bp-icon bp-icon--search search_bar" href="Catalog" data-info="Search"><span><input type="submit"></span></a>
+                    <a class="bp-nav__item bp-icon bp-icon--search search_bar" name="submit" data-info="Search"><span><input type="submit"></span></a>
                 </form>
 
                   <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
