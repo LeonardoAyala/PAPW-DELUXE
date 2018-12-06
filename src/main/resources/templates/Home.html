@@ -116,10 +116,6 @@
                 </nav>
           </div>
   
-
-
-
-    
         <!-- Page Content  -->
         <div id="content" class="container">
 			<!-- Product grid -->
@@ -131,7 +127,7 @@
                     </ul>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="images/comida2.jpg" alt="Los Angeles" width="1100" height="400">
+                        <img th:src="@{/images/comida2.jpg}" alt="Los Angeles" width="1100" height="400">
                         <div class="carousel-caption">
                           <h3><span>Be adventurous</span></h3>
                           <p><span>The food that you crave lies closer than you think.<span></p>
@@ -239,10 +235,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <script type="text/javascript">
+      $(document).ready(function () {
 
-    $(document).on('click', '#SignInBtn', function(){
-        window.location.href = "SignIn";
-      });
+        $(document).on('click', '#SignInBtn', function(){
+            window.location.href = "SignIn";
+        });
 
       });
   </script>
