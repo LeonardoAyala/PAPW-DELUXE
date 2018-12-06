@@ -306,8 +306,6 @@ public class ArticuloController {
             List<Articulo> articulosUsuario = articuloTemplate.getArticuloLikeUsuario(searchString);
             List<Articulo> articulosEstampaTiempo = articuloTemplate.getArticuloLikeEstampaTiempo(searchString);
 
-
-
             model.addAttribute("usuario", usuario);
             model.addAttribute("byNameResults", articulosNombre);
             model.addAttribute("byDescriptionResults", articulosDescription);
