@@ -266,7 +266,7 @@ public class ArticuloController {
 
     @PostMapping("/search__product") 
     public String searchProduct(
-    @RequestParam(value = "searchString", required = false) Integer searchString)
+    @RequestParam(value = "searchString", required = false) String searchString)
     throws URISyntaxException, SQLException {      
 
         return "redirect:/Catalog/"+ searchString; 
