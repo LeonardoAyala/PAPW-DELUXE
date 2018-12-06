@@ -17,7 +17,7 @@ public void setDataSource(Connection connection) {
 } 
 
 public List<Articulo> listArticulo(Integer ID_Categoria) {   
-    String SQL = "Call Articulo_S_Catergory (?)"; 
+    String SQL = "Call Articulo_S_Categoria (?)"; 
  
     List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
     new Object[]{ID_Categoria}, new ArticuloMapper());   
@@ -29,22 +29,6 @@ public List<Articulo> listArticulo() {
     List<Articulo> articulos =      
     jdbcTemplateObject.query(SQL, new ArticuloMapper());   
     return articulos; 
-}
-
-public Articulo getArticulo(Articulo articuloToFind){
-
-    String SQL = "CALL Articulo_S_Find (?, ?, ?, ?, ?)";   
-
-    try{
-    Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       
-        new Object[]{articuloToFind.getNombre(), articuloToFind.getDescripcion(), 
-            articuloToFind.getPrecio(), articuloToFind.getActivo(),  articuloToFind.getIdUsuario()},
-        new ArticuloMapper());   
-    return articulo; 
-    }
-    catch (Exception e) {
-        return null;
-    }
 }
 
 public Articulo getLastArticulo() {

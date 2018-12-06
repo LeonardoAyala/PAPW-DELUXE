@@ -270,11 +270,11 @@ public class ArticuloController {
     @RequestParam(value = "searchString", required = false) String searchString)
     throws URISyntaxException, SQLException {      
 
-        return "redirect:/Catalog/"+ searchString; 
+        return "redirect:/Search/"+ searchString; 
     }
 
-    @GetMapping("/Catalog/{searchString}")
-    public String showCatalog(Model model,  HttpSession session, 
+    @GetMapping("/Search/{searchString}")
+    public String showSearch(Model model,  HttpSession session, 
         @PathVariable(value="searchString") final String searchString,
         @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember)
         throws URISyntaxException, SQLException {
@@ -313,9 +313,49 @@ public class ArticuloController {
             model.addAttribute("byUserResults", articulosUsuario);
             model.addAttribute("byTimestampResults", articulosEstampaTiempo);
 
-            return "Catalog";
+            return "Search";
     }
 
+    @GetMapping("/Catalog/{ID_Categoria}")
+    public String showCatalog(Model model,  HttpSession session, 
+        @PathVariable(value="ID_Categoria") final Integer ID_Categoria,
+        @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember)
+        throws URISyntaxException, SQLException {
+
+            Connection conn = Main.getConnection();  
+
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
+    
+            usuario.setNombreUsuario("Login to get started");
+            usuario.setId(14);
+    
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
+
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
+            articuloTemplate.setDataSource(conn);
+
+            CategoriaJDBCTemplate categoriaTemplate = new CategoriaJDBCTemplate();
+            categoriaTemplate.setDataSource(conn);
+
+            Categoria categoria = categoriaTemplate.getCategoria(ID_Categoria);
+
+            List<Articulo> articulos = articuloTemplate.listArticulo(categoria.getId());
+
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("category", categoria);
+            model.addAttribute("categoryResults", articulos);
+
+            return "Catalog";
+    }
 
 
 }

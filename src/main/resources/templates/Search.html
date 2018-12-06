@@ -12,18 +12,15 @@
      src="https://code.jquery.com/jquery-3.3.1.min.js"
      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
      crossorigin="anonymous"></script>
-     
 
-     <link rel="stylesheet" href="stylesheets/SidenavStyle.css">
-     <link rel="stylesheet" href="stylesheets/TopnavStyle.css">
-     <link rel="stylesheet" href="stylesheets/ContentStyle.css">
-     <link rel="stylesheet" href="stylesheets/component.css">
-
+     <link rel="stylesheet" th:href="@{/stylesheets/SidenavStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/TopnavStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/ContentStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/component.css}">
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
- 
      <!-- Font Awesome JS -->
      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -102,13 +99,14 @@
               </nav>
               <nav class="bp-nav">
                   <a id="sidebarCollapse" class="bp-nav__item bp-icon bp-icon--bars" data-info="SideBar"><span>Sidebar</span></a>
-                 
+                  
                   <form enctype="multipart/form-data" action="#" th:action="@{/search__product}" method="post">     
+
                     <input id="searchbar" type="text" name="searchString" placeholder="Search..">
                     <a class="bp-nav__item bp-icon bp-icon--search search_bar" name="submit" data-info="Search"><span><input type="submit"></span></a>
                 </form>
-                
-                  <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
+
+                  <span class="bp-nav__name no-Top"><span th:text = "${usuario.getNombreUsuario()}"/></span>
                   <img class="img-circle " th:src="'/ImgUsuarioPerfil/' + ${usuario.getId()}" alt="foto" width="30px" height="30px">
 
                   <a class="bp-nav__item bp-icon bp-icon--prev" href="/" data-info="Back"><span>Back</span></a>
@@ -120,30 +118,31 @@
 
                 </nav>
           </div>
-    
+  
         <!-- Page Content  -->
         <div id="content" class="container">
-                <div id= "TheMeat">
 
+                <div id= "TheMeat">
                         <div class="evenBackground">
                                 <div id="band" class="container text-center">
                                         <br>
-                                        <h1 class="c-purple">Still not convinced? </h1>
-                                        <p class="c-orange"><em>Check out the hottest dishes of this season.</em></p>
+                                        <h1 class="c-purple">Adventurous is how we are.</h1>
+                                        <p class="c-orange">Based on your sense of adventure, we found...</p>
                                         <br>
-
+                                        <h3 class="c-purple">By name:</h1>
+                                        <p class="c-orange" th:if="${byNameResults.isEmpty()}">No results.</p>
                                         <section class="grid">
-                                                <!-- Products -->
+                                            <!-- Products -->
 
-                                            <div class="product"  th:each = "product: ${articulos}">
+                                            <div class="product"  th:each = "productByName: ${byNameResults}">
                                                 <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
                                                     <div class="product__info">
-                                                      <img class="product__image" th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1" />
-                                                      <input type="hidden" th:value="${product.getId()}" name="idArticulo">
-                                                      <span class="product__title"><span th:text = "${product.getNombre()}"></span></span>
-                                                      <span class="product__place"><span th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"/></span>
-                                                      <span class="product__price highlight"><span th:text = "'$ ' + ${product.getPrecio()}"></span></span>
-                                                      <span class="product__price highlight" th:unless="${product.getOferta() == 0}"><span th:text = "${product.getOferta()} + '% Off'"></span></span>
+                                                      <img class="product__image" th:src="'/ImgArticulo1/' + ${productByName.getId()}" alt="Product 1" />
+                                                      <input type="hidden" th:value="${productByName.getId()}" name="idArticulo">
+                                                      <span class="product__title"><span th:text = "${productByName.getNombre()}"></span></span>
+                                                      <span class="product__place"><span th:text = "${productByName.getCategorias().get(0).getNombre()} + ', ' + ${productByName.getCategorias().get(1).getNombre()}"/></span>
+                                                      <span class="product__price highlight"><span th:text = "'$ ' + ${productByName.getPrecio()}"></span></span>
+                                                      <span class="product__price highlight" th:unless="${productByName.getOferta() == 0}"><span th:text = "${productByName.getOferta()} + '% Off'"></span></span>
                                                       <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
                                                     </div>
                                                 </form>
@@ -155,16 +154,116 @@
 
                                 </div>
                             </div>
+                            <div class="oddBackground">
+                                    <div id="band" class="container text-center">
+                                            <br>
+                                            <h3 class="c-purple">By description:</h1>
+                                                <p class="c-orange" th:if="${byDescriptionResults.isEmpty()}">No results.</p>                                            <section class="grid">
+                                                    <!-- Products -->
+    
+                                                <div class="product"  th:each = "productByDescription: ${byDescriptionResults}">
+                                                    <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
+                                                        <div class="product__info">
+                                                          <img class="product__image" th:src="'/ImgArticulo1/' + ${productByDescription.getId()}" alt="Product 1" />
+                                                          <input type="hidden" th:value="${productByDescription.getId()}" name="idArticulo">
+                                                          <span class="product__title"><span th:text = "${productByDescription.getNombre()}"></span></span>
+                                                          <span class="product__place"><span th:text = "${productByDescription.getCategorias().get(0).getNombre()} + ', ' + ${productByDescription.getCategorias().get(1).getNombre()}"/></span>
+                                                          <span class="product__price highlight"><span th:text = "'$ ' + ${productByDescription.getPrecio()}"></span></span>
+                                                          <span class="product__price highlight" th:unless="${productByDescription.getOferta() == 0}"><span th:text = "${productByDescription.getOferta()} + '% Off'"></span></span>
+                                                          <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
+                                                        </div>
+                                                    </form>
+                                                        <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
+                                                </div>
+                                                
+                                            </section>
+                                          
+    
+                                    </div>
+                                </div>
+                                <div class="evenBackground">
+                                        <div id="band" class="container text-center">
+                                                <br>
+                                                <h3 class="c-purple">By category:</h1>
+                                                    <p class="c-orange" th:if="${byCategoryResults.isEmpty()}">No results.</p>                                            <section class="grid">
+                                                        <section class="grid">
+                                                        <!-- Products -->
+        
+                                                    <div class="product"  th:each = "productByCategory: ${byCategoryResults}">
+                                                        <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
+                                                            <div class="product__info">
+                                                              <img class="product__image" th:src="'/ImgArticulo1/' + ${productByCategory.getId()}" alt="Product 1" />
+                                                              <input type="hidden" th:value="${productByCategory.getId()}" name="idArticulo">
+                                                              <span class="product__title"><span th:text = "${productByCategory.getNombre()}"></span></span>
+                                                              <span class="product__place"><span th:text = "${productByCategory.getCategorias().get(0).getNombre()} + ', ' + ${productByCategory.getCategorias().get(1).getNombre()}"/></span>
+                                                              <span class="product__price highlight"><span th:text = "'$ ' + ${productByCategory.getPrecio()}"></span></span>
+                                                              <span class="product__price highlight" th:unless="${productByCategory.getOferta() == 0}"><span th:text = "${productByCategory.getOferta()} + '% Off'"></span></span>
+                                                              <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
+                                                            </div>
+                                                        </form>
+                                                            <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
+                                                    </div>
+                                                    
+                                                </section>
+                                              
+        
+                                        </div>
+                                    </div>
+                                    <div class="oddBackground">
+                                            <div id="band" class="container text-center">
+                                            <br>
+                                            <h3 class="c-purple">By user:</h1>
+                                            <p class="c-orange" th:if="${byUserResults.isEmpty()}">No results.</p>                                            <section class="grid">
+                                                <section class="grid">
+                                                            <!-- Products -->
+            
+                                                    <div class="product"  th:each = "productByUser: ${byUserResults}">
+                                                        <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
+                                                            <div class="product__info">
+                                                                <img class="product__image" th:src="'/ImgArticulo1/' + ${productByUser.getId()}" alt="Product 1" />
+                                                                <input type="hidden" th:value="${productByUser.getId()}" name="idArticulo">
+                                                                <span class="product__title"><span th:text = "${productByUser.getNombre()}"></span></span>
+                                                                <span class="product__place"><span th:text = "${productByUser.getCategorias().get(0).getNombre()} + ', ' + ${productByUser.getCategorias().get(1).getNombre()}"/></span>
+                                                                <span class="product__price highlight"><span th:text = "'$ ' + ${productByUser.getPrecio()}"></span></span>
+                                                                <span class="product__price highlight" th:unless="${productByUser.getOferta() == 0}"><span th:text = "${productByUser.getOferta()} + '% Off'"></span></span>
+                                                                <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
+                                                            </div>
+                                                        </form>
+                                                    <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
 
-
-
+                                        <div class="evenBackground">
+                                                <div id="band" class="container text-center">
+                                                        <br>
+                                                        <h3 class="c-purple">By date:</h1>
+                                                            <p class="c-orange" th:if="${byTimestampResults.isEmpty()}">No results.</p>                                            <section class="grid">
+                                                                <section class="grid">
+                                                                <!-- Products -->
+                
+                                                            <div class="product"  th:each = "productByTimestamp: ${byTimestampResults}">
+                                                                <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
+                                                                    <div class="product__info">
+                                                                      <img class="product__image" th:src="'/ImgArticulo1/' + ${productByTimestamp.getId()}" alt="Product 1" />
+                                                                      <input type="hidden" th:value="${productByTimestamp.getId()}" name="idArticulo">
+                                                                      <span class="product__title"><span th:text = "${productByTimestamp.getNombre()}"></span></span>
+                                                                      <span class="product__place"><span th:text = "${productByTimestamp.getCategorias().get(0).getNombre()} + ', ' + ${productByTimestamp.getCategorias().get(1).getNombre()}"/></span>
+                                                                      <span class="product__price highlight"><span th:text = "'$ ' + ${productByTimestamp.getPrecio()}"></span></span>
+                                                                      <span class="product__price highlight" th:unless="${productByTimestamp.getOferta() == 0}"><span th:text = "${productByTimestamp.getOferta()} + '% Off'"></span></span>
+                                                                      <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
+                                                                    </div>
+                                                                </form>
+                                                                    <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
+                                                            </div>
+                                                            
+                                                        </section>
+                                                      
+                
+                                                </div>
+                                            </div>
                 </div>
-
-                  
-
-                  
-
-
 
         </div>
   </div>
@@ -177,6 +276,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+
+        $(document).on('click', '#SignInBtn', function(){
+            window.location.href = "SignIn";
+        });
+
+      });
+  </script>
 
 </body>
 </html>
