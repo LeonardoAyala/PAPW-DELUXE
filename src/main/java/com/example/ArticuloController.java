@@ -301,9 +301,19 @@ public class ArticuloController {
             articuloTemplate.setDataSource(conn);
 
             List<Articulo> articulosNombre = articuloTemplate.getArticuloLikeNombre(searchString);
+            List<Articulo> articulosDescription = articuloTemplate.getArticuloLikeDescripcion(searchString);
+            List<Articulo> articulosCategoria = articuloTemplate.getArticuloLikeCategoria(searchString) (searchString);
+            List<Articulo> articulosUsuario = articuloTemplate.getArticuloLikeUsuario(searchString);
+            List<Articulo> articulosEstampaTiempo = articuloTemplate.getArticuloLikeEstampaTiempo(searchString);
+
+
 
             model.addAttribute("usuario", usuario);
             model.addAttribute("byNameResults", articulosNombre);
+            model.addAttribute("byDescriptionResults", articulosDescription);
+            model.addAttribute("byCategoryResults", articulosCategoria);
+            model.addAttribute("byUserResults", articulosUsuario);
+            model.addAttribute("byTimestampResults", articulosEstampaTiempo);
 
             return "Catalog";
     }

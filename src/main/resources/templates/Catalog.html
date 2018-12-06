@@ -154,7 +154,62 @@
 
                                 </div>
                             </div>
-
+                            <div class="oddBackground">
+                                    <div id="band" class="container text-center">
+                                            <br>
+                                            <h3 class="c-purple">By description:</h1>
+    
+                                            <section class="grid">
+                                                    <!-- Products -->
+    
+                                                <div class="product"  th:each = "productByDescription: ${byDescriptionResults}">
+                                                    <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
+                                                        <div class="product__info">
+                                                          <img class="product__image" th:src="'/ImgArticulo1/' + ${productByDescription.getId()}" alt="Product 1" />
+                                                          <input type="hidden" th:value="${productByDescription.getId()}" name="idArticulo">
+                                                          <span class="product__title"><span th:text = "${productByDescription.getNombre()}"></span></span>
+                                                          <span class="product__place"><span th:text = "${productByDescription.getCategorias().get(0).getNombre()} + ', ' + ${productByDescription.getCategorias().get(1).getNombre()}"/></span>
+                                                          <span class="product__price highlight"><span th:text = "'$ ' + ${productByDescription.getPrecio()}"></span></span>
+                                                          <span class="product__price highlight" th:unless="${productByDescription.getOferta() == 0}"><span th:text = "${productByDescription.getOferta()} + '% Off'"></span></span>
+                                                          <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
+                                                        </div>
+                                                    </form>
+                                                        <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
+                                                </div>
+                                                
+                                            </section>
+                                          
+    
+                                    </div>
+                                </div>
+                                <div class="evenBackground">
+                                        <div id="band" class="container text-center">
+                                                <br>
+                                                <h3 class="c-purple">By category:</h1>
+        
+                                                <section class="grid">
+                                                        <!-- Products -->
+        
+                                                    <div class="product"  th:each = "productByCategory: ${byCategoryResults}">
+                                                        <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
+                                                            <div class="product__info">
+                                                              <img class="product__image" th:src="'/ImgArticulo1/' + ${productByCategory.getId()}" alt="Product 1" />
+                                                              <input type="hidden" th:value="${productByCategory.getId()}" name="idArticulo">
+                                                              <span class="product__title"><span th:text = "${productByCategory.getNombre()}"></span></span>
+                                                              <span class="product__place"><span th:text = "${productByCategory.getCategorias().get(0).getNombre()} + ', ' + ${productByCategory.getCategorias().get(1).getNombre()}"/></span>
+                                                              <span class="product__price highlight"><span th:text = "'$ ' + ${productByCategory.getPrecio()}"></span></span>
+                                                              <span class="product__price highlight" th:unless="${productByCategory.getOferta() == 0}"><span th:text = "${productByCategory.getOferta()} + '% Off'"></span></span>
+                                                              <button class="action action--button " Type="submit"><span class="action__text">See product</span></button>
+                                                            </div>
+                                                        </form>
+                                                            <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
+                                                    </div>
+                                                    
+                                                </section>
+                                              
+        
+                                        </div>
+                                    </div>
                 </div>
 
         </div>
