@@ -309,7 +309,7 @@ public class ArticuloController {
                 //return "redirect:/item";
             }
 */
-            return "redirect:/Catalog";
+            return "Catalog";
     }
 
 
