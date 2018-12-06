@@ -304,13 +304,7 @@ public class ArticuloController {
 
             model.addAttribute("usuario", usuario);
             model.addAttribute("byNameResults", articulosNombre);
-/*
-            if(articulo != null){
-                model.addAttribute("articulo", articulo);
-                return "itemSpotlight";
-                //return "redirect:/item";
-            }
-*/
+
             return "Catalog";
     }
 
