@@ -302,7 +302,7 @@ public class ArticuloController {
 
             List<Articulo> articulosNombre = articuloTemplate.getArticuloLikeNombre(searchString);
             List<Articulo> articulosDescription = articuloTemplate.getArticuloLikeDescripcion(searchString);
-            List<Articulo> articulosCategoria = articuloTemplate.getArticuloLikeCategoria(searchString) (searchString);
+            List<Articulo> articulosCategoria = articuloTemplate.getArticuloLikeCategoria(searchString);
             List<Articulo> articulosUsuario = articuloTemplate.getArticuloLikeUsuario(searchString);
             List<Articulo> articulosEstampaTiempo = articuloTemplate.getArticuloLikeEstampaTiempo(searchString);
 
