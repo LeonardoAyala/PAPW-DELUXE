@@ -43,8 +43,6 @@ public class Articulo {
     public void setVideo(String video) {this.video = video;}   
     public String getVideo() {return video;}    
 
-
-
     public void setDescripcion(String descripcion) {this.descripcion = descripcion;}   
     public String getDescripcion() {return descripcion;}
 

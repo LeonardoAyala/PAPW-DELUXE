@@ -354,8 +354,40 @@ public class ArticuloController {
             model.addAttribute("category", categoria);
             model.addAttribute("categoryResults", articulos);
 
-            return "Catalog/" + categoria.getNombre();
+            return "redirect:/Catalog";
     }
 
+    @GetMapping("/Queue")
+    public String Homecoming(Model model, HttpServletResponse response, HttpSession session, 
+    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
+    throws URISyntaxException, SQLException {
+        Connection conn = Main.getConnection();
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        usuarioTemplate.setDataSource(conn);   
+
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);   
+        
+        Usuario usuario;
+        Usuario loggedUsuario;
+
+        usuario = new Usuario();
+
+        usuario.setNombreUsuario("Login to get started");
+        usuario.setId(14);
+
+        loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+
+        if(loggedUsuario != null)
+            usuario = loggedUsuario;
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("articulos", articuloTemplate.listArticulo());
+
+        if (!conn.isClosed()) 
+            conn.close();
+
+        return "Home";
+    }
 
 }
