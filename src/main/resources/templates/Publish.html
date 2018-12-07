@@ -53,16 +53,16 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="#">Dish</a>
+                            <a href="Catalog/1">Dish</a>
                         </li>
                         <li>
-                            <a href="#">Desert</a>
+                            <a href="Catalog/2">Dessert</a>
                         </li>
                         <li>
-                            <a href="#">Snack</a>
+                            <a href="Catalog/3">Snack</a>
                         </li>
                         <li>
-                            <a href="#">Drink</a>
+                            <a href="Catalog/4">Drink</a>
                         </li>
                     </ul>
                     <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -71,19 +71,19 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu2">
                         <li>
-                            <a href="#">Western</a>
+                            <a href="Catalog/5">Western</a>
                         </li>
                         <li>
-                            <a href="#">Oriental</a>
+                            <a href="Catalog/6">Oriental</a>
                         </li>
                         <li>
-                            <a href="#">European</a>
+                            <a href="Catalog/7">European</a>
                         </li>
                         <li>
-                            <a href="#">Tropical</a>
+                            <a href="Catalog/8">Tropical</a>
                         </li>
                         <li>
-                            <a href="#">Exotic</a>
+                            <a href="Catalog/9">Exotic</a>
                         </li>
                     </ul>
                 </li>
@@ -92,74 +92,39 @@
         </nav>
 
         <div class="bp-header__main">
-                <nav>
-                  <h1 class="bp-header__title">Home</h1>
-                  </nav>
-                  <nav class="bp-nav">
-                      <a id="sidebarCollapse" class="bp-nav__item bp-icon bp-icon--bars" data-info="SideBar"><span>Sidebar</span></a>
-                      <input id="searchbar" type="text" name="search" placeholder="Search..">
-                      <a class="bp-nav__item bp-icon bp-icon--search search_bar" href="Catalog" data-info="Back"><span>Search</span></a>
-                      
-                      <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
-                      <img class="img-circle " th:src="'/ImgUsuarioPerfil/' + ${usuario.getId()}" alt="foto" width="30px" height="30px">
-    
-                      <a class="bp-nav__item bp-icon bp-icon--prev" href="Home" data-info="Back"><span>Back</span></a>
-                      <a class="bp-nav__item bp-icon bp-icon--history" href="History" data-info="History"><span>History</span></a>
-                      <a class="bp-nav__item bp-icon bp-icon--kart" href="Kart" data-info="Shopping Kart"><span>Kart</span></a>
-                      <a class="bp-nav__item bp-icon bp-icon--announce" href="Publish" data-info="Post Dish"><span>Post</span></a>
-                      <a class="bp-nav__item bp-icon bp-icon--user" href="LogIn" data-info="Profile"><span>User</span></a>
-                    </nav>
-              </div>
-      
-  
+            <nav>
+              <h1 class="bp-header__title">Home</h1>
+              </nav>
+              <nav class="bp-nav">
+                  <a id="sidebarCollapse" class="bp-nav__item bp-icon bp-icon--bars" data-info="SideBar"><span>Sidebar</span></a>
+                  
+                <form enctype="multipart/form-data" action="#" th:action="@{/search__product}" method="post">     
 
+                    <input id="searchbar" type="text" name="searchString" placeholder="Search..">
+                    <a class="bp-nav__item bp-icon bp-icon--search search_bar" name="submit" data-info="Search"><span><input type="submit"></span></a>
+                </form>
 
+                  <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
+                  <img class="img-circle " th:src="'/ImgUsuarioPerfil/' + ${usuario.getId()}" alt="foto" width="30px" height="30px">
 
+                  <a class="bp-nav__item bp-icon bp-icon--prev" href="/" data-info="Back"><span>Back</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--history" href="History" data-info="History"><span>History</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--kart" href="Kart" data-info="Shopping Kart"><span>Kart</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--announce" href="Publish" data-info="Post Dish"><span>Post</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--user" href="LogIn" data-info="Profile"><span>User</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--list" href="Queue" data-info="Queue"><span>Queue</span></a>
+
+                </nav>
+          </div>
     
         <!-- Page Content  -->
         <div id="content" class="container">
 			<!-- Product grid -->
            
-                  
                 <div id= "TheMeat">
                         <div class="oddBackground">
 
                                 <div class="row">
-                                        <!--div class="col-lg">
-                                                <div id="demo" class="carousel slide" data-ride="carousel">
-                                                        <ul class="carousel-indicators">
-                                                          <li data-target="#demo" data-slide-to="0" class="active"></li>
-                                                          <li data-target="#demo" data-slide-to="1"></li>
-                                                          <li data-target="#demo" data-slide-to="2"></li>
-                                                        </ul>
-                                                        <div class="carousel-inner">
-                                                          <div class="carousel-item active">
-                                                            <img src="images/addText.png" alt="Los Angeles" width="1100" height="400">
-                                                            <div class="carousel-caption">
-                                                              <p><span>Add Text.<span></p>
-                                                            </div>   
-                                                          </div>
-                                                          <div class="carousel-item">
-                                                            <img src="images/addText.png" alt="Chicago" width="1100" height="400">
-                                                            <div class="carousel-caption">
-                                                              <p><span>Add Text.</span></p>
-                                                            </div>   
-                                                          </div>
-                                                          <div class="carousel-item">
-                                                            <img src="images/addText.png" alt="New York" width="1100" height="400">
-                                                            <div class="carousel-caption">
-                                                              <p><span>Add Text.</span></p>
-                                                            </div>   
-                                                          </div>
-                                                        </div>
-                                                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                                                          <span class="carousel-control-prev-icon"></span>
-                                                        </a>
-                                                        <a class="carousel-control-next" href="#demo" data-slide="next">
-                                                          <span class="carousel-control-next-icon"></span>
-                                                        </a>
-                                                </div>
-                                        </div-->
                                         <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
                                         th:object="${articulo}" method="post"> 
                                             <div class="col-xl">

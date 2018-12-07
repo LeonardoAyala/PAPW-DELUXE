@@ -354,7 +354,7 @@ public class ArticuloController {
             model.addAttribute("category", categoria);
             model.addAttribute("categoryResults", articulos);
 
-            return "Catalog";
+            return "Catalog/" + categoria.getNombre();
     }
 
 
