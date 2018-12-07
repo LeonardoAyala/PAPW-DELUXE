@@ -124,8 +124,8 @@
                 <div id= "TheMeat">
                         <div class="oddBackground" th:each = "product: ${articulos}">
 
-                            <div class="oddBackground" th:if="${product.getId() >= 5}">
-                            <div class="evenBackground" th:unless="${product.getId() < 5)">
+                            <div class="oddBackground" th:if="${product.getId() == 5}">
+                            <div class="evenBackground" th:unless="${product.getId() != 5)">
                             <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                         <div class="col col-lg-2">
