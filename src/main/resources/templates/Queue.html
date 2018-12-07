@@ -121,55 +121,36 @@
         <div id="content" class="container">
 			<!-- Product grid -->
            
-                <div id= "TheMeat">
-                        <div class="oddBackground" th:each = "product: ${articulos}">
+            <div id= "TheMeat">
 
-                            <div class="oddBackground" th:if="${product.getId() == 5}">
-                            <div class="evenBackground" th:unless="${product.getId() != 5)">
-                            <form th:action="@{/product__info}" method="POST" enctype="multipart/form-data">
-                                <div class="row">
-                                        <div class="col col-lg-2">
-                                                <h5 class= "c-orange">Bought:</h5>
-                                                <img th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1"  height="100" width="100">
-                                        </div>
-                                        <div class="">
-                                        <h2 class= "c-purple" th:text = "${product.getNombre()}"></h2>
-                                        <h5 class= "c-orange"th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"></h5>
-                                        <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
-                                          <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
-                                         </div>
-                                </div>
-                            </form>    
+                <div class="oddBackground" th:each = "product: ${articulos}">
+
+                    <form th:action="@{/product__publishing}" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+
+                            <div class="col col-lg-2">
+                                <h5 class= "c-purple" th:if="${product.getPublico()} == 0}">Pending publishing:</h5>
+                                <h5 class= "c-purple" th:unless="${product.getPublico()} == 0}">Published:</h5>
+                                <img th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1"  height="100" width="100">
                             </div>
-                        </div>
-                          
-                        </div>
-                        </div>
 
-                        <div class="evenBackground">
-
-                                <div class="row">
-                                        <div class="col col-lg-2">
-                                                <h5 class= "c-purple">Published:</h5>
-                                                <img src="images/ex.jpg" alt="Smiley face" height="100" width="100">
-                                        </div>
-                                        <div class="">
-                                        <h2 class= "c-purple">Peruan Beans</h2>
-                                        <h5 class= "c-orange">Lima, Peru</h5>
-                                        <p class="c-purple">$59</p>
-                                          <p>Unidades: 7.</p>
-                                         </div>
-                                      </div>
+                            <div class="">
+                                <h2 class= "c-purple" th:text = "${product.getNombre()}"></h2>
+                                <h5 class= "c-orange"th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"></h5>
+                                <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
+                                <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
+                            </div>
 
                         </div>
-
-
-
-
-
+                    </form> 
+                    <hr>   
                 </div>
+                          
+            </div>
+
+
         </div>
-  </div>
+    </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -15,23 +15,16 @@ public void setDataSource(Connection connection) {
             new SingleConnectionDataSource(connection, false)     
     ); 
 } 
- 
-public void create(String nombre_categoria) {   
-    String SQL = "insert into Categoria (nombre_categoria) values (?)";   
-    jdbcTemplateObject.update(SQL, nombre_categoria);   
-    System.out.println("Registro creado = " + nombre_categoria);   
-    return; 
-}
 
 public Categoria getCategoria(Integer ID_Categoria) {
-    String SQL = "select * from Categoria where ID_Categoria = ?";   
+    String SQL = "Call Categoria_S (?)";   
     Categoria categoria = jdbcTemplateObject.queryForObject(SQL,       
         new Object[]{ID_Categoria}, new CategoriaMapper());   
     return categoria; 
 } 
  
 public List<Categoria> listCategoria() {   
-    String SQL = "Call Categoria_S()"; 
+    String SQL = "Call Categoria_S_Generic()"; 
     try{
         List<Categoria> categorias =      
         jdbcTemplateObject.query(SQL, new CategoriaMapper());   
@@ -60,23 +53,6 @@ public List<Categoria> getCategorias(Integer ID_Articulo){
     catch (Exception e) {
         return null;
     }
-
 }
-
-
-public void delete(Integer ID_Categoria) {
-    String SQL = "delete from Categoria where ID_Categoria = ?";
-    jdbcTemplateObject.update(SQL, ID_Categoria);
-    System.out.println("Borrado ID_Categoria = " + ID_Categoria );
-    return;
-}
-
-public void update(Integer ID_Categoria, String nombre_categoria) {
-    String SQL = "update Categoria set nombre_categoria = ?  where ID_Categoria = ?";
-    jdbcTemplateObject.update(SQL, nombre_categoria, ID_Categoria);
-    System.out.println("Actualizado ID = " + ID_Categoria );
-    return;
-}
-
 
 } 

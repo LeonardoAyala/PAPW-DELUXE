@@ -43,6 +43,18 @@ public Articulo getLastArticulo() {
         return null;
 }
 
+public List<Articulo> getArticulosOwnedByUsuario(Integer ID_Usuario) {
+    String SQL = "Articulo_S_Usuario(?)";   
+
+    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+    new Object[]{ID_Usuario}, new ArticuloMapper());   
+
+    if(!articulos.isEmpty())
+        return articulos; 
+    else
+        return null;
+}
+
 public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
         String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
         jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 

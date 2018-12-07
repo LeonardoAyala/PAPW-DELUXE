@@ -381,8 +381,10 @@ public class ArticuloController {
         if(loggedUsuario != null)
             usuario = loggedUsuario;
 
+        List<Articulo> articulos = articuloTemplate.getArticulosOwnedByUsuario(usuario.getId());
+
         model.addAttribute("usuario", usuario);
-        model.addAttribute("articulos", articuloTemplate.listArticulo());
+        model.addAttribute("articulos", articulos);
 
         if (!conn.isClosed()) 
             conn.close();
