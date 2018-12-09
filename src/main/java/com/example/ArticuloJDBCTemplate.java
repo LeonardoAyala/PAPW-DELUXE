@@ -44,7 +44,7 @@ public Articulo getLastArticulo() {
 }
 
 public List<Articulo> getArticulosOwnedByUsuario(Integer ID_Usuario) {
-    String SQL = "Articulo_S_Usuario(?)";   
+    String SQL = "call Articulo_S_Usuario(?)";   
 
     List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
     new Object[]{ID_Usuario}, new ArticuloMapper());   
