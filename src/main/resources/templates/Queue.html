@@ -129,7 +129,7 @@
                         <div class="row">
 
                             <div class="col col-lg-2">
-                                <h5 class= "c-purple" th:if="${product.getPublico()} == 0}">Pending publishing:</h5>
+                                <h5 class= "c-purple" th:if="${product.getPublico() == 0}">Pending publishing:</h5>
                                 <h5 class= "c-purple" th:unless="${product.getPublico() == 0}">Published:</h5>
                                 <img th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1"  height="100" width="100">
                             </div>
