@@ -357,7 +357,7 @@ public class ArticuloController {
             if (!conn.isClosed()) 
             conn.close();
 
-            return "Catalog";
+            return "redirect:/Catalog";
     }
 
     @GetMapping("/Queue")
