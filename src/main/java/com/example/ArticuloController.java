@@ -354,6 +354,9 @@ public class ArticuloController {
             model.addAttribute("category", categoria);
             model.addAttribute("categoryResults", articulos);
 
+            if (!conn.isClosed()) 
+            conn.close();
+
             return "redirect:/Catalog";
     }
 
