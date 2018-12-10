@@ -876,7 +876,7 @@ public class ArticuloController {
             if (!conn.isClosed()) 
             conn.close();
       
-          return "redirect:/Kart"; 
+            return "redirect:/item/"+ ID_Articulo.toString();
       }
 
 }
