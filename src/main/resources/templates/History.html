@@ -125,7 +125,7 @@
 
                 <div class="oddBackground" th:each = "product: ${articulos}">
 
-                    <form th:action="@{/QueueSelect}" method="POST" enctype="multipart/form-data">
+                    <form th:action="@{/HistoryRate}" method="POST" enctype="multipart/form-data">
                         <div class="row">
 
                             <div class="col col-lg-2">
@@ -139,7 +139,6 @@
                                 <h5 class= "c-orange"th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"></h5>
                                 <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
                                 <p th:text = "'Units: ' + ${product.getCompra(usuario.getId()).getValoracion()} + '.'"></p>
-
 
                                  <p>Rate this product:</p>
                                           <div class="stars">

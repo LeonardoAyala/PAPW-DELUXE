@@ -820,5 +820,63 @@ public class ArticuloController {
           return "History";
       }
 
+      @PostMapping(value = "/HistoryRate", params = "action=rate")
+      public String sistoryRate( HttpSession session,
+          @RequestParam(value = "star1", required = false) String s1, 
+          @RequestParam(value = "star2", required = false) String s2, 
+          @RequestParam(value = "star3", required = false) String s3, 
+          @RequestParam(value = "star4", required = false) String s4, 
+          @RequestParam(value = "star5", required = false) String s5, 
+          @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)
+          throws URISyntaxException, SQLException {   
+              
+            Connection conn = Main.getConnection();
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+    
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+            articuloTemplate.setDataSource(conn);   
+
+            Articulo articulo = new Articulo();
+
+            articulo.setId(ID_Articulo);
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
+    
+            usuario.setNombreUsuario("Login to get started");
+            usuario.setId(14);
+    
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
+
+            articulo.setVisitas(0);
+
+            if (s5 != null)
+                articulo.setVisitas(5);
+
+            if (s4 != null)
+                articulo.setVisitas(4);
+            
+            if (s3 != null)
+                articulo.setVisitas(3);
+
+            if (s2 != null)
+                articulo.setVisitas(2);    
+            
+            if (s1 != null)
+                articulo.setVisitas(1);  
+
+            articuloTemplate.rateArticulo(articulo);
+
+            if (!conn.isClosed()) 
+            conn.close();
+      
+          return "redirect:/Kart"; 
+      }
 
 }

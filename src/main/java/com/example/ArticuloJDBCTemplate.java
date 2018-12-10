@@ -197,4 +197,9 @@ public class ArticuloJDBCTemplate implements ArticuloDAO {
         carrito.getUnidades());
     }
 
+    public void rateArticulo(Articulo articulo) {
+        String SQL = "call Articulo_U_Rate (?, ?)";
+        jdbcTemplateObject.update(SQL, articulo.getId(), articulo.getVisitas());
+    }
+
 } 
