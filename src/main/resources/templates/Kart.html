@@ -129,8 +129,7 @@
                         <div class="row">
 
                             <div class="col col-lg-2">
-                                <h5 class= "c-purple" th:if="${product.getPublico() == 0}">Pending publishing:</h5>
-                                <h5 class= "c-purple" th:unless="${product.getPublico() == 0}">Published:</h5>
+                                <h5 class= "c-purple">Ordered:</h5>
                                 <img th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1"  height="100" width="100">
                                 <input type="hidden" th:value="${product.getId()}" name="ProductId">
                             </div>
@@ -141,8 +140,8 @@
                                 <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
                                 <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
 
-                            <button name="action" th:if="${product.getPublico() == 0}" value="publish" class="action action--button action--buy"><span class="action__text">Publish</span></button>
-                            <button name="action" value="delete" class="action action--button action--buy"><span class="action__text">Delete</span></button>
+                            <button name="action" value="buy" class="action action--button action--buy"><span class="action__text">Confirm purchase</span></button>
+                            <button name="action" value="remove" class="action action--button action--buy"><span class="action__text">Remove</span></button>
                         </div>
 
                         </div>
