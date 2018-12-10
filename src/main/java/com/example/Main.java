@@ -91,6 +91,11 @@ public class Main {
     return "SignIn";
   }    
 
+  @RequestMapping("/Edit")
+  String Edit() {
+    return "Edit";
+  }    
+
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
     try (Connection connection = getConnection()) {

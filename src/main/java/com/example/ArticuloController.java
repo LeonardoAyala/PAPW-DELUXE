@@ -424,7 +424,7 @@ public class ArticuloController {
 
     @PostMapping(value = "/Edit", params = "action=edit")
     public String edit( 
-        @RequestParam(value = "ProductId", required = false) Integer ID_Articulo)
+        @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)
         throws URISyntaxException, SQLException {      
     
         return "redirect:/Edit/"+ ID_Articulo.toString(); 
