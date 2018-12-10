@@ -172,7 +172,7 @@
                                                 <input id="writeComment" type="text"  value="${product.getNombre()}" name="nombreArticulo" placeholder="Add a name." required/>
                                                 <br>
                                                 <p>Description:</p>
-                                                <textarea id="writeComment" value="${product.getNombre()}" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
+                                                <textarea id="writeComment" value="${product.getDescripcion()}" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
                                                 <br>
                                                 <p>Type:</p>
                                                 <select name="tipo" required>
