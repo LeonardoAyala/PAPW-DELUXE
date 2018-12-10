@@ -215,14 +215,6 @@ public class ArticuloController {
             return "redirect:/";
     }
 
-    @PostMapping("/publishComment") 
-    public String publishComment(
-    @RequestParam(value = "searchString", required = false) String searchString)
-    throws URISyntaxException, SQLException {      
-
-        return "redirect:/Search/"+ searchString; 
-    }
-
     //Search.html
 
     @PostMapping("/search__product") 
