@@ -269,9 +269,9 @@
 
                                 <div th:each = "comment: ${comments}">
                                         <form>
-                                            <img class="product__image" th:src="'/ImgUsuarioPerfil/' + ${comment.getIdUsuario()}" alt="Product 1" width="30px" height="30px"/>
+                                            <img class="product__image" th:src="'/ImgUsuarioPerfil/' + ${comment.getIdUsuario()}" alt="Product 1" width="10px" height="10px"/>
                                  
-                                            <h5 class= "c-orange"><span th:text = "${comment.getIdUsuario()} + ': ' "></h5>
+                                            <h5 class= "c-orange"><span th:text = "${comment.getUsuario().getUsername()} + ': ' "></h5>
 
                                             <p th:text="${comment.getComentario()}" ></p>
                                         </form>

@@ -1,5 +1,8 @@
 package com.example;
 
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Comentario {
@@ -23,5 +26,23 @@ public class Comentario {
 
     public void setComentario(String comentario) {this.comentario = comentario;}   
     public String getComentario() {return comentario;}      
+
+    public Usuario getUsuario()
+    throws URISyntaxException, SQLException {
+        Connection conn = Main.getConnection();
+
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
+        usuarioTemplate.setDataSource(conn);
+        
+        Usuario usuario = usuarioTemplate.getUsuario(this.ID_Usuario);
+
+        if (!conn.isClosed()) 
+        conn.close();
+
+        if(usuario != null)
+            return usuario;
+        else
+            return null;
+    }
 
 }
