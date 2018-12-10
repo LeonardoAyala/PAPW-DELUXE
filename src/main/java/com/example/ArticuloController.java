@@ -362,7 +362,7 @@ public class ArticuloController {
 
     @PostMapping(value = "/QueueSelect", params = "action=publish")
     public String queuePublish(
-    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)) 
+    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)
     throws URISyntaxException, SQLException {
 
         Connection conn = Main.getConnection();
