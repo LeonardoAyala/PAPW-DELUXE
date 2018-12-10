@@ -10,6 +10,7 @@ public class Comentario {
     private String comentario;      
 
     public Integer getId() {return ID_Comentario;}  
+    public void setId(Integer ID_Comentario) {this.ID_Usuario = ID_Comentario;}   
 
     public void setIdUsuario(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
     public Integer getIdUsuario() {return ID_Usuario;}     

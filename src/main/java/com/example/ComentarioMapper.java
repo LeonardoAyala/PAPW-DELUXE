@@ -8,6 +8,7 @@ public class ComentarioMapper implements RowMapper<Comentario> {
     public Comentario mapRow(ResultSet rs, int rowNum) 
         throws SQLException {       
         Comentario tComentario = new Comentario();
+        tComentario.setId(rs.getInt("ID_Comentario"));  
         tComentario.setIdUsuario(rs.getInt("ID_Usuario"));       
         tComentario.setIdArticulo(rs.getInt("ID_Articulo"));   
         tComentario.setFecha(rs.getDate("fechaComentario"));       

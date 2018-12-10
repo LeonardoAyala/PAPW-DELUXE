@@ -167,7 +167,7 @@ public class ArticuloController {
     //ItemSpotlight.html
 
     @PostMapping("/product__info") 
-    public String productInfo(@ModelAttribute Articulo articulo,
+    public String productInfo(Model model, @ModelAttribute Articulo articulo,
     @RequestParam(value = "ProductId", required = false) Integer ID_Articulo)
     throws URISyntaxException, SQLException {      
 
@@ -213,6 +213,17 @@ public class ArticuloController {
             }
 
             return "redirect:/";
+
+    }
+
+    @PostMapping("/publishComment") 
+    public String publishComment(
+    @RequestParam(value = "commentString", required = false) String commentString)
+    throws URISyntaxException, SQLException {      
+
+
+        
+        return "itemSpotlight";
     }
 
     //Search.html
@@ -485,6 +496,7 @@ public class ArticuloController {
             Articulo_Categoria articuloRegion = new Articulo_Categoria();
             articuloRegion.setIdCategoria(region);
 
+            articulo.setId(ID_Articulo);
             articulo.setNombre(nombreArticulo);
 
             articulo.setImagen_1(image_1.getBytes());
