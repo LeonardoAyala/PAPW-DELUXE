@@ -125,23 +125,25 @@
 
                 <div class="oddBackground" th:each = "product: ${articulos}">
 
-                    <form th:action="@{/QueueSelect}" method="POST" enctype="multipart/form-data">
+                    <form th:action="@{/KartSelect}" method="POST" enctype="multipart/form-data">
                         <div class="row">
 
                             <div class="col col-lg-2">
                                 <h5 class= "c-purple">Ordered:</h5>
                                 <img th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1"  height="100" width="100">
                                 <input type="hidden" th:value="${product.getId()}" name="ProductId">
+                                <input type="hidden" th:value="${product.getCarrito(usuario.getId()).getId()}" name="KartId">
                             </div>
 
                             <div class="">
+
                                 <h2 class= "c-purple" th:text = "${product.getNombre()}"></h2>
                                 <h5 class= "c-orange"th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"></h5>
                                 <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
-                                <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
-
-                                <input id="writeComment" type="number" th:value="${product.getCarrito(usuario.getId()).getUnidades()}" th:max="${product.getUnidades()}" name="unidades" placeholder="Quantity" step="1" required/>
-
+                                <p th:text = "'Units available: ' + ${product.getUnidades()} + '.'"></p>
+ 
+                                <p th:text = "Units ordered: "></p><input id="writeComment" type="number" th:value="${product.getCarrito(usuario.getId()).getUnidades()}" th:max="${product.getUnidades()}" name="unidades" placeholder="Quantity" step="1" required/>
+                                <br>
                             <button name="action" value="buy" class="action action--button action--buy"><span class="action__text">Confirm purchase</span></button>
                             <button name="action" value="remove" class="action action--button action--buy"><span class="action__text">Remove</span></button>
                         </div>

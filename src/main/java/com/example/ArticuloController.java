@@ -727,4 +727,43 @@ public class ArticuloController {
           return "Kart";
       }
 
+      @PostMapping(value = "/KartSelect", params = "action=buy")
+      public String kartBuy( HttpSession session,
+          @RequestParam(value = "unidades", required = true) Integer unidades,
+          @RequestParam(value = "ProductId", required = true) Integer ID_Articulo,
+          @RequestParam(value = "KartId", required = true) Integer ID_Carrito)
+          throws URISyntaxException, SQLException {   
+              
+            Connection conn = Main.getConnection();
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+    
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+            articuloTemplate.setDataSource(conn);   
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
+    
+            usuario.setNombreUsuario("Login to get started");
+            usuario.setId(14);
+    
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
+
+            Carrito carrito = new Carrito();
+            carrito.setId(ID_Carrito);
+            carrito.setUnidades(unidades);
+
+            articuloTemplate.purchaseArticulo(usuario.getId(), ID_Articulo, carrito);
+
+            if (!conn.isClosed()) 
+            conn.close();
+      
+          return "redirect:/Kart"; 
+      }
+
 }

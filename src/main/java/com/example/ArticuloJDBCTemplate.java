@@ -180,4 +180,10 @@ public class ArticuloJDBCTemplate implements ArticuloDAO {
         region.getIdCategoria());
     }
 
+    public void purchaseArticulo(Integer ID_Usuario, Integer ID_Articulo, Carrito carrito) {
+        String SQL = "call Compra_I (?, ?, ?, ?)";
+        jdbcTemplateObject.update(SQL, ID_Usuario, ID_Articulo, carrito.getId(), 
+        carrito.getUnidades());
+    }
+
 } 
