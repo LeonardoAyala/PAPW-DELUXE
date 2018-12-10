@@ -166,7 +166,7 @@
                                         </div>
 
                                         <form enctype="multipart/form-data" action="#" th:action="@{/editArticulo}" 
-                                        th:object="${articulo}" method="post"> 
+                                        th:object="${product}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
                                                 <input id="writeComment" type="text"  value="${product.getNombre()}" name="nombreArticulo" placeholder="Add a name." required/>
