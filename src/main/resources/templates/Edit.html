@@ -174,7 +174,7 @@
                                 <form enctype="multipart/form-data" action="#" th:action="@{/EditProduct}" 
                                 th:object="${product}" method="post"> 
                                     <div class="col-xl">
-                                        <input type="hidden" th:value="${product.getId()}" name="ProductId">
+                                        <input type="text" th:value="${product.getId()}" name="ProductId">
                                         <p>Name:</p>
                                         <input id="writeComment" type="text" name="nombreArticulo" th:value=${product.getNombre()} placeholder="Add a name." required/>
                                         <br>
