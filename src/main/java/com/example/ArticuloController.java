@@ -439,15 +439,19 @@ public class ArticuloController {
     public String rePublish( @ModelAttribute Articulo articulo,
     BindingResult bindingResult, HttpServletResponse response, HttpSession session, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember,
+    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo,
     @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
+    @RequestParam(value = "descripcion", required = false) String descripcion,
     @RequestParam(value = "tipo", required = true) Integer tipo,
     @RequestParam(value = "region", required = true) Integer region,
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
     @RequestParam(value = "image_3", required = false) MultipartFile image_3,
     @RequestParam(value = "video", required = false) MultipartFile video,
+    @RequestParam(value = "precio", required = true) Float precio,
+    @RequestParam(value = "unidades", required = true) Integer unidades,
+    @RequestParam(value = "oferta", required = true) Integer oferta,
     @RequestParam(value = "saveMe", required = false) String save,
-    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo,
     HttpServletRequest request)
     throws URISyntaxException, SQLException {    
         Connection conn = Main.getConnection();  
@@ -487,6 +491,11 @@ public class ArticuloController {
             articulo.setImagen_2(image_2.getBytes());
             articulo.setImagen_3(image_3.getBytes());
 
+            articulo.setDescripcion(descripcion);
+            articulo.setPrecio(precio);
+            articulo.setUnidades(unidades);
+            articulo.setOferta(oferta);
+            
             articulo.setActivo(1);
             articulo.setVisitas(0);
             articulo.setOferta(0);

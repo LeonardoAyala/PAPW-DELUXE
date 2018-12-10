@@ -179,7 +179,7 @@
                                         <input id="writeComment" type="text" name="nombreArticulo" th:value=${product.getNombre()} placeholder="Add a name." required/>
                                         <br>
                                         <p>Description:</p>
-                                        <textarea id="writeComment" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
+                                        <textarea id="writeComment" name="descripcion" cols="40" rows="5" th:field="*{descripcion}"></textarea>
                                         <br>
                                         <p>Type:</p>
                                         <select name="tipo" required>
@@ -211,10 +211,13 @@
                                         <input id="video" type="file" class="input" data-type="input" name="video" required>
                                         <br>
                                         <p>Price: </p>
-                                        <input id="writeComment" type="number" min="0.00" max="10000.00" step="0.01" th:field="*{precio}" name="Quantity"/>
+                                        <input id="writeComment" type="number" min="0.00" max="10000.00" step="0.01" th:field="*{precio}" name="precio"/>
                                         <br>
-                                        <p>Units Available: </p>
-                                        <input id="writeComment" type="number" th:field="*{unidades}" name="Quantity" placeholder="Quantity" step="1" />
+                                        <p>Units available: </p>
+                                        <input id="writeComment" type="number" th:field="*{unidades}" name="unidades" placeholder="Quantity" step="1" />
+                                        <br>
+                                        <p>Special offer: </p>
+                                        <input id="writeComment" type="number" min="0" max="100" th:field="*{oferta}" name="oferta" placeholder="% Off" step="1" />
                                         <br>
                                         <div class="group">
                                             <input id="check" type="checkbox" class="check" name="saveMe">
