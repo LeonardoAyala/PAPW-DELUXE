@@ -817,7 +817,7 @@ public class ArticuloController {
           if (!conn.isClosed()) 
               conn.close();
   
-          return "Kart";
+          return "History";
       }
 
 
