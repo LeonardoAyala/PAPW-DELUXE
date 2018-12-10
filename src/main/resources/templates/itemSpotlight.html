@@ -246,7 +246,7 @@
                                         </div>
                                         <br>
                                        
-                                          <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
+                                          <button th:unless="${ usuario.getId() == articulo.getIdUsuario()}" class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
                                         </form>
 
                                         </div>
@@ -269,11 +269,14 @@
 
                                 <div th:each = "comment: ${comments}">
                                         <form>
-                                            <img class="product__image" th:src="'/ImgUsuarioPerfil/' + ${comment.getIdUsuario()}" alt="Product 1" width="10px" height="10px"/>
-                                 
-                                            <h5 class= "c-orange"><span th:text = "${comment.getUsuario().getUsername()} + ': ' "></h5>
+                                            <div class="col-sm-2">
+                                            <img class="product__image" th:src="'/ImgUsuarioPerfil/' + ${comment.getIdUsuario()}" alt="Product 1" width="3px" height="3px"/>
+                                            </div>
 
+                                            <div class="col-xl">
+                                            <h5 class= "c-orange"><span th:text = "${comment.getUsuario().getUsername()} + ': ' "></h5>
                                             <p th:text="${comment.getComentario()}" ></p>
+                                        </div>
                                         </form>
                                 </div>
     
