@@ -257,7 +257,7 @@
 
                             <form enctype="multipart/form-data" action="#" th:action="@{/publishComment}" 
                                 th:object="${orden}" method="post"> 
-                                
+                                <input type="hidden" th:value="${articulo.getId()}" name="ProductId">
                                 <input id="writeComment" type="text" name="commentString" placeholder="Post a comment." />
                                 <button type="submit" > Share</button>
 
