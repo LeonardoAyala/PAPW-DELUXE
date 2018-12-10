@@ -500,20 +500,12 @@ public class ArticuloController {
             articulo.setVideo("");
 
             if(!video.isEmpty()){
-                Articulo ultimoArticulo = articuloTemplate.getLastArticulo();
-
-                Integer lastInteger;
-                if(ultimoArticulo != null){
-                    lastInteger = ultimoArticulo.getId() + 1;
 
                     ServletContext context = request.getServletContext();
                     String path = context.getRealPath("/");
-                    File file = new File (path, lastInteger.toString()+".mp4");
+                    File file = new File (path, articulo.getId().toString()+".mp4");
                     video.transferTo(file);
                     articulo.setVideo(path);
-                }
-                else
-                    return "error/" + "Something is wrong with id of articulo";
             }
 
             articulo.setIdUsuario(usuario.getId());

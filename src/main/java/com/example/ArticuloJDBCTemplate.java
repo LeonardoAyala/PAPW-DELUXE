@@ -159,10 +159,10 @@ public class ArticuloJDBCTemplate implements ArticuloDAO {
     }
 
     public void update(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {
-        String SQL = "call Articulo_U (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "call Articulo_U (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplateObject.update(SQL, articulo.getId(), articulo.getNombre(), articulo.getDescripcion(), 
         articulo.getPrecio(), articulo.getUnidades(), articulo.getImagen_1(),  
-        articulo.getImagen_2(),  articulo.getImagen_3(), articulo.getVideo(), 
+        articulo.getImagen_2(),  articulo.getImagen_3(), 
         articulo.getPublico(), articulo.getActivo(), articulo.getVisitas(), 
         articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), 
         region.getIdCategoria());
