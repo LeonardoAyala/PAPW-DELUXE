@@ -423,18 +423,18 @@ public class ArticuloController {
     }
 
     @RequestMapping(value="/Edit", method=RequestMethod.POST, params="action=edit")
-public String edit() {
+    public String edit() {
 
 
-    return "Publish";
-}
+        return "Publish";
+    }
 
-@RequestMapping(value="/Edit", method=RequestMethod.POST, params="action=publish")
-public String publish() {
+    @PostMapping(value = "/Edit", params = "action=publish")
+    public String publish() {
 
 
-    return "redirect:/";
-}
+        return "redirect:/";
+    }
 
 
 }
