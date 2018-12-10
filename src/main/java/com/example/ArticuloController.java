@@ -68,10 +68,10 @@ public class ArticuloController {
 
     @PostMapping("/product__info") 
     public String productInfo(@ModelAttribute Articulo articulo,
-    @RequestParam(value = "idArticulo", required = false) Integer idArticulo)
+    @RequestParam(value = "ProductId", required = false) Integer ID_Articulo)
     throws URISyntaxException, SQLException {      
 
-        return "redirect:/item/"+ idArticulo.toString(); 
+        return "redirect:/item/"+ ID_Articulo.toString(); 
     }
 
     @GetMapping("/item/{ID_Articulo}")
