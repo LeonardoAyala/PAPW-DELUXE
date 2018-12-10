@@ -52,7 +52,7 @@ public Usuario getUsuarioLogIn(String username, String contrasena) {
     }
     return null;
 } 
-
+/*
 public List<Usuario> listUsuario() {   
     String SQL = "select * from Usuario";   
     List <Usuario> usuarios =      
@@ -77,6 +77,6 @@ public void update(Integer ID_Usuario ,String nombreUsuario,
     System.out.println("Actualizado ID = " + ID_Usuario );
     return;
 }
-
+*/
 
 } 
