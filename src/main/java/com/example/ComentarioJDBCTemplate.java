@@ -26,6 +26,13 @@ public void create(Integer ID_Usuario, Integer ID_Articulo,
     return; 
 }
 
+public void publishComment(Comentario comentario) {   
+    String SQL = "call Comentario_I (?, ?, ?)";   
+    jdbcTemplateObject.update(SQL, comentario.getIdUsuario(), comentario.getIdArticulo(), comentario.getComentario());   
+    System.out.println("Registro creado = " + comentario);   
+    return; 
+}
+
 public Comentario getComentario(Integer ID_Comentario) {
     String SQL = "select * from Comentario where ID_Comentario = ?";   
     Comentario comentario = jdbcTemplateObject.queryForObject(SQL,       
@@ -38,22 +45,6 @@ public List<Comentario> listComentario() {
     List <Comentario> comentarios =      
     jdbcTemplateObject.query(SQL, new ComentarioMapper());   
     return comentarios; 
-}
-
-public void delete(Integer ID_Comentario) {
-    String SQL = "delete from Comentario where ID_Comentario = ?";
-    jdbcTemplateObject.update(SQL, ID_Comentario);
-    System.out.println("Borrado ID_Comentario = " + ID_Comentario );
-    return;
-}
-
-public void update(Integer ID_Comentario, Integer ID_Usuario,
-        Integer ID_Articulo, Date fechaComentario, String comentario) {
-    String SQL = "update Comentario set ID_Usuario = ?, ID_Articulo = ?, " +
-    "fechaComentario = ?, comentario = ?   where ID_Comentario = ?";
-    jdbcTemplateObject.update(SQL, ID_Usuario, ID_Articulo, fechaComentario, comentario, ID_Comentario);
-    System.out.println("Actualizado ID = " + ID_Comentario );
-    return;
 }
 
 

@@ -10,7 +10,4 @@ public interface ComentarioDAO {
         Date fechaComentario, String comentario); 
     public Comentario getComentario(Integer ID_Comentario);        
     public List<Comentario> listComentario();        
-    public void delete(Integer ID_Comentario);        
-    public void update(Integer ID_Comentario, Integer ID_Usuario,
-        Integer ID_Articulo, Date fechaComentario, String comentario); 
 } 

@@ -208,21 +208,60 @@ public class ArticuloController {
 
             if(articulo != null){
                 model.addAttribute("articulo", articulo);
+
+                
+                if (!conn.isClosed()) 
+                    conn.close();
+
                 return "itemSpotlight";
                 //return "redirect:/item";
             }
 
+            
+            if (!conn.isClosed()) 
+            conn.close();
+            
             return "redirect:/";
 
     }
 
     @PostMapping("/publishComment") 
-    public String publishComment(
+    public String publishComment( HttpSession session, 
+    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo,
     @RequestParam(value = "commentString", required = false) String commentString)
     throws URISyntaxException, SQLException {      
+        Connection conn = Main.getConnection();  
 
-
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        usuarioTemplate.setDataSource(conn);   
         
+        Usuario usuario;
+        Usuario loggedUsuario;
+
+        usuario = new Usuario();
+
+        usuario.setNombreUsuario("Login to get started");
+        usuario.setId(14);
+
+        loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+
+        if(loggedUsuario != null)
+            usuario = loggedUsuario;
+
+        Comentario comentario = new Comentario();
+
+        comentario.setIdUsuario(usuario.getId());
+        comentario.setIdArticulo(ID_Articulo);
+        comentario.setComentario(commentString);
+
+        ComentarioJDBCTemplate comentarioTemplate = new ComentarioJDBCTemplate();
+        comentarioTemplate.setDataSource(conn);   
+
+        comentarioTemplate.publishComment(comentario);
+
+        if (!conn.isClosed()) 
+            conn.close();
+
         return "itemSpotlight";
     }
 
@@ -275,6 +314,10 @@ public class ArticuloController {
             model.addAttribute("byCategoryResults", articulosCategoria);
             model.addAttribute("byUserResults", articulosUsuario);
             model.addAttribute("byTimestampResults", articulosEstampaTiempo);
+
+            
+            if (!conn.isClosed()) 
+            conn.close();
 
             return "Search";
     }
