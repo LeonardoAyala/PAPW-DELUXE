@@ -13,10 +13,12 @@
      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
      crossorigin="anonymous"></script>
 
-     <link rel="stylesheet" th:href="@{/stylesheets/SidenavStyle.css}">
-     <link rel="stylesheet" th:href="@{/stylesheets/TopnavStyle.css}">
-     <link rel="stylesheet" th:href="@{/stylesheets/ContentStyle.css}">
-     <link rel="stylesheet" th:href="@{/stylesheets/component.css}">
+     <link rel="stylesheet" href="stylesheets/SidenavStyle.css">
+     <link rel="stylesheet" href="stylesheets/TopnavStyle.css">
+     <link rel="stylesheet" href="stylesheets/ContentStyle.css">
+     <link rel="stylesheet" href="stylesheets/component.css">
+     <link rel="stylesheet" href="stylesheets/itemStyle.css">
+     <link rel="stylesheet" href="stylesheets/comentStyle.css">
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -178,7 +180,7 @@
                                         <textarea id="writeComment" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
                                         <br>
                                         <p>Type:</p>
-                                        <select name="tipo" required>
+                                        <select name="tipo" value = "${product.getCategorias().get(0).getId()}" required>
                                             <option value="1">Dish</option>
                                             <option value="2">Dessert</option>
                                             <option value="3">Snack</option>
@@ -186,7 +188,7 @@
                                         </select>
                                         <br>
                                         <p>Region:</p>
-                                        <select name="region" required>
+                                        <select name="region" value = "${product.getCategorias().get(1).getId()}" required>
                                             <option value="5">Oriental</option>
                                             <option value="6">Western</option>
                                             <option value="7">European</option>
@@ -225,7 +227,7 @@
                             </div>
                           </div>  
                 </div>
-                </div>
+            </div>
 
         </div>
   </div>
