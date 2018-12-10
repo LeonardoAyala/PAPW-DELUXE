@@ -8,6 +8,7 @@ public class CompraMapper implements RowMapper<Compra> {
     public Compra mapRow(ResultSet rs, int rowNum) 
         throws SQLException {       
         Compra compra = new Compra();
+        compra.setId(rs.getInt("ID_Compra")); 
         compra.setIdUsuario(rs.getInt("ID_Usuario"));       
         compra.setIdArticulo(rs.getInt("ID_Articulo"));   
         compra.setValoracion(rs.getInt("valoracion"));                      

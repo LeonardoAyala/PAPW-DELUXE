@@ -9,6 +9,7 @@ public class Compra {
     private Integer valoracion;   
 
     public Integer getId() {return ID_Compra;}  
+    public void setId(Integer ID_Compra) {this.ID_Compra = ID_Compra;}   
 
     public void setIdUsuario(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
     public Integer getIdUsuario() {return ID_Usuario;}     

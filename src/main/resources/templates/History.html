@@ -138,7 +138,7 @@
                                 <h2 class= "c-purple" th:text = "${product.getNombre()}"></h2>
                                 <h5 class= "c-orange"th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"></h5>
                                 <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
-                                <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
+                                <p th:text = "'Units: ' + ${product.getCompra(usuario.getId()).getValoracion()} + '.'"></p>
 
 
                                  <p>Rate this product:</p>

@@ -32,6 +32,13 @@ public Compra getCompra(Integer ID_Compra) {
         new Object[]{ID_Compra}, new CompraMapper());   
     return compra; 
 } 
+
+public Compra getCompra(Integer ID_Usuario, Integer ID_Articulo) {
+    String SQL = "call Compra_S_UsuarioArticulo (?)";   
+    Compra compra = jdbcTemplateObject.queryForObject(SQL,       
+        new Object[]{ID_Usuario, ID_Articulo}, new CompraMapper());   
+    return compra; 
+} 
  
 public List<Compra> listCompra() {   
     String SQL = "select * from Compra";   

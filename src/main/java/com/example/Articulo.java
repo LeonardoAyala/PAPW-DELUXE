@@ -106,6 +106,24 @@ public class Articulo {
             return null;
     }
 
+    public Compra getCompra(Integer ID_Usuario)
+    throws URISyntaxException, SQLException {
+        Connection conn = Main.getConnection();
+
+        CompraJDBCTemplate compraTemplate = new CompraJDBCTemplate();
+        compraTemplate.setDataSource(conn);
+        
+        Compra compra = compraTemplate.getCompra(ID_Usuario ,this.ID_Articulo);
+
+        if (!conn.isClosed()) 
+        conn.close();
+
+        if(compra != null)
+            return compra;
+        else
+            return null;
+    }
+
     public Usuario getUsuario()
     throws URISyntaxException, SQLException {
         Connection conn = Main.getConnection();
