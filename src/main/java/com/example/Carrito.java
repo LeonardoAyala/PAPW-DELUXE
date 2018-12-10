@@ -9,6 +9,7 @@ public class Carrito {
     private Integer unidades;   
 
     public Integer getId() {return ID_Carrito;}  
+    public void setId(Integer ID_Carrito) {this.ID_Carrito = ID_Carrito;}   
 
     public void setIdUsuario(Integer ID_Usuario) {this.ID_Usuario = ID_Usuario;}   
     public Integer getIdUsuario() {return ID_Usuario;}     

@@ -88,4 +88,22 @@ public class Articulo {
             return null;
     }
 
+    public Carrito getCarrito(Integer ID_Usuario)
+    throws URISyntaxException, SQLException {
+        Connection conn = Main.getConnection();
+
+        CarritoJDBCTemplate carritoTemplate = new CarritoJDBCTemplate();
+        carritoTemplate.setDataSource(conn);
+        
+        Carrito carrito = carritoTemplate.getCarrito(ID_Usuario ,this.ID_Articulo);
+
+        if (!conn.isClosed()) 
+        conn.close();
+
+        if(carrito != null)
+            return carrito;
+        else
+            return null;
+    }
+
 }

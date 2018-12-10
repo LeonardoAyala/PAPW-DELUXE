@@ -140,6 +140,8 @@
                                 <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
                                 <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
 
+                                <input id="writeComment" type="number" th:value="${product.getCarrito(usuario.getId()).getUnidades()}" th:max="${product.getUnidades()}" name="unidades" placeholder="Quantity" step="1" required/>
+
                             <button name="action" value="buy" class="action action--button action--buy"><span class="action__text">Confirm purchase</span></button>
                             <button name="action" value="remove" class="action action--button action--buy"><span class="action__text">Remove</span></button>
                         </div>

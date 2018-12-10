@@ -32,6 +32,13 @@ public void addToKart(Carrito carrito){
             carrito.getIdArticulo(), carrito.getUnidades());   
 }
 
+public Carrito getCarrito(Integer ID_Usuario, Integer ID_Articulo){
+    String SQL = "Call Carrito_S_UsuarioArticulo (?,?)";   
+    Carrito carrito = jdbcTemplateObject.queryForObject(SQL,       
+        new Object[]{ID_Usuario, ID_Articulo}, new CarritoMapper());   
+    return carrito; 
+}
+
 public Carrito getCarrito(Integer ID_Carrito) {
     String SQL = "select * from Carrito where ID_Carrito = ?";   
     Carrito carrito = jdbcTemplateObject.queryForObject(SQL,       

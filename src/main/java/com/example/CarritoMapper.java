@@ -8,6 +8,7 @@ public class CarritoMapper implements RowMapper<Carrito> {
     public Carrito mapRow(ResultSet rs, int rowNum) 
         throws SQLException {       
         Carrito carrito = new Carrito();
+        carrito.setId(rs.getInt("ID_Carrito"));
         carrito.setIdUsuario(rs.getInt("ID_Usuario"));       
         carrito.setIdArticulo(rs.getInt("ID_Articulo"));   
         carrito.setUnidades(rs.getInt("unidades"));                      
