@@ -200,7 +200,7 @@
                                         <h1 class= "c-purple"><span th:text="${articulo.getNombre()}"></span></h1>
                                         <h5 class= "c-orange"><span th:text = "${articulo.getCategorias().get(0).getNombre()} + ', ' + ${articulo.getCategorias().get(1).getNombre()}"></h5>
 
-                                          <p th:text="'Published on ' + ${articulo.getEstampaTiempo().toString()}"></p>
+                                          <p th:text="'Published on ' + ${articulo.getEstampaTiempo().toString()} + ' by ' ${articulo.getUsuario().getUsername()}"></p>
 
                                           <p th:text="'Stock: ' + ${articulo.getUnidades()}" ></p>
 

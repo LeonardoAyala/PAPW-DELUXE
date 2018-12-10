@@ -106,4 +106,22 @@ public class Articulo {
             return null;
     }
 
+    public Usuario getUsuario()
+    throws URISyntaxException, SQLException {
+        Connection conn = Main.getConnection();
+
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();
+        usuarioTemplate.setDataSource(conn);
+        
+        Usuario usuario = usuarioTemplate.getUsuario(this.ID_Usuario);
+
+        if (!conn.isClosed()) 
+        conn.close();
+
+        if(usuario != null)
+            return usuario;
+        else
+            return null;
+    }
+
 }
