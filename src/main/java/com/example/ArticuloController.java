@@ -215,6 +215,14 @@ public class ArticuloController {
             return "redirect:/";
     }
 
+    @PostMapping("/search__product") 
+    public String publishComment(
+    @RequestParam(value = "searchString", required = false) String searchString)
+    throws URISyntaxException, SQLException {      
+
+        return "redirect:/Search/"+ searchString; 
+    }
+
     //Search.html
 
     @PostMapping("/search__product") 
@@ -495,7 +503,7 @@ public class ArticuloController {
             articulo.setPrecio(precio);
             articulo.setUnidades(unidades);
             articulo.setOferta(oferta);
-            
+
             articulo.setActivo(1);
             articulo.setVisitas(0);
             articulo.setOferta(0);
