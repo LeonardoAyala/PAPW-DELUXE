@@ -16,15 +16,6 @@ public void setDataSource(Connection connection) {
             new SingleConnectionDataSource(connection, false)     
     ); 
 } 
- 
-public void create(Integer ID_Usuario, Integer ID_Articulo,
-        Date fechaComentario, String comentario) {   
-    String SQL = "insert into Comentario (ID_Usuario, " +
-    "ID_Articulo, fechaComentario, comentario) values (?, ?, ?, ?)";   
-    jdbcTemplateObject.update(SQL, ID_Usuario, ID_Articulo, fechaComentario, comentario);   
-    System.out.println("Registro creado = " + comentario);   
-    return; 
-}
 
 public void publishComment(Comentario comentario) {   
     String SQL = "call Comentario_I (?, ?, ?)";   
@@ -33,19 +24,23 @@ public void publishComment(Comentario comentario) {
     return; 
 }
 
+public List<Comentario> getComentariosOwnedByArticulo (Integer ID_Articulo){
+    String SQL = "Call Comentario_S_Articulo (?)";  
+
+    List<Comentario> comentarios = jdbcTemplateObject.query(SQL, 
+    new Object[]{ID_Articulo}, new ComentarioMapper());   
+
+    if(comentarios != null)
+        return comentarios; 
+    else
+        return null;
+}
+
 public Comentario getComentario(Integer ID_Comentario) {
     String SQL = "select * from Comentario where ID_Comentario = ?";   
     Comentario comentario = jdbcTemplateObject.queryForObject(SQL,       
         new Object[]{ID_Comentario}, new ComentarioMapper());   
     return comentario; 
 } 
- 
-public List<Comentario> listComentario() {   
-    String SQL = "select * from Comentario";   
-    List <Comentario> comentarios =      
-    jdbcTemplateObject.query(SQL, new ComentarioMapper());   
-    return comentarios; 
-}
-
 
 } 

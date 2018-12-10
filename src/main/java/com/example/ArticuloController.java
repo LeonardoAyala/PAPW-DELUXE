@@ -185,6 +185,12 @@ public class ArticuloController {
 
             UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
             usuarioTemplate.setDataSource(conn);   
+
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
+            articuloTemplate.setDataSource(conn);
+
+            ComentarioJDBCTemplate comentarioTemplate = new ComentarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn); 
             
             Usuario usuario;
             Usuario loggedUsuario;
@@ -199,12 +205,12 @@ public class ArticuloController {
             if(loggedUsuario != null)
                 usuario = loggedUsuario;
 
-            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
-            articuloTemplate.setDataSource(conn);
-
             Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
 
             model.addAttribute("usuario", usuario);
+
+            List<Comentario> comentarios = comentarioTemplate.getComentariosOwnedByArticulo(ID_Articulo);
+            model.addAttribute("comments", comentarios);
 
             if(articulo != null){
                 model.addAttribute("articulo", articulo);
@@ -262,7 +268,7 @@ public class ArticuloController {
         if (!conn.isClosed()) 
             conn.close();
 
-        return "itemSpotlight";
+        return "redirect:/item/"+ ID_Articulo.toString();
     }
 
     //Search.html
