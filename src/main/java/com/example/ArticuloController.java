@@ -190,7 +190,7 @@ public class ArticuloController {
             articuloTemplate.setDataSource(conn);
 
             ComentarioJDBCTemplate comentarioTemplate = new ComentarioJDBCTemplate();   
-            usuarioTemplate.setDataSource(conn); 
+            comentarioTemplate.setDataSource(conn); 
             
             Usuario usuario;
             Usuario loggedUsuario;
