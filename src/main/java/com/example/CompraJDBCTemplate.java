@@ -34,7 +34,7 @@ public Compra getCompra(Integer ID_Compra) {
 } 
 
 public Compra getCompra(Integer ID_Usuario, Integer ID_Articulo) {
-    String SQL = "call Compra_S_UsuarioArticulo (?)";   
+    String SQL = "call Compra_S_UsuarioArticulo (?, ?)";   
     Compra compra = jdbcTemplateObject.queryForObject(SQL,       
         new Object[]{ID_Usuario, ID_Articulo}, new CompraMapper());   
     return compra; 
