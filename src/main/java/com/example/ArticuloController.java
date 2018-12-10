@@ -766,4 +766,21 @@ public class ArticuloController {
           return "redirect:/Kart"; 
       }
 
+      @PostMapping(value = "/KartSelect", params = "action=remove")
+      public String kartRemove(
+          @RequestParam(value = "KartId", required = true) Integer ID_Carrito)
+          throws URISyntaxException, SQLException {   
+              
+            Connection conn = Main.getConnection();
+
+            CarritoJDBCTemplate carritoTemplate = new CarritoJDBCTemplate();
+
+            carritoTemplate.delete(ID_Carrito);
+
+            if (!conn.isClosed()) 
+            conn.close();
+      
+          return "redirect:/Kart"; 
+      }
+
 }

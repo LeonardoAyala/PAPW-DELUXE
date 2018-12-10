@@ -54,10 +54,8 @@ public List<Carrito> listCarrito() {
 }
 
 public void delete(Integer ID_Carrito) {
-    String SQL = "delete from Carrito where ID_Carrito = ?";
+    String SQL = "call Carrito_D (?)";
     jdbcTemplateObject.update(SQL, ID_Carrito);
-    System.out.println("Borrado ID_Carrito = " + ID_Carrito );
-    return;
 }
 
 public void update(Integer ID_Carrito, Integer ID_Usuario,
