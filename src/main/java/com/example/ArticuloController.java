@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -394,5 +395,46 @@ public class ArticuloController {
 
         return "Queue";
     }
+
+    @PostMapping("/product__action") 
+    public String productAction(@ModelAttribute Articulo articulo,
+    BindingResult bindingResult, HttpServletResponse response, HttpSession session, 
+    @RequestParam(value = "action", required = false) String action,
+    HttpServletRequest request)
+    throws URISyntaxException, SQLException {    
+        Connection conn = Main.getConnection();  
+       
+        if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().stream()
+            .forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
+        }
+        try{
+         
+        }
+        catch (Exception ex) {
+            if (!conn.isClosed()) 
+                conn.close();
+            return "error/" + ex;
+        }
+        if (!conn.isClosed()) 
+            conn.close();
+
+        return "redirect:/"; 
+    }
+
+    @RequestMapping(value="/Edit", method=RequestMethod.POST, params="action=edit")
+public String edit() {
+
+
+    return "Publish";
+}
+
+@RequestMapping(value="/Edit", method=RequestMethod.POST, params="action=publish")
+public String publish() {
+
+
+    return "redirect:/";
+}
+
 
 }
