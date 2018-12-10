@@ -447,6 +447,7 @@ public class ArticuloController {
     @RequestParam(value = "image_3", required = false) MultipartFile image_3,
     @RequestParam(value = "video", required = false) MultipartFile video,
     @RequestParam(value = "saveMe", required = false) String save,
+    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo,
     HttpServletRequest request)
     throws URISyntaxException, SQLException {    
         Connection conn = Main.getConnection();  
@@ -500,10 +501,9 @@ public class ArticuloController {
             articulo.setVideo("");
 
             if(!video.isEmpty()){
-
                     ServletContext context = request.getServletContext();
                     String path = context.getRealPath("/");
-                    File file = new File (path, articulo.getId().toString()+".mp4");
+                    File file = new File (path, ID_Articulo.toString()+".mp4");
                     video.transferTo(file);
                     articulo.setVideo(path);
             }
