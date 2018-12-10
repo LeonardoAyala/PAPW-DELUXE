@@ -53,16 +53,16 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="Catalog/1">Dish</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/1">Dish</a>
                         </li>
                         <li>
-                            <a href="Catalog/2">Dessert</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/2">Dessert</a>
                         </li>
                         <li>
-                            <a href="Catalog/3">Snack</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/3">Snack</a>
                         </li>
                         <li>
-                            <a href="Catalog/4">Drink</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/4">Drink</a>
                         </li>
                     </ul>
                     <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -71,19 +71,19 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu2">
                         <li>
-                            <a href="Catalog/5">Western</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/5">Western</a>
                         </li>
                         <li>
-                            <a href="Catalog/6">Oriental</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/6">Oriental</a>
                         </li>
                         <li>
-                            <a href="Catalog/7">European</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/7">European</a>
                         </li>
                         <li>
-                            <a href="Catalog/8">Tropical</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/8">Tropical</a>
                         </li>
                         <li>
-                            <a href="Catalog/9">Exotic</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/9">Exotic</a>
                         </li>
                     </ul>
                 </li>
@@ -104,87 +104,70 @@
                     <a class="bp-nav__item bp-icon bp-icon--search search_bar" name="submit" data-info="Search"><span><input type="submit"></span></a>
                 </form>
 
-                  <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
+                <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
                   <img class="img-circle " th:src="'/ImgUsuarioPerfil/' + ${usuario.getId()}" alt="foto" width="30px" height="30px">
 
-                  <a class="bp-nav__item bp-icon bp-icon--prev" href="/" data-info="Back"><span>Back</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--history" href="History" data-info="History"><span>History</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--kart" href="Kart" data-info="Shopping Kart"><span>Kart</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--announce" href="Publish" data-info="Post Dish"><span>Post</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--user" href="LogIn" data-info="Profile"><span>User</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--list" href="Queue" data-info="Queue"><span>Queue</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--prev" href="https://leonapp-papw.herokuapp.com/" data-info="Back"><span>Back</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--history" href="https://leonapp-papw.herokuapp.com/History" data-info="History"><span>History</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--kart" href="https://leonapp-papw.herokuapp.com/Kart" data-info="Shopping Kart"><span>Kart</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--announce" href="https://leonapp-papw.herokuapp.com/Publish" data-info="Post Dish"><span>Post</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--user" href="https://leonapp-papw.herokuapp.com/LogIn" data-info="Profile"><span>User</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--list" href="https://leonapp-papw.herokuapp.com/Queue" data-info="Queue"><span>Queue</span></a>
 
                 </nav>
           </div>
-    
+
         <!-- Page Content  -->
         <div id="content" class="container">
 			<!-- Product grid -->
            
-                <div id= "TheMeat">
-                        <div class="oddBackground">
+            <div id= "TheMeat">
 
-                                <div class="row">
-                                        <div class="col col-lg-2">
-                                                <h5 class= "c-orange">Bought:</h5>
-                                                <img src="images/ench1.jpg" alt="Smiley face" height="100" width="100">
+                <div class="oddBackground" th:each = "product: ${articulos}">
+
+                    <form th:action="@{/QueueSelect}" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+
+                            <div class="col col-lg-2">
+                                <h5 class= "c-purple">Purchased:</h5>
+                                <img th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1"  height="100" width="100">
+                                <input type="hidden" th:value="${product.getId()}" name="ProductId">
+                            </div>
+
+                            <div class="">
+                                <h2 class= "c-purple" th:text = "${product.getNombre()}"></h2>
+                                <h5 class= "c-orange"th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"></h5>
+                                <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
+                                <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
+
+
+                                 <p>Rate this product:</p>
+                                          <div class="stars">
+                                            <input id="star-5" type="radio" name="star5"/>
+                                            <label for="star-5"></label>
+                                            <input id="star-4" type="radio" name="star4"/>
+                                            <label for="star-4"></label>
+                                            <input id="star-3" type="radio" name="star3"/>
+                                            <label for="star-3"></label>
+                                            <input id="star-2" type="radio" name="star2"/>
+                                            <label for="star-2"></label>
+                                            <input id="star-1" type="radio" name="star1"/>
+                                            <label for="star-1"></label>
                                         </div>
-                                        <div class="">
-                                        <h2 class= "c-purple">Encheeseladas</h2>
-                                        <h5 class= "c-orange">CDMX, México</h5>
-                                        <p class="c-purple">$59</p>
-                                          <p>Unidades: 10.</p>
-                                         </div>
-                                      </div>
-                                      
+                                        <br>
+
+                            <button name="action" value="rate" class="action action--button action--buy"><span class="action__text">Rate</span></button>
                         </div>
 
-                        <div class="evenBackground">
-
-                                <div class="row">
-                                        <div class="col col-lg-2">
-                                                <h5 class= "c-purple">Published:</h5>
-                                                <img src="images/ex.jpg" alt="Smiley face" height="100" width="100">
-                                        </div>
-                                        <div class="">
-                                        <h2 class= "c-purple">Peruan Beans</h2>
-                                        <h5 class= "c-orange">Lima, Peru</h5>
-                                        <p class="c-purple">$59</p>
-                                          <p>Unidades: 7.</p>
-                                         </div>
-                                      </div>
-
                         </div>
-
-                        <div id= "TheMeat">
-                                <div class="oddBackground">
-                                        <h5 class= "c-orange">Bought:</h5>
-                                        <div class="row">
-                                                <div class="col col-lg-2">
-                                                        <img src="images/ench1.jpg" alt="Smiley face" height="100" width="100">
-                                                </div>
-                                                <div class="">
-                                                <h2 class= "c-purple">Encheeseladas</h2>
-                                                <h5 class= "c-orange">CDMX, México</h5>
-                                                <p class="c-purple">$59</p>
-                                                  <p>Unidades: 10.</p>
-                                                 </div>
-                                              </div>
-                                              
-                                </div>
-                        
-
-
+                    </form> 
+                    <hr>   
                 </div>
-
-                  
-
-                  
-
-
+                          
+            </div>
 
         </div>
-  </div>
+    </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

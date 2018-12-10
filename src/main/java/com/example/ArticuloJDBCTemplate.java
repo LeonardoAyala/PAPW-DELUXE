@@ -60,6 +60,18 @@ public class ArticuloJDBCTemplate implements ArticuloDAO {
             return null;
     }
 
+    public List<Articulo> getArticuloBoughtByUsuario (Integer ID_Usuario){
+        String SQL = "Call Articulo_S_Compra (?)";  
+    
+        List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+        new Object[]{ID_Usuario}, new ArticuloMapper());   
+    
+        if(articulos != null)
+            return articulos; 
+        else
+            return null;
+    }
+
     //Select Articulos based on search likeness
 
     public List<Articulo> getArticuloLikeNombre (String searchString){
@@ -156,7 +168,6 @@ public class ArticuloJDBCTemplate implements ArticuloDAO {
             articulo.getPublico(), articulo.getActivo(), articulo.getVisitas(), 
             articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), region.getIdCategoria());  
     }
-
 
     ////Update Articulo
 
