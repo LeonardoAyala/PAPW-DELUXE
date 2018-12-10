@@ -227,10 +227,10 @@
                                        <h1 class= "c-orange">Order</h1>
                                        <input type="hidden" th:value="${articulo.getId()}" name="ProductId">
                                           <p>Units:</p>
-                                          <input id="writeComment" type="number" th:max="${articulo.getUnidades()}" name="Quantity" placeholder="Quantity" step="1" />
+                                          <input id="writeComment" type="number" th:max="${articulo.getUnidades()}" name="Quantity" placeholder="Quantity" step="1" required/>
                                           <br>
                                           
-                                          <p>Placed an order before? Rate this product:</p>
+                                          <!--p>Placed an order before? Rate this product:</p>
                                           
                                           <div class="stars">
                                             <input id="star-5" type="radio" name="star5"/>
@@ -244,7 +244,7 @@
                                             <input id="star-1" type="radio" name="star1"/>
                                             <label for="star-1"></label>
                                         </div>
-                                        <br>
+                                        <br-->
                                        
                                         <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
                                         </form>
