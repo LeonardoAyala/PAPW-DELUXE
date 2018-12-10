@@ -26,6 +26,12 @@ public void create(Integer ID_Usuario, Integer ID_Articulo,
     return; 
 }
 
+public void addToKart(Carrito carrito){   
+        String SQL = "CALL Carrito_I (?, ?, ?)";   
+        jdbcTemplateObject.update(SQL, carrito.getIdUsuario(),
+            carrito.getIdArticulo(), carrito.getUnidades());   
+}
+
 public Carrito getCarrito(Integer ID_Carrito) {
     String SQL = "select * from Carrito where ID_Carrito = ?";   
     Carrito carrito = jdbcTemplateObject.queryForObject(SQL,       

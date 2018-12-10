@@ -228,7 +228,46 @@ public class ArticuloController {
             conn.close();
             
             return "redirect:/";
+    }
 
+    @PostMapping("/addToKart") 
+    public String addToKart( HttpSession session, 
+    @RequestParam(value = "unidades", required = true) Integer unidades,
+    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)
+    throws URISyntaxException, SQLException {      
+        Connection conn = Main.getConnection();  
+
+        UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+        usuarioTemplate.setDataSource(conn);   
+        
+        Usuario usuario;
+        Usuario loggedUsuario;
+
+        usuario = new Usuario();
+
+        usuario.setNombreUsuario("Login to get started");
+        usuario.setId(14);
+
+        loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+
+        if(loggedUsuario != null)
+            usuario = loggedUsuario;
+
+        Carrito carrito = new Carrito();
+
+        carrito.setIdUsuario(usuario.getId());
+        carrito.setIdArticulo(ID_Articulo);
+        carrito.setUnidades(unidades);
+
+        CarritoJDBCTemplate carritoTemplate = new CarritoJDBCTemplate();
+        carritoTemplate.setDataSource(conn);   
+
+        carritoTemplate.addToKart(carrito);
+
+        if (!conn.isClosed()) 
+            conn.close();
+
+        return "redirect:/item/"+ ID_Articulo.toString();
     }
 
     @PostMapping("/publishComment") 
@@ -270,6 +309,8 @@ public class ArticuloController {
 
         return "redirect:/item/"+ ID_Articulo.toString();
     }
+
+   
 
     //Search.html
 
@@ -648,5 +689,42 @@ public class ArticuloController {
         if (!conn.isClosed()) 
             conn.close();
     } 
+
+      //Kart.html
+
+      @GetMapping("/Kart")
+      public String kart(Model model, HttpServletResponse response, HttpSession session, 
+      @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
+      throws URISyntaxException, SQLException {
+          Connection conn = Main.getConnection();
+          UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+          usuarioTemplate.setDataSource(conn);   
+  
+          ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+          articuloTemplate.setDataSource(conn);   
+          
+          Usuario usuario;
+          Usuario loggedUsuario;
+  
+          usuario = new Usuario();
+  
+          usuario.setNombreUsuario("Login to get started");
+          usuario.setId(14);
+  
+          loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+  
+          if(loggedUsuario != null)
+              usuario = loggedUsuario;
+  
+          List<Articulo> articulos = articuloTemplate.getArticuloKartedByUsuario(usuario.getId());
+  
+          model.addAttribute("usuario", usuario);
+          model.addAttribute("articulos", articulos);
+  
+          if (!conn.isClosed()) 
+              conn.close();
+  
+          return "Queue";
+      }
 
 }

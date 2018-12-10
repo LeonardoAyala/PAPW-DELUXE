@@ -222,10 +222,10 @@
                                            <label for="star-1"></label>
                                        </div>
 
-                                       <form th:unless="${ usuario.getId() == articulo.getIdUsuario()}" enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
+                                       <form th:unless="${ usuario.getId() == articulo.getIdUsuario()}" enctype="multipart/form-data" action="#" th:action="@{/addToKart}" 
                                        th:object="${orden}" method="post"> 
                                        <h1 class= "c-orange">Order</h1>
-
+                                       <input type="hidden" th:value="${articulo.getId()}" name="ProductId">
                                           <p>Units:</p>
                                           <input id="writeComment" type="number" th:max="${articulo.getUnidades()}" name="Quantity" placeholder="Quantity" step="1" />
                                           <br>
