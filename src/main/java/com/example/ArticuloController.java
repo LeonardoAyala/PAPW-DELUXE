@@ -377,6 +377,24 @@ public class ArticuloController {
         return "redirect:/";
     }
 
+    @PostMapping(value = "/QueueSelect", params = "action=delete")
+    public String editDelete(
+    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)
+    throws URISyntaxException, SQLException {
+
+        Connection conn = Main.getConnection();
+
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);   
+
+        articuloTemplate.deleteArticulo(ID_Articulo);
+
+        if (!conn.isClosed()) 
+        conn.close();
+
+        return "redirect:/";
+    }
+
     //Edit.html
 
     @GetMapping("/Edit/{ID_Articulo}")
@@ -417,22 +435,100 @@ public class ArticuloController {
             return "Edit";
     }
 
-    @PostMapping(value = "/EditSelect", params = "action=delete")
-    public String editDelete(
-    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)
-    throws URISyntaxException, SQLException {
+    @PostMapping("/EditProduct") 
+    public String rePublish( @ModelAttribute Articulo articulo,
+    BindingResult bindingResult, HttpServletResponse response, HttpSession session, 
+    @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember,
+    @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
+    @RequestParam(value = "tipo", required = true) Integer tipo,
+    @RequestParam(value = "region", required = true) Integer region,
+    @RequestParam(value = "image_1", required = false) MultipartFile image_1,
+    @RequestParam(value = "image_2", required = false) MultipartFile image_2,
+    @RequestParam(value = "image_3", required = false) MultipartFile image_3,
+    @RequestParam(value = "video", required = false) MultipartFile video,
+    @RequestParam(value = "saveMe", required = false) String save,
+    HttpServletRequest request)
+    throws URISyntaxException, SQLException {    
+        Connection conn = Main.getConnection();  
+       
+        if(bindingResult.hasErrors()){
+            bindingResult.getFieldErrors().stream()
+            .forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
+        }
+        try{
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+            articuloTemplate.setDataSource(conn);   
 
-        Connection conn = Main.getConnection();
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
 
-        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
-        articuloTemplate.setDataSource(conn);   
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
+            else
+                throw new Exception("You must be logged in as a user to publish a product.");
 
-        articuloTemplate.deleteArticulo(ID_Articulo);
+            Articulo_Categoria articuloTipo = new Articulo_Categoria();
+            articuloTipo.setIdCategoria(tipo);
 
+            Articulo_Categoria articuloRegion = new Articulo_Categoria();
+            articuloRegion.setIdCategoria(region);
+
+            articulo.setNombre(nombreArticulo);
+
+            articulo.setImagen_1(image_1.getBytes());
+            articulo.setImagen_2(image_2.getBytes());
+            articulo.setImagen_3(image_3.getBytes());
+
+            articulo.setActivo(1);
+            articulo.setVisitas(0);
+            articulo.setOferta(0);
+
+            if (save != null){
+                articulo.setPublico(0);
+            }
+            else{
+                articulo.setPublico(1);
+            }
+
+            articulo.setVideo("");
+
+            if(!video.isEmpty()){
+                Articulo ultimoArticulo = articuloTemplate.getLastArticulo();
+
+                Integer lastInteger;
+                if(ultimoArticulo != null){
+                    lastInteger = ultimoArticulo.getId() + 1;
+
+                    ServletContext context = request.getServletContext();
+                    String path = context.getRealPath("/");
+                    File file = new File (path, lastInteger.toString()+".mp4");
+                    video.transferTo(file);
+                    articulo.setVideo(path);
+                }
+                else
+                    return "error/" + "Something is wrong with id of articulo";
+            }
+
+            articulo.setIdUsuario(usuario.getId());
+
+            articuloTemplate.update(articulo, articuloTipo, articuloRegion);    
+        }
+        catch (Exception ex) {
+            if (!conn.isClosed()) 
+                conn.close();
+            return "error/" + ex;
+        }
         if (!conn.isClosed()) 
-        conn.close();
+            conn.close();
 
-        return "redirect:/";
+        return "redirect:/"; 
     }
 
     //Image loaders
