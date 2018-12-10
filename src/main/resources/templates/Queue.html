@@ -142,8 +142,8 @@
                                 <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
 
                                 
-                            <button name="action" th:if="${product.getPublico() == 0}" value="edit" class="action action--button action--buy"><span class="action__text">Edit</span></button>
-                            <button name="action" value="publish" class="action action--button action--buy"><span class="action__text">Publish</span></button>
+                            <button name="action"  value="edit" class="action action--button action--buy"><span class="action__text">Edit</span></button>
+                            <button name="action" th:if="${product.getPublico() == 0}" value="publish" class="action action--button action--buy"><span class="action__text">Publish</span></button>
                             </div>
 
                         </div>

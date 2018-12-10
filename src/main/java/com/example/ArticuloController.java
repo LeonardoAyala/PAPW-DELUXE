@@ -411,7 +411,28 @@ public class ArticuloController {
             model.addAttribute("usuario", usuario);
             model.addAttribute("product", articulo);
 
+            if (!conn.isClosed()) 
+            conn.close();    
+
             return "Edit";
+    }
+
+    @PostMapping(value = "/EditSelect", params = "action=delete")
+    public String editDelete(
+    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)
+    throws URISyntaxException, SQLException {
+
+        Connection conn = Main.getConnection();
+
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);   
+
+        articuloTemplate.deleteArticulo(ID_Articulo);
+
+        if (!conn.isClosed()) 
+        conn.close();
+
+        return "redirect:/";
     }
 
     //Image loaders

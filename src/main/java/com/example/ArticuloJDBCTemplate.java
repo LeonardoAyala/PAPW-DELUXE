@@ -155,9 +155,7 @@ public class ArticuloJDBCTemplate implements ArticuloDAO {
 
     public void  deleteArticulo(Integer ID_Articulo){
         String SQL = "CALL Articulo_U_Delete (?)";   
-
-        jdbcTemplateObject.queryForObject(SQL,       
-            new Object[]{ID_Articulo}, new ArticuloMapper());   
+        jdbcTemplateObject.update(SQL, ID_Articulo);
     }
 
     public void update(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {
