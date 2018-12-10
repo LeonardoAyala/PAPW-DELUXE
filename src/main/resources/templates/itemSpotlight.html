@@ -222,7 +222,7 @@
                                            <label for="star-1"></label>
                                        </div>
 
-                                       <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
+                                       <form th:unless="${ usuario.getId() == articulo.getIdUsuario()}" enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
                                        th:object="${orden}" method="post"> 
                                        <h1 class= "c-orange">Order</h1>
 
@@ -246,7 +246,7 @@
                                         </div>
                                         <br>
                                        
-                                          <button th:unless="${ usuario.getId() == articulo.getIdUsuario()}" class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
+                                        <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text">Add to cart</span></button>
                                         </form>
 
                                         </div>
@@ -268,7 +268,7 @@
                         <div class="oddBackground">
 
                                 <div th:each = "comment: ${comments}">
-                                        <form>
+                                        <div class="row">
                                             <div class="col-sm-2">
                                             <img class="product__image" th:src="'/ImgUsuarioPerfil/' + ${comment.getIdUsuario()}" alt="Product 1" width="3px" height="3px"/>
                                             </div>
@@ -277,7 +277,7 @@
                                             <h5 class= "c-orange"><span th:text = "${comment.getUsuario().getUsername()} + ': ' "></h5>
                                             <p th:text="${comment.getComentario()}" ></p>
                                         </div>
-                                        </form>
+                                    </div>
                                 </div>
     
                             </div>
