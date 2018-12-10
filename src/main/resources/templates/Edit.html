@@ -36,8 +36,8 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3><img src="images/Asset 2Aventurous Font.png" alt="Logo" width="200px"></h3>
-                <strong><img src="images/Asset 3Aventurous Logo.png" alt="Logo" width="40px"></strong>
+                <h3><img th:src="@{/images/Asset 2Aventurous Font.png}" alt="Logo" width="200px"></h3>
+                <strong><img src="@{/images/Asset 3Aventurous Logo.png}" alt="Logo" width="40px"></strong>
             </div>
     
             <ul class="list-unstyled components">
@@ -171,11 +171,11 @@
  
                             </div>
                             <div class="col-xl">
-                                <form enctype="multipart/form-data" action="#" th:action="@{/publishArticulo}" 
+                                <form enctype="multipart/form-data" action="#" th:action="@{/EditSelect}" 
                                 th:object="${product}" method="post"> 
                                     <div class="col-xl">
                                         <p>Name:</p>
-                                        <input id="writeComment" type="text" name="nombreArticulo" placeholder="Add a name." required/>
+                                        <input id="writeComment" type="text" name="nombreArticulo" th:field="*{nombreArticulo}" placeholder="Add a name." required/>
                                         <br>
                                         <p>Description:</p>
                                         <textarea id="writeComment" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
@@ -220,8 +220,8 @@
                                             <p>Save for later.</p>
                                         </div>
                                         <br>
-                                        <input id="submitIt" type='submit' value='publish'>
-                                       
+                                        <button value="publish" class="action action--button action--buy"><span class="action__text">Publish</span></button>
+                                        <button value="delete" class="action action--button action--buy"><span class="action__text">Delete</span></button>
                                     </div>
                                 </form>   
 

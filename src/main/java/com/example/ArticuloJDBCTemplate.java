@@ -7,151 +7,169 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 public class ArticuloJDBCTemplate implements ArticuloDAO {    
 
-private JdbcTemplate jdbcTemplateObject; 
- 
-public void setDataSource(Connection connection) {   
-    this.jdbcTemplateObject =      
-        new JdbcTemplate(      
-            new SingleConnectionDataSource(connection, false)     
-    ); 
-} 
+    private JdbcTemplate jdbcTemplateObject; 
+    
+    public void setDataSource(Connection connection) {   
+        this.jdbcTemplateObject =      
+            new JdbcTemplate(      
+                new SingleConnectionDataSource(connection, false)     
+        ); 
+    } 
 
-public List<Articulo> listArticulo(Integer ID_Categoria) {   
-    String SQL = "Call Articulo_S_Categoria (?)"; 
- 
-    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
-    new Object[]{ID_Categoria}, new ArticuloMapper());   
-    return articulos; 
-}
+    ////Select Articulos
 
-public List<Articulo> listArticulo() {   
-    String SQL = "Call Articulo_S_Generic"; 
-    List<Articulo> articulos =      
-    jdbcTemplateObject.query(SQL, new ArticuloMapper());   
-    return articulos; 
-}
-
-public Articulo getLastArticulo() {
-    String SQL = "CALL Articulo_S_Last()";   
-
-    List<Articulo> articulos =      
-    jdbcTemplateObject.query(SQL, new ArticuloMapper());   
-
-    if(articulos.get(0) != null)
-        return articulos.get(0); 
-    else
-        return null;
-}
-
-public List<Articulo> getArticulosOwnedByUsuario(Integer ID_Usuario) {
-    String SQL = "call Articulo_S_Usuario(?)";   
-
-    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
-    new Object[]{ID_Usuario}, new ArticuloMapper());   
-
-    if(!articulos.isEmpty())
+    //Based on Categoria
+    public List<Articulo> listArticulo(Integer ID_Categoria) {   
+        String SQL = "Call Articulo_S_Categoria (?)"; 
+    
+        List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+        new Object[]{ID_Categoria}, new ArticuloMapper());   
         return articulos; 
-    else
-        return null;
-}
+    }
 
-public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
-        String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
-        jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 
+    //All
+    public List<Articulo> listArticulo() {   
+        String SQL = "Call Articulo_S_Generic"; 
+        List<Articulo> articulos =      
+        jdbcTemplateObject.query(SQL, new ArticuloMapper());   
+        return articulos; 
+    }
+
+    //Based on Usuario
+    public List<Articulo> getArticulosOwnedByUsuario(Integer ID_Usuario) {
+        String SQL = "call Articulo_S_Usuario(?)";   
+
+        List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+        new Object[]{ID_Usuario}, new ArticuloMapper());   
+
+        if(!articulos.isEmpty())
+            return articulos; 
+        else
+            return null;
+    }
+
+    //Select Articulos based on search likeness
+
+    public List<Articulo> getArticuloLikeNombre (String searchString){
+        String SQL = "Call Articulo_S_LikeNombre(?)";  
+
+        List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+        new Object[]{searchString}, new ArticuloMapper());   
+
+        if(articulos != null)
+            return articulos; 
+        else
+            return null;
+    }
+
+    public List<Articulo> getArticuloLikeDescripcion (String searchString){
+        String SQL = "Call Articulo_S_LikeDescripcion(?)";  
+
+        List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+        new Object[]{searchString}, new ArticuloMapper());   
+
+        if(articulos != null)
+            return articulos; 
+        else
+            return null;
+    }
+
+    public List<Articulo> getArticuloLikeCategoria (String searchString){
+        String SQL = "Call Articulo_S_LikeCategoria(?)";  
+
+        List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+        new Object[]{searchString}, new ArticuloMapper());   
+
+        if(articulos != null)
+            return articulos; 
+        else
+            return null;
+    }
+
+    public List<Articulo> getArticuloLikeUsuario (String searchString){
+        String SQL = "Call Articulo_S_LikeUsuario(?)";  
+
+        List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+        new Object[]{searchString}, new ArticuloMapper());   
+
+        if(articulos != null)
+            return articulos; 
+        else
+            return null;
+    }
+
+    public List<Articulo> getArticuloLikeEstampaTiempo (String searchString){
+        String SQL = "Call Articulo_S_LikeEstampaTiempo(?)";  
+
+        List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
+        new Object[]{searchString}, new ArticuloMapper());   
+
+        if(articulos != null)
+            return articulos; 
+        else
+            return null;
+    }
+
+    ////Select Articulo
+
+    //Last Articulo created
+    public Articulo getLastArticulo() {
+        String SQL = "CALL Articulo_S_Last()";   
+
+        List<Articulo> articulos =      
+        jdbcTemplateObject.query(SQL, new ArticuloMapper());   
+
+        if(articulos.get(0) != null)
+            return articulos.get(0); 
+        else
+            return null;
+    }
+
+    //Based on ID_Articulo
+    public Articulo getArticulo(Integer ID_Articulo) {
+        String SQL = "CALL Articulo_S (?)";   
+        Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       
+            new Object[]{ID_Articulo}, new ArticuloMapper());   
+
+        return articulo; 
+    } 
+
+    ////Insert Articulo
+
+    public void create(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {   
+            String SQL = "CALL Articulo_I_Publish (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+            jdbcTemplateObject.update(SQL, articulo.getNombre(), articulo.getDescripcion(), 
+            articulo.getPrecio(), articulo.getUnidades(), articulo.getImagen_1(),  
+            articulo.getImagen_2(),  articulo.getImagen_3(), articulo.getVideo(), 
+            articulo.getPublico(), articulo.getActivo(), articulo.getVisitas(), 
+            articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), region.getIdCategoria());  
+    }
+
+
+    ////Update Articulo
+
+    public void  publishArticulo(Integer ID_Articulo){
+        String SQL = "CALL Articulo_U_Publish (?)";   
+
+        jdbcTemplateObject.queryForObject(SQL,       
+            new Object[]{ID_Articulo}, new ArticuloMapper());   
+    }
+
+    public void  deleteArticulo(Integer ID_Articulo){
+        String SQL = "CALL Articulo_U_Delete (?)";   
+
+        jdbcTemplateObject.queryForObject(SQL,       
+            new Object[]{ID_Articulo}, new ArticuloMapper());   
+    }
+
+    public void update(Articulo articulo, Articulo_Categoria tipo, Articulo_Categoria region) {
+        String SQL = "call Articulo_U (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplateObject.update(SQL, articulo.getId(), articulo.getNombre(), articulo.getDescripcion(), 
         articulo.getPrecio(), articulo.getUnidades(), articulo.getImagen_1(),  
         articulo.getImagen_2(),  articulo.getImagen_3(), articulo.getVideo(), 
         articulo.getPublico(), articulo.getActivo(), articulo.getVisitas(), 
-        articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), region.getIdCategoria());  
-
-        return;   
-}
-
-public Articulo getArticulo(Integer ID_Articulo) {
-    String SQL = "CALL Articulo_S (?)";   
-    Articulo articulo = jdbcTemplateObject.queryForObject(SQL,       
-        new Object[]{ID_Articulo}, new ArticuloMapper());   
-
-        return articulo; 
-} 
-
-public List<Articulo> getArticuloLikeNombre (String searchString){
-    String SQL = "Call Articulo_S_LikeNombre(?)";  
-
-    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
-    new Object[]{searchString}, new ArticuloMapper());   
-
-    if(articulos != null)
-        return articulos; 
-    else
-        return null;
-}
-
-public List<Articulo> getArticuloLikeDescripcion (String searchString){
-    String SQL = "Call Articulo_S_LikeDescripcion(?)";  
-
-    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
-    new Object[]{searchString}, new ArticuloMapper());   
-
-    if(articulos != null)
-        return articulos; 
-    else
-        return null;
-}
-
-public List<Articulo> getArticuloLikeCategoria (String searchString){
-    String SQL = "Call Articulo_S_LikeCategoria(?)";  
-
-    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
-    new Object[]{searchString}, new ArticuloMapper());   
-
-    if(articulos != null)
-        return articulos; 
-    else
-        return null;
-}
-
-public List<Articulo> getArticuloLikeUsuario (String searchString){
-    String SQL = "Call Articulo_S_LikeUsuario(?)";  
-
-    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
-    new Object[]{searchString}, new ArticuloMapper());   
-
-    if(articulos != null)
-        return articulos; 
-    else
-        return null;
-}
-
-public List<Articulo> getArticuloLikeEstampaTiempo (String searchString){
-    String SQL = "Call Articulo_S_LikeEstampaTiempo(?)";  
-
-    List<Articulo> articulos = jdbcTemplateObject.query(SQL, 
-    new Object[]{searchString}, new ArticuloMapper());   
-
-    if(articulos != null)
-        return articulos; 
-    else
-        return null;
-}
-
-public void delete(Integer ID_Articulo) {
-    String SQL = "delete from Articulo where ID_Articulo = ?";
-    jdbcTemplateObject.update(SQL, ID_Articulo);
-    System.out.println("Borrado ID_Articulo = " + ID_Articulo );
-    return;
-}
-
-public void update(Integer ID_Articulo, String nombre_articulo, 
-        String descripcion, float precio, Integer unidades, 
-        Integer publico, Integer activo, Integer vistas,
-        Integer oferta, Integer ID_Usuario) {
-    String SQL = "update Articulo set nombre_articulo = ?, descripcion = ?, precio = ?, unidades = ?, " +
-        "publico = ?, activo = ?, vistas = ?, oferta = ?, ID_Usuario = ?  where ID_Articulo = ?";
-    jdbcTemplateObject.update(SQL, nombre_articulo, descripcion, precio, unidades,
-         publico, activo, vistas, oferta, ID_Usuario, ID_Articulo);
-    System.out.println("Actualizado ID = " + ID_Articulo );
-    return;
-}
-
+        articulo.getOferta(), articulo.getIdUsuario(), tipo.getIdCategoria(), 
+        region.getIdCategoria());
+    }
 
 } 

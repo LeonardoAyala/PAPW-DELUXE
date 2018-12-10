@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class ArticuloController {
 
+    //Publish.html
+
     @GetMapping("/Publish")
     public String articuloForm(Model model, HttpServletResponse response, HttpSession session, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
@@ -65,109 +67,6 @@ public class ArticuloController {
 
         return "Publish";
     }
-
-    @PostMapping("/product__info") 
-    public String productInfo(@ModelAttribute Articulo articulo,
-    @RequestParam(value = "ProductId", required = false) Integer ID_Articulo)
-    throws URISyntaxException, SQLException {      
-
-        return "redirect:/item/"+ ID_Articulo.toString(); 
-    }
-
-    @GetMapping("/item/{ID_Articulo}")
-    public String userId(
-        Model model,  HttpSession session, 
-        @PathVariable(value="ID_Articulo") final Integer ID_Articulo,
-        @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember)
-        throws URISyntaxException, SQLException {
-
-            Connection conn = Main.getConnection();  
-
-            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
-            usuarioTemplate.setDataSource(conn);   
-            
-            Usuario usuario;
-            Usuario loggedUsuario;
-    
-            usuario = new Usuario();
-    
-            usuario.setNombreUsuario("Login to get started");
-            usuario.setId(14);
-    
-            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
-    
-            if(loggedUsuario != null)
-                usuario = loggedUsuario;
-
-            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
-            articuloTemplate.setDataSource(conn);
-
-            Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
-
-            model.addAttribute("usuario", usuario);
-
-            if(articulo != null){
-                model.addAttribute("articulo", articulo);
-                return "itemSpotlight";
-                //return "redirect:/item";
-            }
-
-            return "redirect:/";
-    }
-
-    @GetMapping("/ImgArticulo1/{ID_Articulo}") 
-    public void imageArt1(HttpServletResponse response,  
-    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
-    throws URISyntaxException, SQLException, IOException {  
-
-        Connection conn = Main.getConnection();
-        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
-        articuloTemplate.setDataSource(conn);    
-
-        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
-        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
-            response.getOutputStream().write(articulo.getImagen_1());
-            response.getOutputStream().close(); 
-
-        if (!conn.isClosed()) 
-            conn.close();
-    } 
-
-    @GetMapping("/ImgArticulo2/{ID_Articulo}") 
-    public void imageArt2(HttpServletResponse response,  
-    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
-    throws URISyntaxException, SQLException, IOException {  
-
-        Connection conn = Main.getConnection();
-        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
-        articuloTemplate.setDataSource(conn);    
-
-        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
-        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
-            response.getOutputStream().write(articulo.getImagen_2());
-            response.getOutputStream().close(); 
-
-        if (!conn.isClosed()) 
-            conn.close();
-    } 
-
-    @GetMapping("/ImgArticulo3/{ID_Articulo}") 
-    public void imageArt3(HttpServletResponse response,  
-    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
-    throws URISyntaxException, SQLException, IOException {  
-
-        Connection conn = Main.getConnection();
-        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
-        articuloTemplate.setDataSource(conn);    
-
-        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
-        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
-            response.getOutputStream().write(articulo.getImagen_2());
-            response.getOutputStream().close(); 
-
-        if (!conn.isClosed()) 
-            conn.close();
-    } 
 
     @PostMapping("/publishArticulo") 
     public String publish( @ModelAttribute Articulo articulo,
@@ -266,6 +165,59 @@ public class ArticuloController {
         return "redirect:/"; 
     }
 
+    //ItemSpotlight.html
+
+    @PostMapping("/product__info") 
+    public String productInfo(@ModelAttribute Articulo articulo,
+    @RequestParam(value = "ProductId", required = false) Integer ID_Articulo)
+    throws URISyntaxException, SQLException {      
+
+        return "redirect:/item/"+ ID_Articulo.toString(); 
+    }
+
+    @GetMapping("/item/{ID_Articulo}")
+    public String userId(
+        Model model,  HttpSession session, 
+        @PathVariable(value="ID_Articulo") final Integer ID_Articulo,
+        @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember)
+        throws URISyntaxException, SQLException {
+
+            Connection conn = Main.getConnection();  
+
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
+    
+            usuario.setNombreUsuario("Login to get started");
+            usuario.setId(14);
+    
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
+
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
+            articuloTemplate.setDataSource(conn);
+
+            Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
+
+            model.addAttribute("usuario", usuario);
+
+            if(articulo != null){
+                model.addAttribute("articulo", articulo);
+                return "itemSpotlight";
+                //return "redirect:/item";
+            }
+
+            return "redirect:/";
+    }
+
+    //Search.html
+
     @PostMapping("/search__product") 
     public String searchProduct(
     @RequestParam(value = "searchString", required = false) String searchString)
@@ -317,6 +269,8 @@ public class ArticuloController {
             return "Search";
     }
 
+    //Catalog.html
+
     @GetMapping("/Catalog/{ID_Categoria}")
     public String showCatalog(Model model,  HttpSession session, 
         @PathVariable(value="ID_Categoria") final Integer ID_Categoria,
@@ -361,6 +315,8 @@ public class ArticuloController {
             return "Catalog";
     }
 
+    //Queue.html
+
     @GetMapping("/Queue")
     public String Homecoming(Model model, HttpServletResponse response, HttpSession session, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember) 
@@ -396,39 +352,33 @@ public class ArticuloController {
         return "Queue";
     }
 
-    @PostMapping("/product__action") 
-    public String productAction(@ModelAttribute Articulo articulo,
-    BindingResult bindingResult, HttpServletResponse response, HttpSession session, 
-    @RequestParam(value = "action", required = false) String action,
-    HttpServletRequest request)
-    throws URISyntaxException, SQLException {    
-        Connection conn = Main.getConnection();  
-       
-        if(bindingResult.hasErrors()){
-            bindingResult.getFieldErrors().stream()
-            .forEach(f -> System.out.println(f.getField() + ": " + f.getDefaultMessage()));
-        }
-        try{
-         
-        }
-        catch (Exception ex) {
-            if (!conn.isClosed()) 
-                conn.close();
-            return "error/" + ex;
-        }
-        if (!conn.isClosed()) 
-            conn.close();
-
-        return "redirect:/"; 
-    }
-
-    @PostMapping(value = "/Edit", params = "action=edit")
-    public String edit( 
+    @PostMapping(value = "/QueueSelect", params = "action=edit")
+    public String queueEdit( 
         @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)
         throws URISyntaxException, SQLException {      
     
         return "redirect:/Edit/"+ ID_Articulo.toString(); 
     }
+
+    @PostMapping(value = "/QueueSelect", params = "action=publish")
+    public String queuePublish(
+    @RequestParam(value = "ProductId", required = true) Integer ID_Articulo)) 
+    throws URISyntaxException, SQLException {
+
+        Connection conn = Main.getConnection();
+
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);   
+
+        articuloTemplate.publishArticulo(ID_Articulo);
+
+        if (!conn.isClosed()) 
+        conn.close();
+
+        return "redirect:/";
+    }
+
+    //Edit.html
 
     @GetMapping("/Edit/{ID_Articulo}")
     public String editProduct(Model model,  HttpSession session, 
@@ -465,13 +415,60 @@ public class ArticuloController {
             return "Edit";
     }
 
+    //Image loaders
 
-    @PostMapping(value = "/Edit", params = "action=publish")
-    public String publish() {
+    @GetMapping("/ImgArticulo1/{ID_Articulo}") 
+    public void imageArt1(HttpServletResponse response,  
+    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
+    throws URISyntaxException, SQLException, IOException {  
 
+        Connection conn = Main.getConnection();
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);    
 
-        return "redirect:/";
-    }
+        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
+        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
+            response.getOutputStream().write(articulo.getImagen_1());
+            response.getOutputStream().close(); 
 
+        if (!conn.isClosed()) 
+            conn.close();
+    } 
+
+    @GetMapping("/ImgArticulo2/{ID_Articulo}") 
+    public void imageArt2(HttpServletResponse response,  
+    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
+    throws URISyntaxException, SQLException, IOException {  
+
+        Connection conn = Main.getConnection();
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);    
+
+        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
+        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
+            response.getOutputStream().write(articulo.getImagen_2());
+            response.getOutputStream().close(); 
+
+        if (!conn.isClosed()) 
+            conn.close();
+    } 
+
+    @GetMapping("/ImgArticulo3/{ID_Articulo}") 
+    public void imageArt3(HttpServletResponse response,  
+    @PathVariable(value="ID_Articulo") final Integer ID_Articulo)  
+    throws URISyntaxException, SQLException, IOException {  
+
+        Connection conn = Main.getConnection();
+        ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();   
+        articuloTemplate.setDataSource(conn);    
+
+        Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);      
+        response.setContentType( "image/jpeg, image/jpg, image/png, image/gif");   
+            response.getOutputStream().write(articulo.getImagen_2());
+            response.getOutputStream().close(); 
+
+        if (!conn.isClosed()) 
+            conn.close();
+    } 
 
 }
