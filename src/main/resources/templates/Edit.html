@@ -13,12 +13,13 @@
      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
      crossorigin="anonymous"></script>
 
-     <link rel="stylesheet" href="stylesheets/SidenavStyle.css">
-     <link rel="stylesheet" href="stylesheets/TopnavStyle.css">
-     <link rel="stylesheet" href="stylesheets/ContentStyle.css">
-     <link rel="stylesheet" href="stylesheets/component.css">
-     <link rel="stylesheet" href="stylesheets/itemStyle.css">
-     <link rel="stylesheet" href="stylesheets/comentStyle.css">
+     <link rel="stylesheet" th:href="@{/stylesheets/SidenavStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/TopnavStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/ContentStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/component.css}">
+
+     <link rel="stylesheet" th:href="@{/stylesheets/comentStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/itemStyle.css}">
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -189,11 +190,11 @@
                                         <br>
                                         <p>Region:</p>
                                         <select name="region" required>
-                                            <option value="5" th:selected="${product.getCategorias().get(0).getId()==5}">Oriental</option>
-                                            <option value="6" th:selected="${product.getCategorias().get(0).getId()==6}">Western</option>
-                                            <option value="7" th:selected="${product.getCategorias().get(0).getId()==7}">European</option>
-                                            <option value="8" th:selected="${product.getCategorias().get(0).getId()==8}">Tropical</option>
-                                            <option value="9" th:selected="${product.getCategorias().get(0).getId()==9}">Exotic</option>
+                                            <option value="5" th:selected="${product.getCategorias().get(1).getId()==5}">Oriental</option>
+                                            <option value="6" th:selected="${product.getCategorias().get(1).getId()==6}">Western</option>
+                                            <option value="7" th:selected="${product.getCategorias().get(1).getId()==7}">European</option>
+                                            <option value="8" th:selected="${product.getCategorias().get(1).getId()==8}">Tropical</option>
+                                            <option value="9" th:selected="${product.getCategorias().get(1).getId()==9}">Exotic</option>
                                         </select>
                                         <br>
                                         <p>Imagen 1:</p>
