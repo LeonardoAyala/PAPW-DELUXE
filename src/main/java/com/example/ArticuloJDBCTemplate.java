@@ -150,9 +150,7 @@ public class ArticuloJDBCTemplate implements ArticuloDAO {
 
     public void  publishArticulo(Integer ID_Articulo){
         String SQL = "CALL Articulo_U_Publish (?)";   
-
-        jdbcTemplateObject.queryForObject(SQL,       
-            new Object[]{ID_Articulo}, new ArticuloMapper());   
+        jdbcTemplateObject.update(SQL, ID_Articulo);
     }
 
     public void  deleteArticulo(Integer ID_Articulo){

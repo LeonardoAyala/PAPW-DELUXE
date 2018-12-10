@@ -73,8 +73,8 @@ public class ArticuloController {
     BindingResult bindingResult, HttpServletResponse response, HttpSession session, 
     @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember,
     @RequestParam(value = "nombreArticulo", required = false) String nombreArticulo,
-    @RequestParam(value = "tipo", required = false) Integer tipo,
-    @RequestParam(value = "region", required = false) Integer region,
+    @RequestParam(value = "tipo", required = true) Integer tipo,
+    @RequestParam(value = "region", required = true) Integer region,
     @RequestParam(value = "image_1", required = false) MultipartFile image_1,
     @RequestParam(value = "image_2", required = false) MultipartFile image_2,
     @RequestParam(value = "image_3", required = false) MultipartFile image_3,
@@ -144,7 +144,6 @@ public class ArticuloController {
                     File file = new File (path, lastInteger.toString()+".mp4");
                     video.transferTo(file);
                     articulo.setVideo(path);
-
                 }
                 else
                     return "error/" + "Something is wrong with id of articulo";
