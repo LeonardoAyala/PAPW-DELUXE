@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8" />
@@ -8,23 +8,25 @@
      <!-- Bootstrap CSS CDN -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
      <!-- Our Custom CSS -->
-     <link rel="stylesheet" href="stylesheets/SidenavStyle.css">
-     <link rel="stylesheet" href="stylesheets/TopnavStyle.css">
-     <link rel="stylesheet" href="stylesheets/ContentStyle.css">
-     <link rel="stylesheet" href="stylesheets/component.css">
-     <link rel="stylesheet" href="stylesheets/itemStyle.css">
-     <link rel="stylesheet" href="stylesheets/comentStyle.css">
+     <script
+     src="https://code.jquery.com/jquery-3.3.1.min.js"
+     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+     crossorigin="anonymous"></script>
 
+     <link rel="stylesheet" th:href="@{/stylesheets/SidenavStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/TopnavStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/ContentStyle.css}">
+     <link rel="stylesheet" th:href="@{/stylesheets/component.css}">
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
- 
      <!-- Font Awesome JS -->
      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
      <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
      <script src="js/sidenav.js"></script>
+     <script src="js/linkSpotlight.js"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -53,16 +55,16 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="Catalog/1">Dish</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/1">Dish</a>
                         </li>
                         <li>
-                            <a href="Catalog/2">Dessert</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/2">Dessert</a>
                         </li>
                         <li>
-                            <a href="Catalog/3">Snack</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/3">Snack</a>
                         </li>
                         <li>
-                            <a href="Catalog/4">Drink</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/4">Drink</a>
                         </li>
                     </ul>
                     <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -71,19 +73,19 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu2">
                         <li>
-                            <a href="Catalog/5">Western</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/5">Western</a>
                         </li>
                         <li>
-                            <a href="Catalog/6">Oriental</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/6">Oriental</a>
                         </li>
                         <li>
-                            <a href="Catalog/7">European</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/7">European</a>
                         </li>
                         <li>
-                            <a href="Catalog/8">Tropical</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/8">Tropical</a>
                         </li>
                         <li>
-                            <a href="Catalog/9">Exotic</a>
+                            <a href="https://leonapp-papw.herokuapp.com/Catalog/9">Exotic</a>
                         </li>
                     </ul>
                 </li>
@@ -104,19 +106,19 @@
                     <a class="bp-nav__item bp-icon bp-icon--search search_bar" name="submit" data-info="Search"><span><input type="submit"></span></a>
                 </form>
 
-                  <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
+                <span class="bp-nav__name no-Top"><span th:text = "${usuario.nombreUsuario}"/></span>
                   <img class="img-circle " th:src="'/ImgUsuarioPerfil/' + ${usuario.getId()}" alt="foto" width="30px" height="30px">
 
-                  <a class="bp-nav__item bp-icon bp-icon--prev" href="/" data-info="Back"><span>Back</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--history" href="History" data-info="History"><span>History</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--kart" href="Kart" data-info="Shopping Kart"><span>Kart</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--announce" href="Publish" data-info="Post Dish"><span>Post</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--user" href="LogIn" data-info="Profile"><span>User</span></a>
-                  <a class="bp-nav__item bp-icon bp-icon--list" href="Queue" data-info="Queue"><span>Queue</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--prev" href="https://leonapp-papw.herokuapp.com/" data-info="Back"><span>Back</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--history" href="https://leonapp-papw.herokuapp.com/History" data-info="History"><span>History</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--kart" href="https://leonapp-papw.herokuapp.com/Kart" data-info="Shopping Kart"><span>Kart</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--announce" href="https://leonapp-papw.herokuapp.com/Publish" data-info="Post Dish"><span>Post</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--user" href="https://leonapp-papw.herokuapp.com/LogIn" data-info="Profile"><span>User</span></a>
+                  <a class="bp-nav__item bp-icon bp-icon--list" href="https://leonapp-papw.herokuapp.com/Queue" data-info="Queue"><span>Queue</span></a>
 
                 </nav>
           </div>
-    
+  
         <!-- Page Content  -->
         <div id="content" class="container">
 			<!-- Product grid -->
@@ -169,7 +171,7 @@
                                         th:object="${product}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
-                                                <input id="writeComment" type="text"  value="${product.getNombre()}" name="nombreArticulo" placeholder="Add a name." required/>
+                                                <input id="writeComment" type="text"  th:value="${product.getNombre()}" name="nombreArticulo" placeholder="Add a name." required/>
                                                 <br>
                                                 <p>Description:</p>
                                                 <textarea id="writeComment" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
