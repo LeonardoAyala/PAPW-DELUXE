@@ -134,19 +134,19 @@
                                                         </ul>
                                                         <div class="carousel-inner">
                                                           <div class="carousel-item active">
-                                                            <img th:src="'/ImgArticulo1/' + ${articulo.getId()}" alt="Los Angeles" width="1100" height="400">
+                                                            <img th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Los Angeles" width="1100" height="400">
                                                             <div class="carousel-caption">
                                                               <p><span>Steamed.<span></p>
                                                             </div>   
                                                           </div>
                                                           <div class="carousel-item">
-                                                            <img th:src="'/ImgArticulo2/' + ${articulo.getId()}" alt="Chicago" width="1100" height="400">
+                                                            <img th:src="'/ImgArticulo2/' + ${product.getId()}" alt="Chicago" width="1100" height="400">
                                                             <div class="carousel-caption">
                                                               <p><span>Mouth-watering flavour.</span></p>
                                                             </div>   
                                                           </div>
                                                           <div class="carousel-item">
-                                                            <img th:src="'/ImgArticulo3/' + ${articulo.getId()}" alt="New York" width="1100" height="400">
+                                                            <img th:src="'/ImgArticulo3/' + ${product.getId()}" alt="New York" width="1100" height="400">
                                                             <div class="carousel-caption">
                                                               <p><span>At an incredible price.</span></p>
                                                             </div>   
@@ -161,7 +161,7 @@
                                                 </div>
 
                                                 <video controls>
-                                                        <source th:src="'/' + ${articulo.getVideo()}" type="video/mp4">
+                                                        <source th:src="'/' + ${product.getVideo()}" type="video/mp4">
                                                 </video>
                                         </div>
 
@@ -169,10 +169,10 @@
                                         th:object="${articulo}" method="post"> 
                                             <div class="col-xl">
                                                 <p>Name:</p>
-                                                <input id="writeComment" type="text"  value="${articulo.getNombre()}" name="nombreArticulo" placeholder="Add a name." required/>
+                                                <input id="writeComment" type="text"  value="${product.getNombre()}" name="nombreArticulo" placeholder="Add a name." required/>
                                                 <br>
                                                 <p>Description:</p>
-                                                <textarea id="writeComment" value="${articulo.getNombre()}" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
+                                                <textarea id="writeComment" value="${product.getNombre()}" name="description" cols="40" rows="5" th:field="*{descripcion}"></textarea>
                                                 <br>
                                                 <p>Type:</p>
                                                 <select name="tipo" required>

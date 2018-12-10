@@ -422,12 +422,49 @@ public class ArticuloController {
         return "redirect:/"; 
     }
 
-    @RequestMapping(value="/Edit", method=RequestMethod.POST, params="action=edit")
-    public String edit() {
-
-
-        return "Publish";
+    @PostMapping(value = "/Edit", params = "action=edit")
+    public String edit( 
+        @RequestParam(value = "ProductId", required = false) Integer ID_Articulo)
+        throws URISyntaxException, SQLException {      
+    
+        return "redirect:/Edit/"+ ID_Articulo.toString(); 
     }
+
+    @GetMapping("/Edit/{ID_Articulo}")
+    public String editProduct(Model model,  HttpSession session, 
+        @PathVariable(value="ID_Articulo") final Integer ID_Articulo,
+        @CookieValue(value = "cookie_Remember", defaultValue ="") String cookieRemember)
+        throws URISyntaxException, SQLException {
+
+            Connection conn = Main.getConnection();  
+
+            UsuarioJDBCTemplate usuarioTemplate = new UsuarioJDBCTemplate();   
+            usuarioTemplate.setDataSource(conn);   
+            
+            Usuario usuario;
+            Usuario loggedUsuario;
+    
+            usuario = new Usuario();
+    
+            usuario.setNombreUsuario("Login to get started");
+            usuario.setId(14);
+    
+            loggedUsuario = (Usuario) session.getAttribute("loggedUsuario");
+    
+            if(loggedUsuario != null)
+                usuario = loggedUsuario;
+
+            ArticuloJDBCTemplate articuloTemplate = new ArticuloJDBCTemplate();
+            articuloTemplate.setDataSource(conn);
+
+            Articulo articulo = articuloTemplate.getArticulo(ID_Articulo);
+
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("product", articulo);
+
+            return "Edit";
+    }
+
 
     @PostMapping(value = "/Edit", params = "action=publish")
     public String publish() {

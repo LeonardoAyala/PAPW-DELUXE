@@ -132,6 +132,7 @@
                                 <h5 class= "c-purple" th:if="${product.getPublico() == 0}">Pending publishing:</h5>
                                 <h5 class= "c-purple" th:unless="${product.getPublico() == 0}">Published:</h5>
                                 <img th:src="'/ImgArticulo1/' + ${product.getId()}" alt="Product 1"  height="100" width="100">
+                                <input type="hidden" th:value="${product.getId()}" name="idArticulo">
                             </div>
 
                             <div class="">
@@ -139,10 +140,12 @@
                                 <h5 class= "c-orange"th:text = "${product.getCategorias().get(0).getNombre()} + ', ' + ${product.getCategorias().get(1).getNombre()}"></h5>
                                 <p class="c-purple" th:text = "'$ ' + ${product.getPrecio()}"></p></p>
                                 <p th:text = "'Units: ' + ${product.getUnidades()} + '.'"></p>
-                            </div>
 
+                                
                             <button name="action" value="edit" class="action action--button action--buy"><span class="action__text">Edit</span></button>
                             <button name="action" value="publish" class="action action--button action--buy"><span class="action__text">Publish</span></button>
+                            </div>
+
                         </div>
                     </form> 
                     <hr>   
